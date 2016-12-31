@@ -7,28 +7,28 @@ public class Zadanie {
 	private Druzyna Wykonawcy;
 	private int Wynik;
 
-	private getTyp(){
+	private int getTyp(){
 		return Typ;
 	}
-	private setTyp(){
+	private void setTyp(){
 
 	}
-	private getNorma(){
+	private int getNorma(){
 		return Norma;
 	}
-	private setNorma(){
+	private void setNorma(){
 
 	}
-	private getDruzyna(){
+	private Druzyna getDruzyna(){
 		return Druzyna;
 	}
-	private setDruzyna(){
+	private void setDruzyna(){
 
 	}
-	private getWynik(){
+	private int getWynik(){
 		return Wynik;
 	}
-	private setWynik() {
+	private void setWynik() {
 
 	}
 }

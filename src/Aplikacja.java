@@ -9,16 +9,16 @@ public class Aplikacja {
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
 	private List<Zadanie> WszystkieZadania = new ArrayList<Zadanie>();
 
-	public getWszyscyPracownicy(){
+	public ArrayList getWszyscyPracownicy(){
 		return WszyscyPracownicy;
 	}
-	public setWszyscyPracownicy(){
+	public void setWszyscyPracownicy(){
 
 	}
-	public getWszystkieZadania(){
+	public ArrayList getWszystkieZadania(){
 		return WszystkieZadania;
 	}
-	public setWszystkieZadania(){
+	public void setWszystkieZadania(){
 
 	}
 }
