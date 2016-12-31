@@ -31,4 +31,7 @@ public class Zadanie {
 	private void setWynik() {
 
 	}
+	private void Zadanie() {
+
+	}
 }

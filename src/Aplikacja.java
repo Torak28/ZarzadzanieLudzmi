@@ -21,4 +21,7 @@ public class Aplikacja {
 	public void setWszystkieZadania(){
 
 	}
+	public void Aplikacja(){
+
+	}
 }
