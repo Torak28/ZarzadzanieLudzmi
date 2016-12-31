@@ -3,7 +3,7 @@
  */
 public class Pracownik {
 	private String Imie;
-	private  String Nazwisko;
+	private String Nazwisko;
 
 	public String getImie(){
 		return Imie;

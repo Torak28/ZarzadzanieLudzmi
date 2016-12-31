@@ -19,10 +19,10 @@ public class Zadanie {
 	private void setNorma(){
 
 	}
-	private Druzyna getDruzyna(){
-		return Druzyna;
+	private Druzyna getWykonawcy(){
+		return Wykonawcy;
 	}
-	private void setDruzyna(){
+	private void setWykonawcy(){
 
 	}
 	private int getWynik(){

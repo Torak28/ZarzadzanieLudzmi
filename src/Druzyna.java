@@ -14,7 +14,7 @@ public class Druzyna {
 	public void setPrzodowy(){
 
 	}
-	public ArrayList getPomocnicy(){
+	public List<Pracownik> getPomocnicy(){
 		return Pomocnicy;
 	}
 	public void setPomocnicy(){
