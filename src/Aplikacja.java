@@ -91,16 +91,6 @@ public class Aplikacja {
 		}
 	}
 	public void dodajDruzyne(){
-		Druzyna d = new Druzyna();
-		Pracownik p;
-		dodajPrzodowego(d);
-		dodajPomocnika(d);
-		p = d.getPrzodowy();
-		WszyscyPracownicy.add(WszyscyPracownicy.size(),p);
-		for (int i = 0; i < d.getPomocnicy().size(); i++) {
-			p = d.getPomocnicy().get(i);
-			WszyscyPracownicy.add(WszyscyPracownicy.size(),p);
-		}
 	}
 	public void wyswietlPracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
@@ -122,8 +112,9 @@ public class Aplikacja {
 		System.out.println("Działa wszystko!");
 
 		Aplikacja ap = new Aplikacja();
+		Druzyna d = new Druzyna();
 		ap.dodajPracownika();
-		ap.dodajDruzyne();
+		ap.dodajPrzodowego(d);
 		ap.wyswietlPracownikow();
 
 	}
