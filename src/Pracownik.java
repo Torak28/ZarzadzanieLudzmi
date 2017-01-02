@@ -8,13 +8,16 @@ public class Pracownik {
 	public String getImie(){
 		return Imie;
 	}
-	public void setImie(){
-
+	public void setImie(String i){
+		Imie = i;
 	}
 	public String getNazwisko(){
 		return Nazwisko;
 	}
-	public void setNazwisko(){
+	public void setNazwisko(String n){
+		Nazwisko = n;
+	}
+	public Pracownik(){
 
 	}
 }
