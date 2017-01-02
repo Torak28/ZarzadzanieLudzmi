@@ -4,6 +4,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Aplikacja {
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
@@ -24,12 +25,47 @@ public class Aplikacja {
 	//Muszę jakoś dodać do wszystkich pracownikow tych ktorzy są w drużynie
 
 
-
+	public void dodajPracownika(String i,String n){
+		Pracownik p = new Pracownik();
+		p.setImie(i);
+		p.setNazwisko(n);
+		WszyscyPracownicy.add(p);
+	}
+	//Dodanie przodowego i pomocnika
+	public void dodajPrzodowego(Druzyna d){
+		Pracownik pr = new Pracownik();
+		String Imie, Nazwisko;
+		Scanner in= new Scanner(System.in);
+		System.out.print("Podaj Imie Przodowego: ");
+		Imie = in.next();
+		pr.setImie(Imie);
+		System.out.print("Podaj Nazwisko Przodowego: ");
+		Nazwisko = in.next();
+		pr.setNazwisko(Nazwisko);
+		d.setPrzodowy(pr);
+	}
+	public void dodajPomocnika(Druzyna d) {
+		int ilosc;
+		Scanner in= new Scanner(System.in);
+		System.out.print("Ilu bedzie pomocnikow: ");
+		ilosc = in.nextInt();
+		for (int i = 0; i < ilosc; i++) {
+			Pracownik po = new Pracownik();
+			String Imie, Nazwisko;
+			System.out.print("Podaj Imie Pomocnika: ");
+			Imie = in.next();
+			po.setImie(Imie);
+			System.out.print("Podaj Nazwisko Pomocnika: ");
+			Nazwisko = in.next();
+			po.setNazwisko(Nazwisko);
+			d.setPomocnicy(po);
+		}
+	}
 	public void dodajDruzyne(){
 		Druzyna d = new Druzyna();
 		Pracownik p;
-		d.dodajPrzodowego(d);
-		d.dodajPomocnika(d);
+		dodajPrzodowego(d);
+		dodajPomocnika(d);
 		p = d.getPrzodowy();
 		WszyscyPracownicy.add(WszyscyPracownicy.size(),p);
 		for (int i = 0; i < d.getPomocnicy().size(); i++) {
@@ -38,7 +74,7 @@ public class Aplikacja {
 		}
 	}
 	public void wyswietlPracownikow(Aplikacja ap){
-		System.out.println("Lista Pracownikow: ");
+		System.out.println("Lista" + ap.getWszyscyPracownicy().size() + 1 + " Pracownikow: ");
 		for (int i = 0; i < ap.getWszyscyPracownicy().size(); i++) {
 			System.out.println(i+1 + ": " + ap.getWszyscyPracownicy().get(i).getImie() + " " + ap.getWszyscyPracownicy().get(i).getNazwisko());
 		}

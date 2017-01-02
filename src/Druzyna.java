@@ -21,35 +21,7 @@ public class Druzyna {
 	public void setPomocnicy(Pracownik p){
 		Pomocnicy.add(Pomocnicy.size(),p);
 	}
-	public void dodajPrzodowego(Druzyna d){
-		Pracownik pr = new Pracownik();
-		String Imie, Nazwisko;
-		Scanner in= new Scanner(System.in);
-		System.out.print("Podaj Imie Przodowego: ");
-		Imie = in.next();
-		pr.setImie(Imie);
-		System.out.print("Podaj Nazwisko Przodowego: ");
-		Nazwisko = in.next();
-		pr.setNazwisko(Nazwisko);
-		d.setPrzodowy(pr);
-	}
-	public void dodajPomocnika(Druzyna d) {
-		int ilosc;
-		Scanner in= new Scanner(System.in);
-		System.out.print("Ilu bedzie pomocnikow: ");
-		ilosc = in.nextInt();
-		for (int i = 0; i < ilosc; i++) {
-			Pracownik po = new Pracownik();
-			String Imie, Nazwisko;
-			System.out.print("Podaj Imie Pomocnika: ");
-			Imie = in.next();
-			po.setImie(Imie);
-			System.out.print("Podaj Nazwisko Pomocnika: ");
-			Nazwisko = in.next();
-			po.setNazwisko(Nazwisko);
-			d.setPomocnicy(po);
-		}
-	}
+
 	public Druzyna(){
 
 	}
