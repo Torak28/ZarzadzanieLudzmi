@@ -31,34 +31,63 @@ public class Aplikacja {
 		p.setNazwisko(n);
 		WszyscyPracownicy.add(p);
 	}
-	//Dodanie przodowego i pomocnika
-	public void dodajPrzodowego(Druzyna d){
-		Pracownik pr = new Pracownik();
+	public void dodajPracownika(){
+		Pracownik p = new Pracownik();
 		String Imie, Nazwisko;
-		Scanner in= new Scanner(System.in);
+		Scanner in = new Scanner(System.in);
+		System.out.print("Podaj Imie Pracownika: ");
+		Imie = in.next();
+		System.out.print("Podaj Nazwisko Pracownika: ");
+		Nazwisko = in.next();
+		p.setImie(Imie);
+		p.setNazwisko(Nazwisko);
+		WszyscyPracownicy.add(p);
+	}
+	public void dodajPrzodowego(Druzyna d){
+		wyswietlPracownikow();
+		int pom = -1;
+		Scanner in = new Scanner(System.in);
+		String Imie, Nazwisko;
 		System.out.print("Podaj Imie Przodowego: ");
 		Imie = in.next();
-		pr.setImie(Imie);
 		System.out.print("Podaj Nazwisko Przodowego: ");
 		Nazwisko = in.next();
-		pr.setNazwisko(Nazwisko);
-		d.setPrzodowy(pr);
+		System.out.println();
+		if (WszyscyPracownicy.isEmpty()){
+			System.out.println("Nie ma takiego delikwenta");
+		}else{
+			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+				if (WszyscyPracownicy.get(i).getImie() == Imie){
+					pom = i;
+				}else{
+					System.out.println("Nie ma takiego delikwenta");
+				}
+			}
+		}
+		if (pom != -1){
+			d.setPrzodowy(WszyscyPracownicy.get(pom));
+		}
 	}
 	public void dodajPomocnika(Druzyna d) {
+		int pom = -1;
+		Scanner in = new Scanner(System.in);
+		String Imie, Nazwisko;
 		int ilosc;
-		Scanner in= new Scanner(System.in);
-		System.out.print("Ilu bedzie pomocnikow: ");
+		System.out.print("Podaj Ilu Pomocniow: ");
 		ilosc = in.nextInt();
 		for (int i = 0; i < ilosc; i++) {
-			Pracownik po = new Pracownik();
-			String Imie, Nazwisko;
 			System.out.print("Podaj Imie Pomocnika: ");
 			Imie = in.next();
-			po.setImie(Imie);
 			System.out.print("Podaj Nazwisko Pomocnika: ");
 			Nazwisko = in.next();
-			po.setNazwisko(Nazwisko);
-			d.setPomocnicy(po);
+			for (int j = 0; j < WszyscyPracownicy.size(); j++) {
+				if (WszyscyPracownicy.get(j).getImie() == Imie && WszyscyPracownicy.get(j).getNazwisko() == Nazwisko){
+					pom = j;
+				}
+			}
+			if (pom != -1){
+				d.setPomocnicy(WszyscyPracownicy.get(pom));
+			}
 		}
 	}
 	public void dodajDruzyne(){
@@ -73,10 +102,15 @@ public class Aplikacja {
 			WszyscyPracownicy.add(WszyscyPracownicy.size(),p);
 		}
 	}
-	public void wyswietlPracownikow(Aplikacja ap){
-		System.out.println("Lista" + ap.getWszyscyPracownicy().size() + 1 + " Pracownikow: ");
-		for (int i = 0; i < ap.getWszyscyPracownicy().size(); i++) {
-			System.out.println(i+1 + ": " + ap.getWszyscyPracownicy().get(i).getImie() + " " + ap.getWszyscyPracownicy().get(i).getNazwisko());
+	public void wyswietlPracownikow(){
+		if (WszyscyPracownicy.isEmpty()){
+			System.out.println("Lista Pracownikow: ");
+			System.out.println("\tlista pusta");
+		}else{
+			System.out.println("Lista " + getWszyscyPracownicy().size() + " Pracownikow: ");
+		}
+		for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
+			System.out.println("\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko());
 		}
 	}
 	public void Aplikacja(){
@@ -88,8 +122,9 @@ public class Aplikacja {
 		System.out.println("Działa wszystko!");
 
 		Aplikacja ap = new Aplikacja();
+		ap.dodajPracownika();
 		ap.dodajDruzyne();
-		ap.wyswietlPracownikow(ap);
+		ap.wyswietlPracownikow();
 
 	}
 

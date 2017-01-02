@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by Torak28 on 31.12.2016.
@@ -21,7 +20,6 @@ public class Druzyna {
 	public void setPomocnicy(Pracownik p){
 		Pomocnicy.add(Pomocnicy.size(),p);
 	}
-
 	public Druzyna(){
 
 	}
