@@ -57,7 +57,7 @@ public class Aplikacja {
 			System.out.println("Nie ma takiego delikwenta");
 		}else{
 			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
-				if (WszyscyPracownicy.get(i).getImie() == Imie){
+				if (WszyscyPracownicy.get(i).getImie().equals(Imie)  && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
 					pom = i;
 				}else{
 					System.out.println("Nie ma takiego delikwenta");
