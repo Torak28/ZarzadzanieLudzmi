@@ -21,10 +21,27 @@ public class Aplikacja {
 	public void setWszystkieZadania(){
 
 	}
+	//Muszę jakoś dodać do wszystkich pracownikow tych ktorzy są w drużynie
+
+
+
 	public void dodajDruzyne(){
 		Druzyna d = new Druzyna();
+		Pracownik p;
 		d.dodajPrzodowego(d);
 		d.dodajPomocnika(d);
+		p = d.getPrzodowy();
+		WszyscyPracownicy.add(WszyscyPracownicy.size(),p);
+		for (int i = 0; i < d.getPomocnicy().size(); i++) {
+			p = d.getPomocnicy().get(i);
+			WszyscyPracownicy.add(WszyscyPracownicy.size(),p);
+		}
+	}
+	public void wyswietlPracownikow(Aplikacja ap){
+		System.out.println("Lista Pracownikow: ");
+		for (int i = 0; i < ap.getWszyscyPracownicy().size(); i++) {
+			System.out.println(i+1 + ": " + ap.getWszyscyPracownicy().get(i).getImie() + " " + ap.getWszyscyPracownicy().get(i).getNazwisko());
+		}
 	}
 	public void Aplikacja(){
 
@@ -36,6 +53,7 @@ public class Aplikacja {
 
 		Aplikacja ap = new Aplikacja();
 		ap.dodajDruzyne();
+		ap.wyswietlPracownikow(ap);
 
 	}
 
