@@ -50,11 +50,6 @@ public class Druzyna {
 			d.setPomocnicy(po);
 		}
 	}
-	public void dodajDruzyne(){
-		Druzyna d = new Druzyna();
-		d.dodajPrzodowego(d);
-		d.dodajPomocnika(d);
-	}
 	public Druzyna(){
 
 	}

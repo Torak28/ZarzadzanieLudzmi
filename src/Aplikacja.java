@@ -21,6 +21,11 @@ public class Aplikacja {
 	public void setWszystkieZadania(){
 
 	}
+	public void dodajDruzyne(){
+		Druzyna d = new Druzyna();
+		d.dodajPrzodowego(d);
+		d.dodajPomocnika(d);
+	}
 	public void Aplikacja(){
 
 	}
@@ -28,6 +33,10 @@ public class Aplikacja {
 	public static void main(String[] args) {
 		System.out.println("Hello, World");
 		System.out.println("Działa wszystko!");
+
+		Aplikacja ap = new Aplikacja();
+		ap.dodajDruzyne();
+
 	}
 
 }
