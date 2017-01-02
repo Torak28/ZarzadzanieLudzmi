@@ -38,8 +38,22 @@ public class Druzyna {
 		Scanner in= new Scanner(System.in);
 		System.out.print("Ilu bedzie pomocnikow: ");
 		ilosc = in.nextInt();
+		for (int i = 0; i < ilosc; i++) {
+			Pracownik po = new Pracownik();
+			String Imie, Nazwisko;
+			System.out.print("Podaj Imie Pomocnika: ");
+			Imie = in.next();
+			po.setImie(Imie);
+			System.out.print("Podaj Nazwisko Pomocnika: ");
+			Nazwisko = in.next();
+			po.setNazwisko(Nazwisko);
+			d.setPomocnicy(po);
+		}
 	}
 	public void dodajDruzyne(){
+		Druzyna d = new Druzyna();
+		d.dodajPrzodowego(d);
+		d.dodajPomocnika(d);
 	}
 	public Druzyna(){
 
