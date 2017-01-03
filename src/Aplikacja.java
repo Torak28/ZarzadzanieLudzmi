@@ -145,21 +145,23 @@ public class Aplikacja {
 	public void wyswietlZadanie(Zadanie z){
 		String typZadania;
 		String out;
+		float miara;
 		if (z.getTyp() == 1){
 			typZadania = "Wiercenie";
 		}else{
 			typZadania = "Kotwienie";
 		}
-		out = "Zadanie:\n\tTyp: " + typZadania + "Wykonawcy:\n" + z.wyswietlWykonawcow();
+		out = "Zadanie:\n\tTyp: " + typZadania + "\n\tWykonawcy:\n" + z.wyswietlWykonawcow();
 		if (z.getWynik() != 0){
-			out = out + "\nWynik: " + z.getWynik();
+			miara = z.getWynik() / z.iluWykonawcow();
+			out = out + "\tWynik: " + z.getWynik() + "\n\tOcena: " + miara;
 		}
 		System.out.println(out);
 	}
 	public void ocenZadanie(Zadanie z){
 		int wykon;
 		Scanner in = new Scanner(System.in);
-		System.out.println("Ile wykonali: ");
+		System.out.print("Ile wykonali: ");
 		wykon = in.nextInt();
 		z.setWynik(wykon);
 	}
@@ -205,6 +207,9 @@ public class Aplikacja {
 		ap.wyswietlDruzyne(d);
 
 		Zadanie z = ap.dodajZadanie(d);
+		ap.wyswietlZadanie(z);
+		ap.ocenZadanie(z);
+		ap.wyswietlZadanie(z);
 	}
 
 }
