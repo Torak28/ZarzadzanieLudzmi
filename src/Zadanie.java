@@ -7,31 +7,31 @@ public class Zadanie {
 	private Druzyna Wykonawcy;
 	private int Wynik;
 
-	private int getTyp(){
+	public int getTyp(){
 		return Typ;
 	}
-	private void setTyp(){
+	public void setTyp(){
 
 	}
-	private int getNorma(){
+	public int getNorma(){
 		return Norma;
 	}
-	private void setNorma(){
+	public void setNorma(){
 
 	}
-	private Druzyna getWykonawcy(){
+	public Druzyna getWykonawcy(){
 		return Wykonawcy;
 	}
-	private void setWykonawcy(){
+	public void setWykonawcy(){
 
 	}
-	private int getWynik(){
+	public int getWynik(){
 		return Wynik;
 	}
-	private void setWynik() {
+	public void setWynik() {
 
 	}
-	private void Zadanie() {
+	public void Zadanie() {
 
 	}
 }
