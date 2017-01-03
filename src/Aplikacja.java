@@ -14,14 +14,13 @@ public class Aplikacja {
 		return WszyscyPracownicy;
 	}
 	public void setWszyscyPracownicy(){
-
 	}
 	public List<Zadanie> getWszystkieZadania(){
 		return WszystkieZadania;
 	}
 	public void setWszystkieZadania(){
 	}
-	//Nie sprawdzam czy juz takiego nie ma
+	//Nie sprawdzam czy juz takiego nie ma niestety
 	public void dodajPracownika(){
 		String Imie, Nazwisko;
 		Scanner in = new Scanner(System.in);
@@ -29,30 +28,27 @@ public class Aplikacja {
 		Imie = in.next();
 		System.out.print("Podaj Nazwisko Pracownika: ");
 		Nazwisko = in.next();
+		int sterowanie = 0;
 		if (WszyscyPracownicy.isEmpty()){
+			sterowanie = 1;
+		}else{
+			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+				if (WszyscyPracownicy.get(i).getImie().equals(Imie) && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+					sterowanie = 0;
+				}else if(WszyscyPracownicy.get(i).getImie().equals(Imie) && !WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+					sterowanie = 1;
+				}else{
+					sterowanie = 1;
+				}
+			}
+		}
+		if (sterowanie == 0){
+			System.out.println("Taki delikwent już istnieje");
+		}else if (sterowanie == 1){
 			Pracownik p = new Pracownik();
 			p.setImie(Imie);
 			p.setNazwisko(Nazwisko);
 			WszyscyPracownicy.add(p);
-		}else{
-			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
-				if (WszyscyPracownicy.get(i).getImie().equals(Imie) && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
-					System.out.println("Taki delikwent już istnieje");
-					break;
-				}else if(WszyscyPracownicy.get(i).getImie().equals(Imie) && !WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
-					Pracownik p = new Pracownik();
-					p.setImie(Imie);
-					p.setNazwisko(Nazwisko);
-					WszyscyPracownicy.add(p);
-					break;
-				}else{
-					Pracownik p = new Pracownik();
-					p.setImie(Imie);
-					p.setNazwisko(Nazwisko);
-					WszyscyPracownicy.add(p);
-					break;
-				}
-			}
 		}
 	}
 	public void dodajPrzodowego(Druzyna d){
@@ -174,7 +170,7 @@ public class Aplikacja {
 		}
 		out = "Zadanie:\n\tTyp: " + typZadania + "\n\tWykonawcy:\n" + z.wyswietlWykonawcow();
 		if (z.getWynik() != 0){
-			out = out + "\n\tWynik: " + z.getWynik() + "\n\tOcena: " + z.getMiara();
+			out = out + "\n\tWynik: " + z.getWynik() + "\n\tOcena: " + z.getMiara() + "\n";
 		}
 		System.out.println(out);
 	}
@@ -215,7 +211,6 @@ public class Aplikacja {
 
 	public static void main(String[] args) {
 		/*TODO:
-		 * Sprawdzanie czy dany pracownik juz nie istnieje
 		 * Wypisanie druzyny przy wypisaniu zadania
 		 * Lupoowanie niepoprawnych danych
 		 * Dodanie menu
