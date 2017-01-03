@@ -115,12 +115,16 @@ public class Aplikacja {
 	public void dodajZadanieKotwienia(Zadanie z){
 		int typ = 2;
 		int norma = 12;
+		int wynik = 0;
+		z.setWynik(wynik);
 		z.setTyp(typ);
 		z.setNorma(norma);
 	}
 	public void dodajZadanieWiercenia(Zadanie z){
 		int typ = 1;
 		int norma = 6;
+		int wynik = 0;
+		z.setWynik(wynik);
 		z.setTyp(typ);
 		z.setNorma(norma);
 	}
@@ -134,8 +138,30 @@ public class Aplikacja {
 		}else{
 			dodajZadanieKotwienia(z);
 		}
-
+		z.setWykonawcy(d);
+		WszystkieZadania.add(z);
 		return z;
+	}
+	public void wyswietlZadanie(Zadanie z){
+		String typZadania;
+		String out;
+		if (z.getTyp() == 1){
+			typZadania = "Wiercenie";
+		}else{
+			typZadania = "Kotwienie";
+		}
+		out = "Zadanie:\n\tTyp: " + typZadania + "Wykonawcy:\n" + z.wyswietlWykonawcow();
+		if (z.getWynik() != 0){
+			out = out + "\nWynik: " + z.getWynik();
+		}
+		System.out.println(out);
+	}
+	public void ocenZadanie(Zadanie z){
+		int wykon;
+		Scanner in = new Scanner(System.in);
+		System.out.println("Ile wykonali: ");
+		wykon = in.nextInt();
+		z.setWynik(wykon);
 	}
 	public void wyswietlPracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
@@ -178,6 +204,7 @@ public class Aplikacja {
 		ap.wyswietlPracownikow();
 		ap.wyswietlDruzyne(d);
 
+		Zadanie z = ap.dodajZadanie(d);
 	}
 
 }

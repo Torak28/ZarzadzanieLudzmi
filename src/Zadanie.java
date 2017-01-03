@@ -31,6 +31,13 @@ public class Zadanie {
 	public void setWynik(int w) {
 		Wynik = w;
 	}
+	public String wyswietlWykonawcow(){
+		String out = "\tPrzodowy: " + getWykonawcy().getPrzodowy().getImie() + " " + getWykonawcy().getPrzodowy().getNazwisko();
+		for (int i = 0; i < getWykonawcy().getPomocnicy().size(); i++) {
+			out = out + "\tPomocnik(" + i +"): " + getWykonawcy().getPomocnicy().get(i).getImie() + " " + getWykonawcy().getPomocnicy().get(i).getNazwisko();
+		}
+		return out;
+	}
 	public void Zadanie() {
 
 	}
