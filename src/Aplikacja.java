@@ -211,9 +211,8 @@ public class Aplikacja {
 
 	public static void main(String[] args) {
 		/*TODO:
-		 * Wypisanie druzyny przy wypisaniu zadania
-		 * Lupoowanie niepoprawnych danych
 		 * Dodanie menu
+		 * Lupoowanie niepoprawnych danych
 		 * Dodanie Listy Druzyn
 		 * Wybieranie druzyny do zadania
 		 * Sprawdzanie w ktorej druzynie jest dany delikwent
@@ -224,6 +223,9 @@ public class Aplikacja {
 		 * Polaczenie zadan i druzyn w zapisie
 		 */
 		System.out.println("Program:");
+		int wybor;
+		String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +
+				      "6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Druzyne\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\nwybór: ";
 
 		Aplikacja ap = new Aplikacja();
 
