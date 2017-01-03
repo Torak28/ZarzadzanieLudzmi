@@ -193,6 +193,10 @@ public class Aplikacja {
 		z.setWynik(wykon);
 		miara = z.getWynik() / z.iluWykonawcow();
 		z.setMiara(miara);
+		z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
+		for (int i = 0; i < z.getWykonawcy().getPomocnicy().size(); i++) {
+			z.getWykonawcy().getPomocnicy().get(i).setOcena(miara);
+		}
 	}
 	public void wyswietlPracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
@@ -203,6 +207,17 @@ public class Aplikacja {
 		}
 		for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
 			System.out.println("\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko());
+		}
+	}
+	public void wyswietlOcenePracownikow(){
+		if (WszyscyPracownicy.isEmpty()){
+			System.out.println("Lista Pracownikow: ");
+			System.out.println("\tlista pusta");
+		}else{
+			System.out.println("Lista " + getWszyscyPracownicy().size() + " Pracownikow: ");
+		}
+		for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
+			System.out.println("\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(i).getOcena());
 		}
 	}
 	public void wyswietlDruzyny(){
@@ -298,6 +313,7 @@ public class Aplikacja {
 					ap.wyswietlZadanie(ap.WszystkieZadania.get(index5-1));
 					break;
 				case 11:
+					ap.wyswietlOcenePracownikow();
 					break;
 			}
 		}while (wybor != 11);
