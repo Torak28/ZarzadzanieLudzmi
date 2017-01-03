@@ -21,6 +21,7 @@ public class Aplikacja {
 	}
 	public void setWszystkieZadania(){
 	}
+	//Nie sprawdzam czy juz takiego nie ma
 	public void dodajPracownika(){
 		Pracownik p = new Pracownik();
 		String Imie, Nazwisko;
@@ -188,7 +189,6 @@ public class Aplikacja {
 		}
 	}
 	public void Aplikacja(){
-
 	}
 
 	public static void main(String[] args) {
