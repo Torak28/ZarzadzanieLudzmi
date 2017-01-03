@@ -85,23 +85,26 @@ public class Aplikacja {
 					if (!WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko()) ){
 						if(d.getPomocnicy().isEmpty()){
 							pom = j;
-						}
-						for (int k = 0; k < ilosc; k++) {
-							if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-								pom = j;
-							}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-								pom = j;
+
+						}else{
+							for (int k = 0; k < ilosc; k++) {
+								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
+									pom = k;
+								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
+									pom = k;
+								}
 							}
 						}
 					}else if (WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko()) ){
 						if(d.getPomocnicy().isEmpty()){
 							pom = j;
-						}
-						for (int k = 0; k < ilosc; k++) {
-							if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-								pom = j;
-							}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-								pom = j;
+						}else{
+							for (int k = 0; k < ilosc; k++) {
+								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
+									pom = k;
+								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
+									pom = k;
+								}
 							}
 						}
 					}
