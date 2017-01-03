@@ -85,9 +85,8 @@ public class Aplikacja {
 					if (!WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko()) ){
 						if(d.getPomocnicy().isEmpty()){
 							pom = j;
-
 						}else{
-							for (int k = 0; k < ilosc; k++) {
+							for (int k = 0; k < pom; k++) {
 								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
 									pom = k;
 								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
@@ -99,7 +98,7 @@ public class Aplikacja {
 						if(d.getPomocnicy().isEmpty()){
 							pom = j;
 						}else{
-							for (int k = 0; k < ilosc; k++) {
+							for (int k = 0; k < pom; k++) {
 								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
 									pom = k;
 								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
@@ -139,7 +138,7 @@ public class Aplikacja {
 			System.out.println("Nie ma pomocnikow");
 		}else{
 			for (int i = 0; i < d.getPomocnicy().size(); i++) {
-				System.out.println("Pomocnicy: " + d.getPomocnicy().get(i).getImie() + " " + d.getPomocnicy().get(i).getNazwisko());
+				System.out.println("Pomocnicy(" + (i+1) +"): " + d.getPomocnicy().get(i).getImie() + " " + d.getPomocnicy().get(i).getNazwisko());
 			}
 		}
 	}
