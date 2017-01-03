@@ -193,11 +193,23 @@ public class Aplikacja {
 	}
 
 	public static void main(String[] args) {
-		//Main bedzie mial liste druzyn do zapisu
-		System.out.println("Hello, World");
-		System.out.println("Działa wszystko!");
+		/*TODO:
+		 * Sprawdzanie czy dany pracownik juz nie istnieje
+		 * Wypisanie druzyny przy wypisaniu zadania
+		 * Dodanie menu
+		 * Dodanie Listy Druzyn
+		 * Wybieranie druzyny do zadania
+		 * Sprawdzanie w ktorej druzynie jest dany delikwent
+		 * Sprawdzanie wyniku konkretnego delikwenta
+		 * Pracownicy z pliku tekstowego
+		 * Zapis i czyszczenie Druzyn (?)
+		 * Zapis i czyszczenie Zadan (?)
+		 * Polaczenie zadan i druzyn w zapisie
+		 */
+		System.out.println("Program:");
 
 		Aplikacja ap = new Aplikacja();
+
 		ap.dodajPracownika();
 		ap.dodajPracownika();
 		ap.dodajPracownika();
