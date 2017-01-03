@@ -6,7 +6,14 @@ public class Zadanie {
 	private int Norma;
 	private Druzyna Wykonawcy;
 	private int Wynik;
+	private float Miara;
 
+	public float getMiara(){
+		return Miara;
+	}
+	public void setMiara(float m){
+		Miara = m;
+	}
 	public int getTyp(){
 		return Typ;
 	}

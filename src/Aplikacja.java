@@ -146,7 +146,6 @@ public class Aplikacja {
 	public void wyswietlZadanie(Zadanie z){
 		String typZadania;
 		String out;
-		float miara;
 		if (z.getTyp() == 1){
 			typZadania = "Wiercenie";
 		}else{
@@ -154,17 +153,19 @@ public class Aplikacja {
 		}
 		out = "Zadanie:\n\tTyp: " + typZadania + "\n\tWykonawcy:\n" + z.wyswietlWykonawcow();
 		if (z.getWynik() != 0){
-			miara = z.getWynik() / z.iluWykonawcow();
-			out = out + "\n\tWynik: " + z.getWynik() + "\n\tOcena: " + miara;
+			out = out + "\n\tWynik: " + z.getWynik() + "\n\tOcena: " + z.getMiara();
 		}
 		System.out.println(out);
 	}
 	public void ocenZadanie(Zadanie z){
 		int wykon;
+		float miara;
 		Scanner in = new Scanner(System.in);
 		System.out.print("Ile wykonali: ");
 		wykon = in.nextInt();
 		z.setWynik(wykon);
+		miara = z.getWynik() / z.iluWykonawcow();
+		z.setMiara(miara);
 	}
 	public void wyswietlPracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
