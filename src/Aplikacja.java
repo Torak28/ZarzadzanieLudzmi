@@ -316,7 +316,7 @@ public class Aplikacja {
 					ap.wyswietlOcenePracownikow();
 					break;
 			}
-		}while (wybor != 11);
+		}while (wybor != 12);
 		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");
 	}
 }
