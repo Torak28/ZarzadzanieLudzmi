@@ -227,12 +227,7 @@ public class Aplikacja {
 
 	public static void main(String[] args) {
 		/*TODO:
-		 * Wyswietlenie wszystkich druzyn
-		 * Wyswietlenie wszystkich zadan
-		 * Dodanie menu
 		 * Lupoowanie niepoprawnych danych
-		 * Dodanie Listy Druzyn
-		 * Wybieranie druzyny do zadania
 		 * Sprawdzanie w ktorej druzynie jest dany delikwent
 		 * Sprawdzanie wyniku konkretnego delikwenta
 		 * Pracownicy z pliku tekstowego
