@@ -180,7 +180,7 @@ public class Aplikacja {
 	}
 	public void wyswietlZadania(){
 		for (int i = 0; i < WszystkieZadania.size(); i++) {
-			System.out.print(i + ": ");
+			System.out.print((i+1) + ": ");
 			wyswietlZadanie(WszystkieZadania.get(i));
 		}
 	}
@@ -207,7 +207,7 @@ public class Aplikacja {
 	}
 	public void wyswietlDruzyny(){
 		for (int i = 0; i < WszystkieDruzyny.size(); i++) {
-			System.out.print(i + ": ");
+			System.out.print((i+1) + ": ");
 			wyswietlDruzyne(WszystkieDruzyny.get(i));
 		}
 	}
@@ -288,16 +288,17 @@ public class Aplikacja {
 					ap.wyswietlPracownikow();
 					break;
 				case 8:
-					ap.wyswietlZadania();
+					ap.wyswietlDruzyny();
 					break;
 				case 9:
+					ap.wyswietlZadania();
+					break;
+				case 10:
 					int index5;
 					System.out.println("Które zadanie chcesz ocenić?");
 					ap.wyswietlZadania();
 					index5 = in.nextInt();
 					ap.ocenZadanie(ap.WszystkieZadania.get(index5-1));
-					break;
-				case 10:
 					break;
 			}
 		}while (wybor != 11);
