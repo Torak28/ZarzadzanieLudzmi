@@ -34,7 +34,7 @@ public class Zadanie {
 	public String wyswietlWykonawcow(){
 		String out = "\tPrzodowy: " + getWykonawcy().getPrzodowy().getImie() + " " + getWykonawcy().getPrzodowy().getNazwisko();
 		for (int i = 0; i < getWykonawcy().getPomocnicy().size(); i++) {
-			out = out + "\tPomocnik(" + (i+1) +"): " + getWykonawcy().getPomocnicy().get(i).getImie() + " " + getWykonawcy().getPomocnicy().get(i).getNazwisko() + "\n";
+			out = out + "\n\tPomocnik(" + (i+1) +"): " + getWykonawcy().getPomocnicy().get(i).getImie() + " " + getWykonawcy().getPomocnicy().get(i).getNazwisko();
 		}
 		return out;
 	}

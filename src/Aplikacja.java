@@ -154,7 +154,7 @@ public class Aplikacja {
 		out = "Zadanie:\n\tTyp: " + typZadania + "\n\tWykonawcy:\n" + z.wyswietlWykonawcow();
 		if (z.getWynik() != 0){
 			miara = z.getWynik() / z.iluWykonawcow();
-			out = out + "\tWynik: " + z.getWynik() + "\n\tOcena: " + miara;
+			out = out + "\n\tWynik: " + z.getWynik() + "\n\tOcena: " + miara;
 		}
 		System.out.println(out);
 	}
