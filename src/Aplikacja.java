@@ -221,6 +221,19 @@ public class Aplikacja {
 	}
 	public void wyswietlPracownika(int index){
 		System.out.println("\t" + getWszyscyPracownicy().get(index).getImie() + " " + getWszyscyPracownicy().get(index).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(index).getOcena());
+		for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+			if(WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(getWszyscyPracownicy().get(index).getImie()) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(getWszyscyPracownicy().get(index).getNazwisko()) ){
+				System.out.println("\tJest przodowym w Druzynie " + (i+1));
+			}else{
+				//To nie działa
+				for (int j = 0; j < WszystkieDruzyny.get(i).getPomocnicy().size(); j++) {
+					if (WszystkieDruzyny.get(i).getPomocnicy().get(j).getImie().equals(getWszyscyPracownicy().get(index).getImie())
+							&& WszystkieDruzyny.get(i).getPomocnicy().get(j).getNazwisko().equals(getWszyscyPracownicy().get(index).getNazwisko())){
+						System.out.println("\tJest pomocnikiem w Druzynie " + (i+1));
+					}
+				}
+			}
+		}
 	}
 	public void wyswietlDruzyny(){
 		for (int i = 0; i < WszystkieDruzyny.size(); i++) {
