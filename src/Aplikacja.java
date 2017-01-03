@@ -20,16 +20,6 @@ public class Aplikacja {
 		return WszystkieZadania;
 	}
 	public void setWszystkieZadania(){
-
-	}
-	//Muszę jakoś dodać do wszystkich pracownikow tych ktorzy są w drużynie
-
-
-	public void dodajPracownika(String i,String n){
-		Pracownik p = new Pracownik();
-		p.setImie(i);
-		p.setNazwisko(n);
-		WszyscyPracownicy.add(p);
 	}
 	public void dodajPracownika(){
 		Pracownik p = new Pracownik();
@@ -116,9 +106,20 @@ public class Aplikacja {
 			}
 		}
 	}
-	public void dodajDruzyne(Druzyna d){
+	public Druzyna dodajDruzyne(){
+		Druzyna d = new Druzyna();
 		dodajPrzodowego(d);
 		dodajPomocnika(d);
+		return d;
+	}
+	public void dodajZadanieKotwienia(){
+
+	}
+	public void dodajZadanieWiercenia(){
+
+	}
+	public void dodajZadanie(){
+
 	}
 	public void wyswietlPracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
@@ -152,12 +153,11 @@ public class Aplikacja {
 		System.out.println("Działa wszystko!");
 
 		Aplikacja ap = new Aplikacja();
-		Druzyna d = new Druzyna();
 		ap.dodajPracownika();
 		ap.dodajPracownika();
 		ap.dodajPracownika();
 
-		ap.dodajDruzyne(d);
+		Druzyna d = ap.dodajDruzyne();
 
 		ap.wyswietlPracownikow();
 		ap.wyswietlDruzyne(d);
