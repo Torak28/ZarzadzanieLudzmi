@@ -294,6 +294,7 @@ public class Aplikacja {
 					ap.wyswietlZadania();
 					index5 = in.nextInt();
 					ap.ocenZadanie(ap.WszystkieZadania.get(index5-1));
+					ap.wyswietlZadanie(ap.WszystkieZadania.get(index5-1));
 					break;
 			}
 		}while (wybor != 11);
