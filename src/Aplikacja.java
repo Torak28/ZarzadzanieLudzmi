@@ -257,9 +257,8 @@ public class Aplikacja {
 
 	public static void main(String[] args) {
 		/*TODO:
+		 * Przy 11 i 12 wyswietlic co robili
 		 * Lupoowanie niepoprawnych danych
-		 * Sprawdzanie w ktorej druzynie jest dany delikwent
-		 * Sprawdzanie wyniku konkretnego delikwenta
 		 * Pracownicy z pliku tekstowego
 		 * Zapis i czyszczenie Druzyn (?)
 		 * Zapis i czyszczenie Zadan (?)
