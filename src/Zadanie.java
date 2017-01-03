@@ -10,26 +10,26 @@ public class Zadanie {
 	public int getTyp(){
 		return Typ;
 	}
-	public void setTyp(){
-
+	public void setTyp(int t){
+		Typ = t;
 	}
 	public int getNorma(){
 		return Norma;
 	}
-	public void setNorma(){
-
+	public void setNorma(int n){
+		Norma = n;
 	}
 	public Druzyna getWykonawcy(){
 		return Wykonawcy;
 	}
-	public void setWykonawcy(){
-
+	public void setWykonawcy(Druzyna d){
+		Wykonawcy = d;
 	}
 	public int getWynik(){
 		return Wynik;
 	}
-	public void setWynik() {
-
+	public void setWynik(int w) {
+		Wynik = w;
 	}
 	public void Zadanie() {
 
