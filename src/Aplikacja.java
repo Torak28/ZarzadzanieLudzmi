@@ -117,7 +117,9 @@ public class Aplikacja {
 			}
 		}
 	}
-	public void dodajDruzyne(){
+	public void dodajDruzyne(Druzyna d){
+		dodajPrzodowego(d);
+		dodajPomocnika(d);
 	}
 	public void wyswietlPracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
@@ -146,6 +148,7 @@ public class Aplikacja {
 	}
 
 	public static void main(String[] args) {
+		//Main bedzie mial liste druzyn do zapisu
 		System.out.println("Hello, World");
 		System.out.println("Działa wszystko!");
 
@@ -153,8 +156,10 @@ public class Aplikacja {
 		Druzyna d = new Druzyna();
 		ap.dodajPracownika();
 		ap.dodajPracownika();
-		ap.dodajPrzodowego(d);
-		ap.dodajPomocnika(d);
+		ap.dodajPracownika();
+
+		ap.dodajDruzyne(d);
+
 		ap.wyswietlPracownikow();
 		ap.wyswietlDruzyne(d);
 
