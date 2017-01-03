@@ -59,13 +59,13 @@ public class Aplikacja {
 			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
 				if (WszyscyPracownicy.get(i).getImie().equals(Imie)  && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
 					pom = i;
-				}else{
-					System.out.println("Nie ma takiego delikwenta");
 				}
 			}
 		}
 		if (pom != -1){
 			d.setPrzodowy(WszyscyPracownicy.get(pom));
+		}else {
+			System.out.println("Nie ma takiego delikwenta");
 		}
 	}
 	public void dodajPomocnika(Druzyna d) {
@@ -81,12 +81,16 @@ public class Aplikacja {
 			System.out.print("Podaj Nazwisko Pomocnika: ");
 			Nazwisko = in.next();
 			for (int j = 0; j < WszyscyPracownicy.size(); j++) {
-				if (WszyscyPracownicy.get(j).getImie() == Imie && WszyscyPracownicy.get(j).getNazwisko() == Nazwisko){
-					pom = j;
+				if (WszyscyPracownicy.get(j).getImie().equals(Imie) && WszyscyPracownicy.get(j).getNazwisko().equals(Nazwisko)){
+					if (!WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko()) ){
+						pom = j;
+					}
 				}
 			}
 			if (pom != -1){
 				d.setPomocnicy(WszyscyPracownicy.get(pom));
+			}else {
+				System.out.println("Nie ma takiego delikwenta");
 			}
 		}
 	}
@@ -103,6 +107,17 @@ public class Aplikacja {
 			System.out.println("\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko());
 		}
 	}
+	public void wyswietlDruzyne(Druzyna d){
+		System.out.println("Druzyna: ");
+		System.out.println("Przodowy: " + d.getPrzodowy().getImie() + " " + d.getPrzodowy().getNazwisko());
+		if (d.getPomocnicy().isEmpty()){
+			System.out.println("Nie ma pomocnikow");
+		}else{
+			for (int i = 0; i < d.getPomocnicy().size(); i++) {
+				System.out.println("Pomocnicy: " + d.getPomocnicy().get(i).getImie() + " " + d.getPomocnicy().get(i).getNazwisko());
+			}
+		}
+	}
 	public void Aplikacja(){
 
 	}
@@ -114,8 +129,11 @@ public class Aplikacja {
 		Aplikacja ap = new Aplikacja();
 		Druzyna d = new Druzyna();
 		ap.dodajPracownika();
+		ap.dodajPracownika();
 		ap.dodajPrzodowego(d);
+		ap.dodajPomocnika(d);
 		ap.wyswietlPracownikow();
+		ap.wyswietlDruzyne(d);
 
 	}
 
