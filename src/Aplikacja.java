@@ -112,14 +112,30 @@ public class Aplikacja {
 		dodajPomocnika(d);
 		return d;
 	}
-	public void dodajZadanieKotwienia(){
-
+	public void dodajZadanieKotwienia(Zadanie z){
+		int typ = 2;
+		int norma = 12;
+		z.setTyp(typ);
+		z.setNorma(norma);
 	}
-	public void dodajZadanieWiercenia(){
-
+	public void dodajZadanieWiercenia(Zadanie z){
+		int typ = 1;
+		int norma = 6;
+		z.setTyp(typ);
+		z.setNorma(norma);
 	}
-	public void dodajZadanie(){
+	public Zadanie dodajZadanie(Druzyna d){
+		Zadanie z = new Zadanie();
+		System.out.println("Jakie chcesz dodać zadanie?\n\t1 - Wiercenie\n\t2 - Kotwienie");
+		Scanner in = new Scanner(System.in);
+		int wybor = in.nextInt();
+		if (wybor == 1){
+			dodajZadanieWiercenia(z);
+		}else{
+			dodajZadanieKotwienia(z);
+		}
 
+		return z;
 	}
 	public void wyswietlPracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
