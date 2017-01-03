@@ -14,7 +14,6 @@ public class Aplikacja {
 	public List<Pracownik> getWszyscyPracownicy(){
 		return WszyscyPracownicy;
 	}
-	//Nie sprawdzam czy juz takiego nie ma niestety
 	public void dodajPracownika(){
 		String Imie, Nazwisko;
 		Scanner in = new Scanner(System.in);
@@ -220,6 +219,9 @@ public class Aplikacja {
 			System.out.println("\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(i).getOcena());
 		}
 	}
+	public void wyswietlPracownika(int index){
+		System.out.println("\t" + getWszyscyPracownicy().get(index).getImie() + " " + getWszyscyPracownicy().get(index).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(index).getOcena());
+	}
 	public void wyswietlDruzyny(){
 		for (int i = 0; i < WszystkieDruzyny.size(); i++) {
 			System.out.print((i+1) + ": ");
@@ -257,7 +259,7 @@ public class Aplikacja {
 		do {
 			String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +
 					"6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Druzyne\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\n\t11 - Ocena pracowników\n\t" +
-					"12 - wyjście\nwybór: ";
+					"12 - Informacje o pracowniku\n\t13 - koniec\nwybór: ";
 			System.out.print(menu);
 			wybor = in.nextInt();
 			switch (wybor){
@@ -315,8 +317,14 @@ public class Aplikacja {
 				case 11:
 					ap.wyswietlOcenePracownikow();
 					break;
+				case 12:
+					System.out.println("Dane którego pracownika Cie interesuja");
+					ap.wyswietlPracownikow();
+					index5 = in.nextInt();
+					ap.wyswietlPracownika(index5-1);
+					break;
 			}
-		}while (wybor != 12);
+		}while (wybor != 13);
 		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");
 	}
 }
