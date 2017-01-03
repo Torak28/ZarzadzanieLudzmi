@@ -9,16 +9,10 @@ import java.util.Scanner;
 public class Aplikacja {
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
 	private List<Zadanie> WszystkieZadania = new ArrayList<Zadanie>();
+	private List<Druzyna> WszystkieDruzyny = new ArrayList<Druzyna>();
 
 	public List<Pracownik> getWszyscyPracownicy(){
 		return WszyscyPracownicy;
-	}
-	public void setWszyscyPracownicy(){
-	}
-	public List<Zadanie> getWszystkieZadania(){
-		return WszystkieZadania;
-	}
-	public void setWszystkieZadania(){
 	}
 	//Nie sprawdzam czy juz takiego nie ma niestety
 	public void dodajPracownika(){
@@ -50,6 +44,9 @@ public class Aplikacja {
 			p.setNazwisko(Nazwisko);
 			WszyscyPracownicy.add(p);
 		}
+	}
+	public void usunPracownika(Pracownik p){
+		WszyscyPracownicy.remove(p);
 	}
 	public void dodajPrzodowego(Druzyna d){
 		wyswietlPracownikow();
@@ -128,7 +125,11 @@ public class Aplikacja {
 		Druzyna d = new Druzyna();
 		dodajPrzodowego(d);
 		dodajPomocnika(d);
+		WszystkieDruzyny.add(d);
 		return d;
+	}
+	public void usunDruzyne(Druzyna d){
+		WszystkieDruzyny.remove(d);
 	}
 	public void dodajZadanieKotwienia(Zadanie z){
 		int typ = 2;
@@ -159,6 +160,9 @@ public class Aplikacja {
 		z.setWykonawcy(d);
 		WszystkieZadania.add(z);
 		return z;
+	}
+	public void usunZadanie(Zadanie z){
+		WszystkieZadania.remove(z);
 	}
 	public void wyswietlZadanie(Zadanie z){
 		String typZadania;
@@ -211,6 +215,8 @@ public class Aplikacja {
 
 	public static void main(String[] args) {
 		/*TODO:
+		 * Wyswietlenie wszystkich druzyn
+		 * Wyswietlenie wszystkich zadan
 		 * Dodanie menu
 		 * Lupoowanie niepoprawnych danych
 		 * Dodanie Listy Druzyn
@@ -223,25 +229,44 @@ public class Aplikacja {
 		 * Polaczenie zadan i druzyn w zapisie
 		 */
 		System.out.println("Program:");
-		int wybor;
-		String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +
-				      "6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Druzyne\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\nwybór: ";
-
 		Aplikacja ap = new Aplikacja();
+		Scanner in = new Scanner(System.in);
+		int wybor;
+		do {
+			String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +
+					"6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Druzyne\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\n\t11 - zakończyć\nwybór: ";
+			System.out.print(menu);
+			wybor = in.nextInt();
+			switch (wybor){
+				case 1:
+					ap.dodajPracownika();
+					break;
+				case 2:
+					int index;
+					System.out.println("Którego pracownika chcesz usunąć?");
+					ap.wyswietlPracownikow();
+					index = in.nextInt();
+					ap.usunPracownika(ap.WszyscyPracownicy.get(index-1));
+					break;
+				case 3:
+					ap.dodajDruzyne();
+					break;
+			}
+		}while (wybor != 11);
 
-		ap.dodajPracownika();
-		ap.dodajPracownika();
-		ap.dodajPracownika();
-
-		Druzyna d = ap.dodajDruzyne();
-
-		ap.wyswietlPracownikow();
-		ap.wyswietlDruzyne(d);
-
-		Zadanie z = ap.dodajZadanie(d);
-		ap.wyswietlZadanie(z);
-		ap.ocenZadanie(z);
-		ap.wyswietlZadanie(z);
+//		ap.dodajPracownika();
+//		ap.dodajPracownika();
+//		ap.dodajPracownika();
+//
+// 		Druzyna d = ap.dodajDruzyne();
+//
+//		ap.wyswietlPracownikow();
+//		ap.wyswietlDruzyne(d);
+//
+//		Zadanie z = ap.dodajZadanie(d);
+//		ap.wyswietlZadanie(z);
+//		ap.ocenZadanie(z);
+//		ap.wyswietlZadanie(z);
 	}
 
 }
