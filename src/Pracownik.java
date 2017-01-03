@@ -4,7 +4,14 @@
 public class Pracownik {
 	private String Imie;
 	private String Nazwisko;
+	private float Ocena;
 
+	public float getOcena(){
+		return Ocena;
+	}
+	public void setOcena(float o){
+		Ocena = o;
+	}
 	public String getImie(){
 		return Imie;
 	}

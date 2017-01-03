@@ -241,7 +241,8 @@ public class Aplikacja {
 		int wybor;
 		do {
 			String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +
-					"6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Druzyne\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\n\t11 - zakończyć\nwybór: ";
+					"6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Druzyne\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\n\t11 - Ocena pracowników\n\t" +
+					"12 - wyjście\nwybór: ";
 			System.out.print(menu);
 			wybor = in.nextInt();
 			switch (wybor){
@@ -295,6 +296,8 @@ public class Aplikacja {
 					index5 = in.nextInt();
 					ap.ocenZadanie(ap.WszystkieZadania.get(index5-1));
 					ap.wyswietlZadanie(ap.WszystkieZadania.get(index5-1));
+					break;
+				case 11:
 					break;
 			}
 		}while (wybor != 11);
