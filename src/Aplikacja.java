@@ -23,16 +23,37 @@ public class Aplikacja {
 	}
 	//Nie sprawdzam czy juz takiego nie ma
 	public void dodajPracownika(){
-		Pracownik p = new Pracownik();
 		String Imie, Nazwisko;
 		Scanner in = new Scanner(System.in);
 		System.out.print("Podaj Imie Pracownika: ");
 		Imie = in.next();
 		System.out.print("Podaj Nazwisko Pracownika: ");
 		Nazwisko = in.next();
-		p.setImie(Imie);
-		p.setNazwisko(Nazwisko);
-		WszyscyPracownicy.add(p);
+		if (WszyscyPracownicy.isEmpty()){
+			Pracownik p = new Pracownik();
+			p.setImie(Imie);
+			p.setNazwisko(Nazwisko);
+			WszyscyPracownicy.add(p);
+		}else{
+			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+				if (WszyscyPracownicy.get(i).getImie().equals(Imie) && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+					System.out.println("Taki delikwent już istnieje");
+					break;
+				}else if(WszyscyPracownicy.get(i).getImie().equals(Imie) && !WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+					Pracownik p = new Pracownik();
+					p.setImie(Imie);
+					p.setNazwisko(Nazwisko);
+					WszyscyPracownicy.add(p);
+					break;
+				}else{
+					Pracownik p = new Pracownik();
+					p.setImie(Imie);
+					p.setNazwisko(Nazwisko);
+					WszyscyPracownicy.add(p);
+					break;
+				}
+			}
+		}
 	}
 	public void dodajPrzodowego(Druzyna d){
 		wyswietlPracownikow();
@@ -196,6 +217,7 @@ public class Aplikacja {
 		/*TODO:
 		 * Sprawdzanie czy dany pracownik juz nie istnieje
 		 * Wypisanie druzyny przy wypisaniu zadania
+		 * Lupoowanie niepoprawnych danych
 		 * Dodanie menu
 		 * Dodanie Listy Druzyn
 		 * Wybieranie druzyny do zadania
