@@ -178,6 +178,12 @@ public class Aplikacja {
 		}
 		System.out.println(out);
 	}
+	public void wyswietlZadania(){
+		for (int i = 0; i < WszystkieZadania.size(); i++) {
+			System.out.print(i + ": ");
+			wyswietlZadanie(WszystkieZadania.get(i));
+		}
+	}
 	public void ocenZadanie(Zadanie z){
 		int wykon;
 		float miara;
@@ -197,6 +203,12 @@ public class Aplikacja {
 		}
 		for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
 			System.out.println("\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko());
+		}
+	}
+	public void wyswietlDruzyny(){
+		for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+			System.out.print(i + ": ");
+			wyswietlDruzyne(WszystkieDruzyny.get(i));
 		}
 	}
 	public void wyswietlDruzyne(Druzyna d){
@@ -251,22 +263,44 @@ public class Aplikacja {
 				case 3:
 					ap.dodajDruzyne();
 					break;
+				case 4:
+					int index2;
+					System.out.println("Którą drużynę chcesz usunąć?");
+					ap.wyswietlDruzyny();
+					index2 = in.nextInt();
+					ap.usunDruzyne(ap.WszystkieDruzyny.get(index2-1));
+					break;
+				case 5:
+					int index3;
+					System.out.println("Której drużynie przydzielić zadanie?");
+					ap.wyswietlDruzyny();
+					index3 = in.nextInt();
+					ap.dodajZadanie(ap.WszystkieDruzyny.get(index3-1));
+					break;
+				case 6:
+					int index4;
+					System.out.println("Które zadanie chcesz usunąć?");
+					ap.wyswietlZadania();
+					index4 = in.nextInt();
+					ap.usunZadanie(ap.WszystkieZadania.get(index4-1));
+					break;
+				case 7:
+					ap.wyswietlPracownikow();
+					break;
+				case 8:
+					ap.wyswietlZadania();
+					break;
+				case 9:
+					int index5;
+					System.out.println("Które zadanie chcesz ocenić?");
+					ap.wyswietlZadania();
+					index5 = in.nextInt();
+					ap.ocenZadanie(ap.WszystkieZadania.get(index5-1));
+					break;
+				case 10:
+					break;
 			}
 		}while (wybor != 11);
-
-//		ap.dodajPracownika();
-//		ap.dodajPracownika();
-//		ap.dodajPracownika();
-//
-// 		Druzyna d = ap.dodajDruzyne();
-//
-//		ap.wyswietlPracownikow();
-//		ap.wyswietlDruzyne(d);
-//
-//		Zadanie z = ap.dodajZadanie(d);
-//		ap.wyswietlZadanie(z);
-//		ap.ocenZadanie(z);
-//		ap.wyswietlZadanie(z);
+		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");
 	}
-
 }
