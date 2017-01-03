@@ -77,11 +77,11 @@ public class Aplikacja {
 						if(d.getPomocnicy().isEmpty()){
 							pom = j;
 						}else{
-							for (int k = 0; k < pom; k++) {
+							for (int k = 0; k < d.getPomocnicy().size(); k++) {
 								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-									pom = k;
+									pom = j;
 								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-									pom = k;
+									pom = j;
 								}
 							}
 						}
@@ -89,11 +89,11 @@ public class Aplikacja {
 						if(d.getPomocnicy().isEmpty()){
 							pom = j;
 						}else{
-							for (int k = 0; k < pom; k++) {
+							for (int k = 0; k < d.getPomocnicy().size(); k++) {
 								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-									pom = k;
+									pom = j;
 								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-									pom = k;
+									pom = j;
 								}
 							}
 						}
