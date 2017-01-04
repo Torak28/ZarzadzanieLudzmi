@@ -2,9 +2,12 @@
  * Created by Torak28 on 31.12.2016.
  */
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Aplikacja {
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
@@ -242,7 +245,7 @@ public class Aplikacja {
 		}
 	}
 	public void wyswietlDruzyne(Druzyna d){
-		System.out.println("Druzyna: ");
+		System.out.println("Brygada: ");
 		System.out.println("Przodowy: " + d.getPrzodowy().getImie() + " " + d.getPrzodowy().getNazwisko());
 		if (d.getPomocnicy().isEmpty()){
 			System.out.println("Nie ma pomocnikow");
@@ -264,13 +267,19 @@ public class Aplikacja {
 		 * Zapis i czyszczenie Zadan (?)
 		 * Polaczenie zadan i druzyn w zapisie
 		 */
+
+		odczytPracownikow r = new odczytPracownikow();
+		r.otworzPlik();
+		r.odczyt();
+		r.zamknij();
+
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
 		int wybor;
 		do {
 			String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +
-					"6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Druzyne\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\n\t11 - Ocena pracowników\n\t" +
+					"6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Brygade\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\n\t11 - Ocena pracowników\n\t" +
 					"12 - Informacje o pracowniku\n\t13 - koniec\nwybór: ";
 			System.out.print(menu);
 			wybor = in.nextInt();
@@ -290,14 +299,14 @@ public class Aplikacja {
 					break;
 				case 4:
 					int index2;
-					System.out.println("Którą drużynę chcesz usunąć?");
+					System.out.println("Którą brygade chcesz usunąć?");
 					ap.wyswietlDruzyny();
 					index2 = in.nextInt();
 					ap.usunDruzyne(ap.WszystkieDruzyny.get(index2-1));
 					break;
 				case 5:
 					int index3;
-					System.out.println("Której drużynie przydzielić zadanie?");
+					System.out.println("Której brygadzie przydzielić zadanie?");
 					ap.wyswietlDruzyny();
 					index3 = in.nextInt();
 					ap.dodajZadanie(ap.WszystkieDruzyny.get(index3-1));
