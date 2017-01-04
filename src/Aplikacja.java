@@ -2,12 +2,9 @@
  * Created by Torak28 on 31.12.2016.
  */
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 public class Aplikacja {
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
@@ -267,15 +264,21 @@ public class Aplikacja {
 		 * Zapis i czyszczenie Zadan (?)
 		 * Polaczenie zadan i druzyn w zapisie
 		 */
-
-		odczytPracownikow r = new odczytPracownikow();
-		r.otworzPlik();
-		r.odczyt();
-		r.zamknij();
-
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
+
+		odczytPracownikow r = new odczytPracownikow();
+		r.Ilu();
+		r.otworzPlik();
+		for (int i = 0; i < r.ilosc; i++) {
+			ap.dodajPracownika();
+			System.out.print(r.odczyt());
+		}
+		r.zamknij();
+
+
+
 		int wybor;
 		do {
 			String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +

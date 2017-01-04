@@ -5,6 +5,7 @@ import java.util.*;
  */
 public class odczytPracownikow {
 	private Scanner x;
+	public int ilosc;
 	public void otworzPlik(){
 		try {
 			x = new Scanner(new File("src/txt/Pracownicy.txt"));
@@ -12,16 +13,29 @@ public class odczytPracownikow {
 			System.out.println("Nie ma pliczku :c");
 		}
 	}
-	public void odczyt(){
+	public void zamknij(){
+		x.close();
+	}
+	public String odczyt(){
 		while(x.hasNext()){
 			String i = x.next();
 			String n = x.next();
 
-			System.out.printf("%s %s\n",i,n);
+			String out = i + " " + n;
+			return out + "\n";
 		}
+		return "\n";
 	}
-	public void zamknij(){
-		x.close();
+	public int Ilu(){
+		otworzPlik();
+		ilosc = 0;
+		while(x.hasNext()){
+			String i = x.next();
+			String n = x.next();
+
+			ilosc += 1;
+		}
+		zamknij();
+		return ilosc;
 	}
 }
-
