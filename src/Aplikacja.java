@@ -5,6 +5,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.ByteArrayInputStream;
 
 public class Aplikacja {
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
@@ -272,14 +273,18 @@ public class Aplikacja {
 		r.Ilu();
 		r.otworzPlik();
 		for (int i = 0; i < r.ilosc; i++) {
+			//System.out.print(r.odczyt());
+			ByteArrayInputStream wejscie = new ByteArrayInputStream(r.odczyt().getBytes());
+			System.setIn(wejscie);
 			ap.dodajPracownika();
-			System.out.print(r.odczyt());
 		}
 		r.zamknij();
+		ap.wyswietlPracownikow();
+		//rozwiazanie bardzo naiwne
 
 
 
-		int wybor;
+		/*int wybor;
 		do {
 			String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +
 					"6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Brygade\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\n\t11 - Ocena pracowników\n\t" +
@@ -349,6 +354,6 @@ public class Aplikacja {
 					break;
 			}
 		}while (wybor != 13);
-		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");
+		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");*/
 	}
 }
