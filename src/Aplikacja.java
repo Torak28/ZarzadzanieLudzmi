@@ -268,6 +268,7 @@ public class Aplikacja {
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
+		String tab;
 
 		odczytPracownikow r = new odczytPracownikow();
 		r.Ilu();
@@ -280,6 +281,17 @@ public class Aplikacja {
 		}
 		r.zamknij();
 		ap.wyswietlPracownikow();
+
+		/*
+		* TODO
+		* dodajprzecownika z przeciazone na stringach
+		* przeglad funckji przygotowujacy do okienek
+		* dodanie dodaje do pliku pracownika
+		* usuwanie usuwa z pliku pracownika
+		* zappis druzyn do plikow
+		* usuwanie druzyn z plikow
+		* MODYFIKACJA wszystkiego??
+		* Okienka*/
 		//rozwiazanie bardzo naiwne
 
 
