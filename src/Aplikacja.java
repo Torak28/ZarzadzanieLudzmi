@@ -255,18 +255,21 @@ public class Aplikacja {
 	public static void main(String[] args) throws FileNotFoundException{
 		/*TODO:
 		 * Przy 11 i 12 wyswietlic co robili
-		 * Pracownicy z pliku tekstowego
 		 * Zapis i czyszczenie Druzyn (?)
 		 * Zapis i czyszczenie Zadan (?)
-		 * Polaczenie zadan i druzyn w zapisie
 
-		* przeglad funckji przygotowujacy do okienek
-		* dodanie dodaje do pliku pracownika
-		* usuwanie usuwa z pliku pracownika
+		* przeglad funckji przygotowujacy do okienek(funkcje musza zwracac typy)
+		* dodanie dodaje do pliku pracownika (RACZEJ ZROBIONE, w formie zapisu pod koniec pracy)
+		* usuwanie usuwa z pliku pracownika (RACZEJ ZROBIONE, w formie zapisu pod koniec pracy)
 		* zappis druzyn do plikow
 		* usuwanie druzyn z plikow
 		* MODYFIKACJA wszystkiego??
-		* Okienka*/
+		* Okienka
+		*
+		* Wybierz Pracownika jako funkcja
+		* Nie rezygnujemy z idei usuwania przez indeks, ale dodajemy usuwanie przez Imie i Nazwisko
+		*
+		* */
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
