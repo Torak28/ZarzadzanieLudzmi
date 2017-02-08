@@ -26,6 +26,11 @@ public class odczytPracownikow {
 		}
 		return "Bląd";
 	}
+	public void zapis(String in) throws FileNotFoundException{
+		PrintWriter zapis = new PrintWriter("src/txt/Pracownicy.txt");
+		zapis.print(in);
+		zapis.close();
+	}
 	public int Ilu(){
 		otworzPlik();
 		ilosc = 0;

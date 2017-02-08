@@ -2,6 +2,7 @@
  * Created by Torak28 on 31.12.2016.
  */
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -202,7 +203,7 @@ public class Aplikacja {
 				out += "\n\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko();
 			}
 		}
-		return out;
+		return out + "\n";
 	}
 	public void wyswietlOcenePracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
@@ -251,7 +252,7 @@ public class Aplikacja {
 	public void Aplikacja(){
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException{
 		/*TODO:
 		 * Przy 11 i 12 wyswietlic co robili
 		 * Pracownicy z pliku tekstowego
@@ -287,9 +288,25 @@ public class Aplikacja {
 
 		//Dodanie
 		ap.dodajPracownika("Jan", "Matejko");
+		ap.dodajPracownika("Zbigniew", "Kolba");
 		//Sprawdzenie dodania
 		System.out.print(ap.wyswietlPracownikow());
 
+		//Zapis
+		String out;
+		if (ap.WszyscyPracownicy.isEmpty()){
+			out = "Lista Pracownikow:\n\tlista pusta";
+		}else if(ap.WszyscyPracownicy.size() == 1) {
+			out = ap.getWszyscyPracownicy().get(0).getImie() + " " + ap.getWszyscyPracownicy().get(0).getNazwisko() + "\n";
+		}
+		else{
+			out = ap.getWszyscyPracownicy().get(0).getImie() + " " + ap.getWszyscyPracownicy().get(0).getNazwisko() + "\n";
+			for (int i = 1; i < (ap.getWszyscyPracownicy().size() - 1); i++) {
+				out += ap.getWszyscyPracownicy().get(i).getImie() + " " + ap.getWszyscyPracownicy().get(i).getNazwisko() + "\n";
+			}
+			out += ap.getWszyscyPracownicy().get(ap.getWszyscyPracownicy().size() - 1).getImie() + " " + ap.getWszyscyPracownicy().get(ap.getWszyscyPracownicy().size() - 1).getNazwisko();
+		}
+		r.zapis(out);
 
 		/*int wybor;
 		do {
