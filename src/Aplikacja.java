@@ -15,13 +15,7 @@ public class Aplikacja {
 	public List<Pracownik> getWszyscyPracownicy(){
 		return WszyscyPracownicy;
 	}
-	public void dodajPracownika(){
-		String Imie, Nazwisko;
-		Scanner in = new Scanner(System.in);
-		System.out.print("Podaj Imie Pracownika: ");
-		Imie = in.next();
-		System.out.print("Podaj Nazwisko Pracownika: ");
-		Nazwisko = in.next();
+	public void dodajPracownika(String Imie, String Nazwisko){
 		int sterowanie = 0;
 		if (WszyscyPracownicy.isEmpty()){
 			sterowanie = 1;
@@ -275,9 +269,11 @@ public class Aplikacja {
 		r.otworzPlik();
 		for (int i = 0; i < r.ilosc; i++) {
 			//System.out.print(r.odczyt());
-			ByteArrayInputStream wejscie = new ByteArrayInputStream(r.odczyt().getBytes());
-			System.setIn(wejscie);
-			ap.dodajPracownika();
+			/*ByteArrayInputStream wejscie = new ByteArrayInputStream(r.odczyt().getBytes());
+			System.setIn(wejscie);*/
+			/**
+			 * A jakby r.odczyt zwracało coś w stylu tupli? W sensie i imie i nazwisko?*/
+			//ap.dodajPracownika(r.odczyt());
 		}
 		r.zamknij();
 		ap.wyswietlPracownikow();
