@@ -22,9 +22,9 @@ public class odczytPracownikow {
 			String n = x.next();
 
 			String out = i + " " + n;
-			return out + "\n";
+			return out;
 		}
-		return "\n";
+		return "Bląd";
 	}
 	public int Ilu(){
 		otworzPlik();

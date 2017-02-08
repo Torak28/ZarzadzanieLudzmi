@@ -253,34 +253,11 @@ public class Aplikacja {
 	public static void main(String[] args) {
 		/*TODO:
 		 * Przy 11 i 12 wyswietlic co robili
-		 * Lupoowanie niepoprawnych danych
 		 * Pracownicy z pliku tekstowego
 		 * Zapis i czyszczenie Druzyn (?)
 		 * Zapis i czyszczenie Zadan (?)
 		 * Polaczenie zadan i druzyn w zapisie
-		 */
-		System.out.println("Program:");
-		Aplikacja ap = new Aplikacja();
-		Scanner in = new Scanner(System.in);
-		String tab;
 
-		odczytPracownikow r = new odczytPracownikow();
-		r.Ilu();
-		r.otworzPlik();
-		for (int i = 0; i < r.ilosc; i++) {
-			//System.out.print(r.odczyt());
-			/*ByteArrayInputStream wejscie = new ByteArrayInputStream(r.odczyt().getBytes());
-			System.setIn(wejscie);*/
-			/**
-			 * A jakby r.odczyt zwracało coś w stylu tupli? W sensie i imie i nazwisko?*/
-			//ap.dodajPracownika(r.odczyt());
-		}
-		r.zamknij();
-		ap.wyswietlPracownikow();
-
-		/*
-		* TODO
-		* dodajprzecownika z przeciazone na stringach
 		* przeglad funckji przygotowujacy do okienek
 		* dodanie dodaje do pliku pracownika
 		* usuwanie usuwa z pliku pracownika
@@ -288,9 +265,23 @@ public class Aplikacja {
 		* usuwanie druzyn z plikow
 		* MODYFIKACJA wszystkiego??
 		* Okienka*/
-		//rozwiazanie bardzo naiwne
+		System.out.println("Program:");
+		Aplikacja ap = new Aplikacja();
+		Scanner in = new Scanner(System.in);
 
-
+		//W
+		odczytPracownikow r = new odczytPracownikow();
+		r.Ilu();
+		r.otworzPlik();
+		for (int i = 0; i < r.ilosc; i++) {
+			String wynik = r.odczyt();
+			String[] podzial = wynik.split(" ");
+			String Imie = podzial[0];
+			String Nazwisko = podzial[1];
+			ap.dodajPracownika(Imie, Nazwisko);
+		}
+		r.zamknij();
+		ap.wyswietlPracownikow();
 
 		/*int wybor;
 		do {
