@@ -192,16 +192,17 @@ public class Aplikacja {
 			z.getWykonawcy().getPomocnicy().get(i).setOcena(miara);
 		}
 	}
-	public void wyswietlPracownikow(){
+	public String wyswietlPracownikow(){
+		String out;
 		if (WszyscyPracownicy.isEmpty()){
-			System.out.println("Lista Pracownikow: ");
-			System.out.println("\tlista pusta");
+			out = "Lista Pracownikow:\n\tlista pusta";
 		}else{
-			System.out.println("Lista " + getWszyscyPracownicy().size() + " Pracownikow: ");
+			out = "Lista " + getWszyscyPracownicy().size() + " Pracownikow: ";
+			for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
+				out += "\n\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko();
+			}
 		}
-		for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
-			System.out.println("\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko());
-		}
+		return out;
 	}
 	public void wyswietlOcenePracownikow(){
 		if (WszyscyPracownicy.isEmpty()){
@@ -269,7 +270,7 @@ public class Aplikacja {
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
 
-		//W
+		//Wczytywanie
 		odczytPracownikow r = new odczytPracownikow();
 		r.Ilu();
 		r.otworzPlik();
@@ -281,7 +282,14 @@ public class Aplikacja {
 			ap.dodajPracownika(Imie, Nazwisko);
 		}
 		r.zamknij();
-		ap.wyswietlPracownikow();
+		//Sprawdzenie wczytania
+		System.out.print(ap.wyswietlPracownikow());
+
+		//Dodanie
+		ap.dodajPracownika("Jan", "Matejko");
+		//Sprawdzenie dodania
+		System.out.print(ap.wyswietlPracownikow());
+
 
 		/*int wybor;
 		do {
