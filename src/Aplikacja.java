@@ -205,14 +205,21 @@ public class Aplikacja {
 		}
 	}
 
-
-	/*public Druzyna dodajDruzyne(){
+	public Druzyna dodajDruzyne(String ImiePrzodowego, String NazwiskoPrzodowego, int iloscPomocnikow, String[] ImionaPomocnikow, String[] NazwiskaPomocnikow){
 		Druzyna d = new Druzyna();
-		dodajPrzodowego(d);
-		dodajPomocnika(d);
+		dodajPrzodowego(d, ImiePrzodowego, NazwiskoPrzodowego);
+		dodajPomocnikow(d, iloscPomocnikow, ImionaPomocnikow, NazwiskaPomocnikow);
 		WszystkieDruzyny.add(d);
 		return d;
-	}*/
+	}
+
+	public Druzyna dodajDruzyne(int indexPrzodowego, int[] indexPomocnikow){
+		Druzyna d = new Druzyna();
+		dodajPrzodowego(d, indexPrzodowego);
+		dodajPomocnikow(d, indexPomocnikow);
+		WszystkieDruzyny.add(d);
+		return d;
+	}
 	public void usunDruzyne(Druzyna d){
 		WszystkieDruzyny.remove(d);
 	}
