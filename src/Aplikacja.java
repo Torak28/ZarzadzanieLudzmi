@@ -64,6 +64,23 @@ public class Aplikacja {
 	public void usunPracownika(Pracownik p){
 		WszyscyPracownicy.remove(p);
 	}
+	public void dodajPrzodowego(Druzyna d, String Imie, String Nazwisko){
+		int pom = -1;
+		if (WszyscyPracownicy.isEmpty()){
+			System.out.println("Nie ma takiego delikwenta");
+		}else{
+			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+				if (WszyscyPracownicy.get(i).getImie().equals(Imie)  && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+					pom = i;
+				}
+			}
+		}
+		if (pom != -1){
+			d.setPrzodowy(WszyscyPracownicy.get(pom));
+		}else {
+			System.out.println("Nie ma takiego delikwenta");
+		}
+	}
 	public void dodajPrzodowego(Druzyna d){
 		wyswietlPracownikow();
 		int pom = -1;
@@ -89,6 +106,7 @@ public class Aplikacja {
 			System.out.println("Nie ma takiego delikwenta");
 		}
 	}
+	public void dodajPomocnika()
 	public void dodajPomocnika(Druzyna d) {
 		int pom = -1;
 		Scanner in = new Scanner(System.in);
