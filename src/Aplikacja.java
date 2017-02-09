@@ -330,7 +330,7 @@ public class Aplikacja {
 			}
 			out += getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getImie() + " " + getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getNazwisko();
 		}
-		r.zapis(out);
+		r.zapis(out, wyswietlDruzyny());
 	}
 
 
@@ -394,22 +394,27 @@ public class Aplikacja {
 			}
 		}
 	}
-	public void wyswietlDruzyny(){
+	public String wyswietlDruzyny(){
+		Date date = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		String out = df.format(date) + ":\n";
 		for (int i = 0; i < WszystkieDruzyny.size(); i++) {
-			System.out.print((i+1) + ": ");
-			wyswietlDruzyne(WszystkieDruzyny.get(i));
+			out += (i+1) + ": ";
+			out += wyswietlDruzyne(WszystkieDruzyny.get(i));
 		}
+		return out;
 	}
-	public void wyswietlDruzyne(Druzyna d){
-		System.out.println("Brygada: ");
-		System.out.println("Przodowy: " + d.getPrzodowy().getImie() + " " + d.getPrzodowy().getNazwisko());
+	public String wyswietlDruzyne(Druzyna d){
+		String out = "Brygada: \n";
+		out += "\tPrzodowy: " + d.getPrzodowy().getImie() + " " + d.getPrzodowy().getNazwisko() + "\n";
 		if (d.getPomocnicy().isEmpty()){
-			System.out.println("Nie ma pomocnikow");
+			out += "\tNie ma pomocnikow";
 		}else{
 			for (int i = 0; i < d.getPomocnicy().size(); i++) {
-				System.out.println("Pomocnicy(" + (i+1) +"): " + d.getPomocnicy().get(i).getImie() + " " + d.getPomocnicy().get(i).getNazwisko());
+				out += "\tPomocnicy(" + (i+1) +"): " + d.getPomocnicy().get(i).getImie() + " " + d.getPomocnicy().get(i).getNazwisko() + "\n";
 			}
 		}
+		return out;
 	}
 
 	public void Aplikacja(){
@@ -427,12 +432,7 @@ public class Aplikacja {
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
-
-		ap.Zapis();
-
-		Date date = new Date();
-		SimpleDateFormat  df = new SimpleDateFormat("dd.MM.yyyy");
-		System.out.println(df.format(date));
+		ap.Wczytanie();
 
 		//MENU KONSOLOWE, DO SPRAWDZENIA
 		int wybor;
