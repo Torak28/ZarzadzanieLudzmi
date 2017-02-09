@@ -12,10 +12,13 @@ public class Aplikacja {
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
 	private List<Zadanie> WszystkieZadania = new ArrayList<Zadanie>();
 	private List<Druzyna> WszystkieDruzyny = new ArrayList<Druzyna>();
-
 	public List<Pracownik> getWszyscyPracownicy(){
 		return WszyscyPracownicy;
 	}
+
+	/**
+	 *Dodawanie Pracownika po Stringach: Imieniu i Nazwisku
+	 **/
 	public void dodajPracownika(String Imie, String Nazwisko){
 		int sterowanie = 0;
 		if (WszyscyPracownicy.isEmpty()){
@@ -40,6 +43,9 @@ public class Aplikacja {
 			WszyscyPracownicy.add(p);
 		}
 	}
+	/**
+	 * Usuwanie Pracownika o zadanym Imieniu i Nazwisku
+	 **/
 	public void usunPracownika(String Imie, String Nazwisko){
 		int sterowanie = 0;
 		int index = 2147483647;
@@ -61,11 +67,15 @@ public class Aplikacja {
 			WszyscyPracownicy.remove(index);
 		}
 	}
+	/**
+	 * Usuwanie zadanego jako argument pracownika
+	 **/
 	public void usunPracownika(Pracownik p){
 		WszyscyPracownicy.remove(p);
 	}
-
-	/*Po indeksie a nie po Imieniu i Nazwisku*/
+	/**
+	 * Dodanie do drużyny d przodowego o zadanym Imieniu i Nazwisku
+	 **/
 	public void dodajPrzodowego(Druzyna d, String Imie, String Nazwisko){
 		int pom = -1;
 		if (WszyscyPracownicy.isEmpty()){
@@ -83,6 +93,9 @@ public class Aplikacja {
 			System.out.println("Nie ma takiego delikwenta");
 		}
 	}
+	/**
+	 * Dodanie Przodowego o konkretnym indexie do Drużyny d
+	 **/
 	public void dodajPrzodowego(Druzyna d, int index){
 		if (WszyscyPracownicy.isEmpty()){
 			System.out.println("Nie ma takiego delikwenta");
@@ -90,7 +103,8 @@ public class Aplikacja {
 			d.setPrzodowy(WszyscyPracownicy.get(index));
 		}
 	}
-	public void dodajPomocnika(Druzyna d, int ilosc, String[] Imiona, String[] Nazwiska){
+
+	public void dodajPomocnikow(Druzyna d, int ilosc, String[] Imiona, String[] Nazwiska){
 		int pom = -1;
 		for (int i = 0; i < ilosc; i++) {
 			String Imie = Imiona[i];
@@ -131,7 +145,7 @@ public class Aplikacja {
 			}
 		}
 	}
-	public void dodajPomocnika(Druzyna d, int[] indexy) {
+	public void dodajPomocnikow(Druzyna d, int[] indexy) {
 		if (WszyscyPracownicy.isEmpty()){
 			System.out.println("Nie ma takiego delikwenta");
 		}else{
@@ -140,6 +154,47 @@ public class Aplikacja {
 			}
 		}
 	}
+
+	public void dodajPomocnika(Druzyna d, String Imie, String Nazwisko){
+		int pom = -1;
+		for (int j = 0; j < WszyscyPracownicy.size(); j++) {
+			if (WszyscyPracownicy.get(j).getImie().equals(Imie) && WszyscyPracownicy.get(j).getNazwisko().equals(Nazwisko)) {
+				if (!WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko())) {
+					if (d.getPomocnicy().isEmpty()) {
+						pom = j;
+					} else {
+						for (int k = 0; k < d.getPomocnicy().size(); k++) {
+							if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)) {
+								pom = j;
+							} else if (d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)) {
+								pom = j;
+							}
+						}
+					}
+				} else if (WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko())) {
+					if (d.getPomocnicy().isEmpty()) {
+						pom = j;
+					} else {
+						for (int k = 0; k < d.getPomocnicy().size(); k++) {
+							if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)) {
+								pom = j;
+							} else if (d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)) {
+								pom = j;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	public void dodajPomocnika(Druzyna d, int index){
+		if (WszyscyPracownicy.isEmpty()){
+			System.out.println("Nie ma takiego delikwenta");
+		}else{
+			d.setPomocnicy(WszyscyPracownicy.get(index));
+		}
+	}
+
 
 	/*public Druzyna dodajDruzyne(){
 		Druzyna d = new Druzyna();
