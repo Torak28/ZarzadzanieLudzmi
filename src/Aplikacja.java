@@ -106,7 +106,47 @@ public class Aplikacja {
 			System.out.println("Nie ma takiego delikwenta");
 		}
 	}
-	public void dodajPomocnika()
+	public void dodajPomocnika(Druzyna d, int ilosc, String[] Imiona, String[] Nazwiska){
+		int pom = -1;
+		for (int i = 0; i < ilosc; i++) {
+			String Imie = Imiona[i];
+			String Nazwisko = Nazwiska[i];
+			for (int j = 0; j < WszyscyPracownicy.size(); j++) {
+				if (WszyscyPracownicy.get(j).getImie().equals(Imie) && WszyscyPracownicy.get(j).getNazwisko().equals(Nazwisko)){
+					if (!WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko()) ){
+						if(d.getPomocnicy().isEmpty()){
+							pom = j;
+						}else{
+							for (int k = 0; k < d.getPomocnicy().size(); k++) {
+								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
+									pom = j;
+								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
+									pom = j;
+								}
+							}
+						}
+					}else if (WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko()) ){
+						if(d.getPomocnicy().isEmpty()){
+							pom = j;
+						}else{
+							for (int k = 0; k < d.getPomocnicy().size(); k++) {
+								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
+									pom = j;
+								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
+									pom = j;
+								}
+							}
+						}
+					}
+				}
+			}
+			if (pom != -1){
+				d.setPomocnicy(WszyscyPracownicy.get(pom));
+			}else {
+				System.out.println("Nie ma takiego delikwenta");
+			}
+		}
+	}
 	public void dodajPomocnika(Druzyna d) {
 		int pom = -1;
 		Scanner in = new Scanner(System.in);
