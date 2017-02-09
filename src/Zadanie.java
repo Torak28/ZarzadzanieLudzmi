@@ -50,6 +50,5 @@ public class Zadanie {
 		return 1 + zmienna;
 	}
 	public void Zadanie() {
-
 	}
 }
