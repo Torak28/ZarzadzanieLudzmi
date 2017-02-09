@@ -27,7 +27,7 @@ public class odczytPracownikow {
 		}
 		return "Bląd";
 	}
-	public void zapis(String in, String in2) throws FileNotFoundException{
+	public void zapis(String in, String in2, String in3) throws FileNotFoundException{
 		PrintWriter zapis = new PrintWriter("txt/Pracownicy.txt");
 		zapis.print(in);
 		zapis.close();
@@ -35,10 +35,15 @@ public class odczytPracownikow {
 		String nazwa;
 		Date date = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-		nazwa = df.format(date);
+		nazwa = "Zadania" + df.format(date);
 
 		PrintWriter zapis2 = new PrintWriter("txt/"+nazwa+".txt");
 		zapis2.print(in2);
+		zapis2.close();
+
+		String nazwa2 = "Oceny" + df.format(date);
+		PrintWriter zapis3 = new PrintWriter("txt/"+nazwa2+".txt");
+		zapis2.print(in3);
 		zapis2.close();
 	}
 	public int Ilu(){
