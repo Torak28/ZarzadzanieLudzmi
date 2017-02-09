@@ -40,6 +40,27 @@ public class Aplikacja {
 			WszyscyPracownicy.add(p);
 		}
 	}
+	public void usunPracownika(String Imie, String Nazwisko){
+		int sterowanie = 0;
+		int index = 2147483647;
+		if (WszyscyPracownicy.isEmpty()){
+			sterowanie = 0;
+		}else{
+			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+				if (WszyscyPracownicy.get(i).getImie().equals(Imie) && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+					sterowanie = 1;
+					index = i;
+				}else if(WszyscyPracownicy.get(i).getImie().equals(Imie) && !WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+					sterowanie = 0;
+				}
+			}
+		}
+		if (sterowanie == 0){
+			System.out.println("Taki delikwent nie istnieje");
+		}else if (sterowanie == 1 && index != 2147483647){
+			WszyscyPracownicy.remove(index);
+		}
+	}
 	public void usunPracownika(Pracownik p){
 		WszyscyPracownicy.remove(p);
 	}
@@ -292,6 +313,7 @@ public class Aplikacja {
 		//Dodanie
 		ap.dodajPracownika("Jan", "Matejko");
 		ap.dodajPracownika("Zbigniew", "Kolba");
+		ap.usunPracownika("Jan", "Matejko");
 		//Sprawdzenie dodania
 		System.out.print(ap.wyswietlPracownikow());
 
