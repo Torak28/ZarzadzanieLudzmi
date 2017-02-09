@@ -131,51 +131,12 @@ public class Aplikacja {
 			}
 		}
 	}
-	public void dodajPomocnika(Druzyna d) {
-		int pom = -1;
-		Scanner in = new Scanner(System.in);
-		String Imie, Nazwisko;
-		int ilosc;
-		System.out.print("Podaj Ilu Pomocniow: ");
-		ilosc = in.nextInt();
-		for (int i = 0; i < ilosc; i++) {
-			System.out.print("Podaj Imie Pomocnika: ");
-			Imie = in.next();
-			System.out.print("Podaj Nazwisko Pomocnika: ");
-			Nazwisko = in.next();
-			for (int j = 0; j < WszyscyPracownicy.size(); j++) {
-				if (WszyscyPracownicy.get(j).getImie().equals(Imie) && WszyscyPracownicy.get(j).getNazwisko().equals(Nazwisko)){
-					if (!WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko()) ){
-						if(d.getPomocnicy().isEmpty()){
-							pom = j;
-						}else{
-							for (int k = 0; k < d.getPomocnicy().size(); k++) {
-								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-									pom = j;
-								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-									pom = j;
-								}
-							}
-						}
-					}else if (WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getImie()) && !WszyscyPracownicy.get(j).getImie().equals(d.getPrzodowy().getNazwisko()) ){
-						if(d.getPomocnicy().isEmpty()){
-							pom = j;
-						}else{
-							for (int k = 0; k < d.getPomocnicy().size(); k++) {
-								if (!d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-									pom = j;
-								}else if(d.getPomocnicy().get(k).getImie().equals(Imie) && !d.getPomocnicy().get(k).getNazwisko().equals(Nazwisko)){
-									pom = j;
-								}
-							}
-						}
-					}
-				}
-			}
-			if (pom != -1){
-				d.setPomocnicy(WszyscyPracownicy.get(pom));
-			}else {
-				System.out.println("Nie ma takiego delikwenta");
+	public void dodajPomocnika(Druzyna d, int[] indexy) {
+		if (WszyscyPracownicy.isEmpty()){
+			System.out.println("Nie ma takiego delikwenta");
+		}else{
+			for (int i = 0; i < indexy.length; i++) {
+				d.setPomocnicy(WszyscyPracownicy.get(indexy[i]));
 			}
 		}
 	}
