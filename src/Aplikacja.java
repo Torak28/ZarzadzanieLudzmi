@@ -335,7 +335,7 @@ public class Aplikacja {
 
 
 	/*****wyświetlanie*****/
-	public void wyswietlZadanie(Zadanie z){
+	public String wyswietlZadanie(Zadanie z){
 		String typZadania;
 		String out;
 		if (z.getTyp() == 1){
@@ -347,13 +347,17 @@ public class Aplikacja {
 		if (z.getWynik() != 0){
 			out = out + "\n\tWynik: " + z.getWynik() + "\n\tOcena: " + z.getMiara() + "\n";
 		}
-		System.out.println(out);
+		return out;
 	}
-	public void wyswietlZadania(){
+	public String wyswietlZadania(){
+		Date date = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		String out = df.format(date) + ":\n";
 		for (int i = 0; i < WszystkieZadania.size(); i++) {
-			System.out.print((i+1) + ": ");
-			wyswietlZadanie(WszystkieZadania.get(i));
+			out += (i+1) + ": ";
+			out += wyswietlZadanie(WszystkieZadania.get(i));
 		}
+		return out;
 	}
 	public String wyswietlPracownikow(){
 		String out;
