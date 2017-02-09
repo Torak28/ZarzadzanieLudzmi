@@ -9,6 +9,8 @@ import java.util.Scanner;
 import java.io.ByteArrayInputStream;
 
 public class Aplikacja {
+	public odczytPracownikow r = new odczytPracownikow();
+
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
 	private List<Zadanie> WszystkieZadania = new ArrayList<Zadanie>();
 	private List<Druzyna> WszystkieDruzyny = new ArrayList<Druzyna>();
@@ -297,6 +299,42 @@ public class Aplikacja {
 		return (index - 1);
 	}
 
+	/**
+	 * Wczytanie z pliku, zawsze na starcie apki
+	 **/
+	public void Wczytanie(){
+		r.Ilu();
+		r.otworzPlik();
+		for (int i = 0; i < r.ilosc; i++) {
+			String wynik = r.odczyt();
+			String[] podzial = wynik.split(" ");
+			String Imie = podzial[0];
+			String Nazwisko = podzial[1];
+			dodajPracownika(Imie, Nazwisko);
+		}
+		r.zamknij();
+	}
+	/**
+	 * Zapis apki, zawsze przy zamknięciu
+	 **/
+	public void Zapis() throws FileNotFoundException{
+		String out;
+		if (WszyscyPracownicy.isEmpty()){
+			out = "Lista Pracownikow:\n\tlista pusta";
+		}else if(WszyscyPracownicy.size() == 1) {
+			out = getWszyscyPracownicy().get(0).getImie() + " " + getWszyscyPracownicy().get(0).getNazwisko() + "\n";
+		}
+		else{
+			out = getWszyscyPracownicy().get(0).getImie() + " " + getWszyscyPracownicy().get(0).getNazwisko() + "\n";
+			for (int i = 1; i < (getWszyscyPracownicy().size() - 1); i++) {
+				out += getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + "\n";
+			}
+			out += getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getImie() + " " + getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getNazwisko();
+		}
+		r.zapis(out);
+	}
+
+
 	/*****wyświetlanie*****/
 	public void wyswietlZadanie(Zadanie z){
 		String typZadania;
@@ -392,18 +430,8 @@ public class Aplikacja {
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
 
-		//Wczytywanie
-		odczytPracownikow r = new odczytPracownikow();
-		r.Ilu();
-		r.otworzPlik();
-		for (int i = 0; i < r.ilosc; i++) {
-			String wynik = r.odczyt();
-			String[] podzial = wynik.split(" ");
-			String Imie = podzial[0];
-			String Nazwisko = podzial[1];
-			ap.dodajPracownika(Imie, Nazwisko);
-		}
-		r.zamknij();
+		//Wczytanie
+		ap.Wczytanie();
 		//Sprawdzenie wczytania
 		System.out.print(ap.wyswietlPracownikow());
 
@@ -415,20 +443,8 @@ public class Aplikacja {
 		System.out.print(ap.wyswietlPracownikow());
 
 		//Zapis
-		String out;
-		if (ap.WszyscyPracownicy.isEmpty()){
-			out = "Lista Pracownikow:\n\tlista pusta";
-		}else if(ap.WszyscyPracownicy.size() == 1) {
-			out = ap.getWszyscyPracownicy().get(0).getImie() + " " + ap.getWszyscyPracownicy().get(0).getNazwisko() + "\n";
-		}
-		else{
-			out = ap.getWszyscyPracownicy().get(0).getImie() + " " + ap.getWszyscyPracownicy().get(0).getNazwisko() + "\n";
-			for (int i = 1; i < (ap.getWszyscyPracownicy().size() - 1); i++) {
-				out += ap.getWszyscyPracownicy().get(i).getImie() + " " + ap.getWszyscyPracownicy().get(i).getNazwisko() + "\n";
-			}
-			out += ap.getWszyscyPracownicy().get(ap.getWszyscyPracownicy().size() - 1).getImie() + " " + ap.getWszyscyPracownicy().get(ap.getWszyscyPracownicy().size() - 1).getNazwisko();
-		}
-		r.zapis(out);
+		ap.Zapis();
+
 
 		/*int wybor;
 		do {
