@@ -35,16 +35,16 @@ public class odczytPracownikow {
 		String nazwa;
 		Date date = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-		nazwa = "Zadania" + df.format(date);
+		nazwa = "Zadania_" + df.format(date);
 
 		PrintWriter zapis2 = new PrintWriter("txt/"+nazwa+".txt");
 		zapis2.print(in2);
 		zapis2.close();
 
-		String nazwa2 = "Oceny" + df.format(date);
+		String nazwa2 = "Oceny_" + df.format(date);
 		PrintWriter zapis3 = new PrintWriter("txt/"+nazwa2+".txt");
-		zapis2.print(in3);
-		zapis2.close();
+		zapis3.print(in3);
+		zapis3.close();
 	}
 	public int Ilu(){
 		otworzPlik();

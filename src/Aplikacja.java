@@ -330,7 +330,7 @@ public class Aplikacja {
 			}
 			out += getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getImie() + " " + getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getNazwisko();
 		}
-		r.zapis(out, wyswietlZadania());
+		r.zapis(out, wyswietlZadania(), wyswietlOcenePracownikow());
 	}
 
 
@@ -375,16 +375,18 @@ public class Aplikacja {
 		}
 		return out + "\n";
 	}
-	public void wyswietlOcenePracownikow(){
+	public String wyswietlOcenePracownikow(){
+		String out;
 		if (WszyscyPracownicy.isEmpty()){
-			System.out.println("Lista Pracownikow: ");
-			System.out.println("\tlista pusta");
+			out = "Lista Pracownikow: \n";
+			out += "\tlista pusta";
 		}else{
-			System.out.println("Lista " + getWszyscyPracownicy().size() + " Pracownikow: ");
+			out = "Lista " + getWszyscyPracownicy().size() + " Pracownikow: " + "\n";
+			for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
+				out += "\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(i).getOcena() + "\n";
+			}
 		}
-		for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
-			System.out.println("\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(i).getOcena());
-		}
+		return out;
 	}
 	public void wyswietlPracownika(int index){
 		System.out.println("\t" + getWszyscyPracownicy().get(index).getImie() + " " + getWszyscyPracownicy().get(index).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(index).getOcena());
@@ -518,7 +520,7 @@ public class Aplikacja {
 					ap.wyswietlZadanie(ap.WszystkieZadania.get(index5-1));
 					break;
 				case 11:
-					ap.wyswietlOcenePracownikow();
+					System.out.println(ap.wyswietlOcenePracownikow());
 					break;
 				case 12:
 					System.out.println("Dane którego pracownika Cie interesuja");
