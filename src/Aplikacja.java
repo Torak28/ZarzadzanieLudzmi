@@ -3,9 +3,8 @@
  */
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.io.ByteArrayInputStream;
 
 public class Aplikacja {
@@ -424,36 +423,33 @@ public class Aplikacja {
 		* usuwanie druzyn z plikow
 		* Okienka
 		* */
+
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
 
-		//Wczytanie
-		ap.Wczytanie();
-		//Sprawdzenie wczytania
-		System.out.print(ap.wyswietlPracownikow());
-
-		//Dodanie
-		ap.dodajPracownika("Jan", "Matejko");
-		ap.dodajPracownika("Zbigniew", "Kolba");
-		ap.usunPracownika("Jan", "Matejko");
-		//Sprawdzenie dodania
-		System.out.print(ap.wyswietlPracownikow());
-
-		//Zapis
 		ap.Zapis();
 
+		Date date = new Date();
+		SimpleDateFormat  df = new SimpleDateFormat("dd.MM.yyyy");
+		System.out.println(df.format(date));
 
-		/*int wybor;
+		//MENU KONSOLOWE, DO SPRAWDZENIA
+		int wybor;
 		do {
 			String menu = "Co chcesz zrobic?\n\t1 - Dodac Pracownika\n\t2 - Usunac Pracownika\n\t3 - Dodac Druzyne\n\t4 - Usunac Druzyne\n\t5 - Dodac Zadanie\n\t" +
 					"6 - Usunac Zadanie\n\t7 - Wyswietlic pracownikow\n\t8 - Wyswietlic Brygade\n\t9 - Wyswietlic Zadanie\n\t10 - Ocenic Zadanie\n\t11 - Ocena pracowników\n\t" +
-					"12 - Informacje o pracowniku\n\t13 - koniec\nwybór: ";
+					"12 - Informacje o pracowniku\n\t13 - Zapis\n\t14 - Koniec\nwybór: ";
 			System.out.print(menu);
 			wybor = in.nextInt();
 			switch (wybor){
 				case 1:
-					ap.dodajPracownika();
+					String Imie, Nazwisko;
+					System.out.println("Podaj Imie: ");
+					Imie = in.next();
+					System.out.println("Podaj Nazwisko: ");
+					Nazwisko = in.next();
+					ap.dodajPracownika(Imie, Nazwisko);
 					break;
 				case 2:
 					int index;
@@ -463,7 +459,19 @@ public class Aplikacja {
 					ap.usunPracownika(ap.WszyscyPracownicy.get(index-1));
 					break;
 				case 3:
-					ap.dodajDruzyne();
+					int indexPrzodowego, ilosc;
+					System.out.println("Wybór Przodowego: ");
+					System.out.println(ap.wyswietlPracownikow());
+					indexPrzodowego = ap.wybierzPracownika();
+					System.out.println("Ilu pomocnikow: ");
+					ilosc = in.nextInt();
+					int[] indexPomocnikow = new int[ilosc];
+					System.out.println("Wybor Pomocnikow: ");
+					for (int i = 0; i < ilosc; i++) {
+						System.out.println("\tWybór Pomocnika" + (i + 1) + ": ");
+						indexPomocnikow[i] = ap.wybierzPracownika();
+					}
+					ap.dodajDruzyne(indexPrzodowego, indexPomocnikow);
 					break;
 				case 4:
 					int index2;
@@ -487,7 +495,7 @@ public class Aplikacja {
 					ap.usunZadanie(ap.WszystkieZadania.get(index4-1));
 					break;
 				case 7:
-					ap.wyswietlPracownikow();
+					System.out.println(ap.wyswietlPracownikow());
 					break;
 				case 8:
 					ap.wyswietlDruzyny();
@@ -512,8 +520,10 @@ public class Aplikacja {
 					index5 = in.nextInt();
 					ap.wyswietlPracownika(index5-1);
 					break;
+				case 13:
+					ap.Zapis();
 			}
-		}while (wybor != 13);
-		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");*/
+		}while (wybor != 14);
+		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");
 	}
 }
