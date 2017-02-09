@@ -204,7 +204,9 @@ public class Aplikacja {
 			d.setPomocnicy(WszyscyPracownicy.get(index));
 		}
 	}
-
+	/**
+	 * DoDanie druzyny z tablicami Imion Pomocnikow i ich Nazwisk
+	 **/
 	public Druzyna dodajDruzyne(String ImiePrzodowego, String NazwiskoPrzodowego, int iloscPomocnikow, String[] ImionaPomocnikow, String[] NazwiskaPomocnikow){
 		Druzyna d = new Druzyna();
 		dodajPrzodowego(d, ImiePrzodowego, NazwiskoPrzodowego);
@@ -212,7 +214,9 @@ public class Aplikacja {
 		WszystkieDruzyny.add(d);
 		return d;
 	}
-
+	/**
+	 * Dodanie Druzyny z indeami
+	 **/
 	public Druzyna dodajDruzyne(int indexPrzodowego, int[] indexPomocnikow){
 		Druzyna d = new Druzyna();
 		dodajPrzodowego(d, indexPrzodowego);
