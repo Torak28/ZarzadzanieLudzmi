@@ -8,7 +8,7 @@ public class odczytPracownikow {
 	public int ilosc;
 	public void otworzPlik(){
 		try {
-			x = new Scanner(new File("src/txt/Pracownicy.txt"));
+			x = new Scanner(new File("txt/Pracownicy.txt"));
 		} catch (Exception e){
 			System.out.println("Nie ma pliczku :c");
 		}
@@ -27,7 +27,7 @@ public class odczytPracownikow {
 		return "Bląd";
 	}
 	public void zapis(String in) throws FileNotFoundException{
-		PrintWriter zapis = new PrintWriter("src/txt/Pracownicy.txt");
+		PrintWriter zapis = new PrintWriter("txt/Pracownicy.txt");
 		zapis.print(in);
 		zapis.close();
 	}
