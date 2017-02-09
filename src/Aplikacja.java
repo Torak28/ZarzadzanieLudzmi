@@ -330,7 +330,7 @@ public class Aplikacja {
 			}
 			out += getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getImie() + " " + getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getNazwisko();
 		}
-		r.zapis(out, wyswietlDruzyny());
+		r.zapis(out, wyswietlZadania());
 	}
 
 
@@ -345,7 +345,7 @@ public class Aplikacja {
 		}
 		out = "Zadanie:\n\tTyp: " + typZadania + "\n\tWykonawcy:\n" + z.wyswietlWykonawcow();
 		if (z.getWynik() != 0){
-			out = out + "\n\tWynik: " + z.getWynik() + "\n\tOcena: " + z.getMiara() + "\n";
+			out = out + "\n\tWynik: " + z.getWynik() + "\n";
 		}
 		return out;
 	}
@@ -353,9 +353,13 @@ public class Aplikacja {
 		Date date = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 		String out = df.format(date) + ":\n";
-		for (int i = 0; i < WszystkieZadania.size(); i++) {
-			out += (i+1) + ": ";
-			out += wyswietlZadanie(WszystkieZadania.get(i));
+		if (WszystkieZadania.isEmpty()){
+			out += "Nie ma żadnych zadan";
+		}else {
+			for (int i = 0; i < WszystkieZadania.size(); i++) {
+				out += (i+1) + ": ";
+				out += wyswietlZadanie(WszystkieZadania.get(i));
+			}
 		}
 		return out;
 	}
@@ -492,7 +496,7 @@ public class Aplikacja {
 				case 6:
 					int index4;
 					System.out.println("Które zadanie chcesz usunąć?");
-					ap.wyswietlZadania();
+					System.out.println(ap.wyswietlZadania());
 					index4 = in.nextInt();
 					ap.usunZadanie(ap.WszystkieZadania.get(index4-1));
 					break;
