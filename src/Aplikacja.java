@@ -376,14 +376,14 @@ public class Aplikacja {
 		return out + "\n";
 	}
 	public String wyswietlOcenePracownikow(){
-		String out;
+		Date date = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		String out = df.format(date) + ":\n";
 		if (WszyscyPracownicy.isEmpty()){
-			out = "Lista Pracownikow: \n";
 			out += "\tlista pusta";
 		}else{
-			out = "Lista " + getWszyscyPracownicy().size() + " Pracownikow: " + "\n";
 			for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
-				out += "\t" + (i+1) +  ": " + getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(i).getOcena() + "\n";
+				out += getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(i).getOcena() + "\n";
 			}
 		}
 		return out;
