@@ -419,8 +419,6 @@ public class Aplikacja {
 	public static void main(String[] args) throws FileNotFoundException{
 		/*TODO:
 		 * Przy 11 i 12 wyswietlic co robili
-		 * Zapis i czyszczenie Druzyn (?)
-		 * Zapis i czyszczenie Zadan (?)
 
 		* zappis druzyn do plikow
 		* usuwanie druzyn z plikow
