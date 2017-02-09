@@ -103,7 +103,9 @@ public class Aplikacja {
 			d.setPrzodowy(WszyscyPracownicy.get(index));
 		}
 	}
-
+	/**
+	 * Dodawanie okreslonej ilosc Pomocników z Tablicy Imion i Nazwisk
+	 **/
 	public void dodajPomocnikow(Druzyna d, int ilosc, String[] Imiona, String[] Nazwiska){
 		int pom = -1;
 		for (int i = 0; i < ilosc; i++) {
@@ -145,6 +147,9 @@ public class Aplikacja {
 			}
 		}
 	}
+	/**
+	 * Dodanie określonej ilości Pomocników o zadanych indeksach
+	 **/
 	public void dodajPomocnikow(Druzyna d, int[] indexy) {
 		if (WszyscyPracownicy.isEmpty()){
 			System.out.println("Nie ma takiego delikwenta");
@@ -154,7 +159,9 @@ public class Aplikacja {
 			}
 		}
 	}
-
+	/**
+	 * Dodanie 1 Pomocnika o zadanym Imieniu i Nazwisku
+	 **/
 	public void dodajPomocnika(Druzyna d, String Imie, String Nazwisko){
 		int pom = -1;
 		for (int j = 0; j < WszyscyPracownicy.size(); j++) {
@@ -187,6 +194,9 @@ public class Aplikacja {
 			}
 		}
 	}
+	/**
+	 * Dodanie 1 Pomocnika o zadanym indexie
+	 **/
 	public void dodajPomocnika(Druzyna d, int index){
 		if (WszyscyPracownicy.isEmpty()){
 			System.out.println("Nie ma takiego delikwenta");
