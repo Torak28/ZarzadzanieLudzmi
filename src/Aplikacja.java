@@ -406,12 +406,12 @@ public class Aplikacja {
 	}
 	public String wyswietlDruzyne(Druzyna d){
 		String out = "Brygada: \n";
-		out += "\tPrzodowy: " + d.getPrzodowy().getImie() + " " + d.getPrzodowy().getNazwisko() + "\n";
+		out += "\tPrzodowy: " + d.getPrzodowy().getImie() + " " + d.getPrzodowy().getNazwisko() + " Ocena: " + d.getPrzodowy().getOcena() + "\n";
 		if (d.getPomocnicy().isEmpty()){
 			out += "\tNie ma pomocnikow";
 		}else{
 			for (int i = 0; i < d.getPomocnicy().size(); i++) {
-				out += "\tPomocnicy(" + (i+1) +"): " + d.getPomocnicy().get(i).getImie() + " " + d.getPomocnicy().get(i).getNazwisko() + "\n";
+				out += "\tPomocnicy(" + (i+1) +"): " + d.getPomocnicy().get(i).getImie() + " " + d.getPomocnicy().get(i).getNazwisko() + " Ocena: " + d.getPomocnicy().get(i).getOcena() + "\n";
 			}
 		}
 		return out;
