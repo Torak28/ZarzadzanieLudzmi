@@ -224,6 +224,7 @@ public class Aplikacja {
 		WszystkieDruzyny.add(d);
 		return d;
 	}
+
 	public void usunDruzyne(Druzyna d){
 		WszystkieDruzyny.remove(d);
 	}
@@ -260,6 +261,35 @@ public class Aplikacja {
 	public void usunZadanie(Zadanie z){
 		WszystkieZadania.remove(z);
 	}
+	/**
+	 * Przeciazanie oceny Zadanie wykonem jako intem
+	 **/
+	public void ocenZadanie(Zadanie z, int wykon){
+		float miara;
+		z.setWynik(wykon);
+		miara = z.getWynik() / z.iluWykonawcow();
+		z.setMiara(miara);
+		z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
+		for (int i = 0; i < z.getWykonawcy().getPomocnicy().size(); i++) {
+			z.getWykonawcy().getPomocnicy().get(i).setOcena(miara);
+		}
+	}
+	public void ocenZadanie(Zadanie z){
+		int wykon;
+		float miara;
+		Scanner in = new Scanner(System.in);
+		System.out.print("Ile wykonali: ");
+		wykon = in.nextInt();
+		z.setWynik(wykon);
+		miara = z.getWynik() / z.iluWykonawcow();
+		z.setMiara(miara);
+		z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
+		for (int i = 0; i < z.getWykonawcy().getPomocnicy().size(); i++) {
+			z.getWykonawcy().getPomocnicy().get(i).setOcena(miara);
+		}
+	}
+
+	/*****wyświetlanie*****/
 	public void wyswietlZadanie(Zadanie z){
 		String typZadania;
 		String out;
@@ -278,20 +308,6 @@ public class Aplikacja {
 		for (int i = 0; i < WszystkieZadania.size(); i++) {
 			System.out.print((i+1) + ": ");
 			wyswietlZadanie(WszystkieZadania.get(i));
-		}
-	}
-	public void ocenZadanie(Zadanie z){
-		int wykon;
-		float miara;
-		Scanner in = new Scanner(System.in);
-		System.out.print("Ile wykonali: ");
-		wykon = in.nextInt();
-		z.setWynik(wykon);
-		miara = z.getWynik() / z.iluWykonawcow();
-		z.setMiara(miara);
-		z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
-		for (int i = 0; i < z.getWykonawcy().getPomocnicy().size(); i++) {
-			z.getWykonawcy().getPomocnicy().get(i).setOcena(miara);
 		}
 	}
 	public String wyswietlPracownikow(){
@@ -350,6 +366,7 @@ public class Aplikacja {
 			}
 		}
 	}
+
 	public void Aplikacja(){
 	}
 
