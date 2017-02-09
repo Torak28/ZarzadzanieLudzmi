@@ -422,8 +422,6 @@ public class Aplikacja {
 
 	public static void main(String[] args) throws FileNotFoundException{
 		/*TODO:
-		 * Przy 11 i 12 wyswietlic co robili
-
 		* Przodowy nie może byc pomocnikiem xd
 		* Przy wczytaniu musze sprawdzac czy są druzyny jak tak to je tez wczytac
 		* Okienka
