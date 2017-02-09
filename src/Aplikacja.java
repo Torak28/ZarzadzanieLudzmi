@@ -424,8 +424,8 @@ public class Aplikacja {
 		/*TODO:
 		 * Przy 11 i 12 wyswietlic co robili
 
-		* zappis druzyn do plikow
-		* usuwanie druzyn z plikow
+		* Przodowy nie może byc pomocnikiem xd
+		* Przy wczytaniu musze sprawdzac czy są druzyny jak tak to je tez wczytac
 		* Okienka
 		* */
 
