@@ -289,6 +289,14 @@ public class Aplikacja {
 		}
 	}
 
+	public int wybierzPracownika(){
+		System.out.print("Wybierasz: ");
+		Scanner in = new Scanner(System.in);
+		wyswietlPracownikow();
+		int index = in.nextInt();
+		return (index - 1);
+	}
+
 	/*****wyświetlanie*****/
 	public void wyswietlZadanie(Zadanie z){
 		String typZadania;
@@ -379,9 +387,6 @@ public class Aplikacja {
 		* zappis druzyn do plikow
 		* usuwanie druzyn z plikow
 		* Okienka
-		*
-		* Wybierz Pracownika jako funkcja
-		*
 		* */
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
