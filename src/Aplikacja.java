@@ -14,10 +14,16 @@ public class Aplikacja{
 
 
 	private JPanel panel1;
-	private JButton zapisButton;
-	private JLabel label1;
+	private JLabel opis;
+	private JButton zarzPracownikami;
+	private JButton zarzBrygadami;
+	private JButton zarzZadaniami;
+	private JButton ocenBrygade;
+	private JButton raportDnia;
+	private JButton Zapisz;
+
 	public void setLabel1(String in){
-		label1.setText(in);
+		opis.setText(in);
 	}
 
 
@@ -483,16 +489,46 @@ public class Aplikacja{
 	public void Aplikacja(){
 	}
 	public Aplikacja(){
-		zapisButton.addActionListener(new ActionListener() {
+		zarzPracownikami.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setLabel1("Ala ma kota");
+
+			}
+		});
+		zarzBrygadami.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		zarzZadaniami.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		ocenBrygade.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		raportDnia.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		Zapisz.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
 	}
 
 	public static void main(String[] args) throws FileNotFoundException{
-		JFrame frame = new JFrame("Test");
+		JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(new Aplikacja().panel1);
 		frame.pack();

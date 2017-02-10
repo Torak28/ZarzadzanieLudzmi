@@ -1,22 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Aplikacja">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="366" height="388"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="d0360" class="javax.swing.JButton" binding="zapisButton" default-binding="true">
-        <constraints/>
+      <component id="faa75" class="javax.swing.JButton" binding="zarzZadaniami">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
         <properties>
-          <text value="Zapis"/>
+          <text value="Zarządzanie Zadaniami"/>
         </properties>
       </component>
-      <component id="e5c0e" class="javax.swing.JLabel" binding="label1">
-        <constraints/>
+      <component id="e5c0e" class="javax.swing.JLabel" binding="opis">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
         <properties>
-          <text value="Nic nowego bulwo"/>
+          <text value="Program do zarządzania zaosbami ludzkimi."/>
+        </properties>
+      </component>
+      <component id="86db2" class="javax.swing.JButton" binding="ocenBrygade">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Oceń Brygady"/>
+        </properties>
+      </component>
+      <component id="b0fd9" class="javax.swing.JButton" binding="raportDnia">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Raport Dnia"/>
+        </properties>
+      </component>
+      <component id="74f07" class="javax.swing.JButton" binding="Zapisz">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zapisz"/>
+        </properties>
+      </component>
+      <component id="be124" class="javax.swing.JButton" binding="zarzBrygadami">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zarządzanie Brygadami"/>
+        </properties>
+      </component>
+      <component id="d0360" class="javax.swing.JButton" binding="zarzPracownikami">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zarządzanie Pracownikami"/>
         </properties>
       </component>
     </children>
