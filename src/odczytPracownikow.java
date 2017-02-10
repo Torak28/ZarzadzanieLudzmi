@@ -6,10 +6,16 @@ import java.util.*;
  */
 public class odczytPracownikow {
 	private Scanner x;
+	private Scanner y;
 	public int ilosc;
 	public void otworzPlik(){
 		try {
+			String nazwa;
+			Date date = new Date();
+			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+			nazwa = "Zadania_" + df.format(date);
 			x = new Scanner(new File("txt/Pracownicy.txt"));
+			y = new Scanner(new File("txt/"+nazwa+".txt"));
 		} catch (Exception e){
 			System.out.println("Nie ma pliczku :c");
 		}
@@ -26,6 +32,31 @@ public class odczytPracownikow {
 			return out;
 		}
 		return "Bląd";
+	}
+	public String odczytZadania(){
+		String nazwa;
+		int ilu = 0;
+		Date date = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		String out = df.format(date);
+		while(y.hasNext()){
+			String i = y.next();
+			if(i.equals("Typ:")){
+				out = y.next() + " ";
+			}
+			if(i.equals("Przodowy:")){
+				out += y.next() + " ";
+				out += y.next() + " ";
+			}
+			if(i.equals("Pomocnik:")){
+				out += y.next() + " ";
+				out += y.next() + " ";
+				ilu++;
+			}if(i.equals("Wynik:")){
+				out += y.next() + " ";
+			}
+		}
+		return out + ilu;
 	}
 	public void zapis(String in, String in2, String in3) throws FileNotFoundException{
 		PrintWriter zapis = new PrintWriter("txt/Pracownicy.txt");

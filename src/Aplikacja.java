@@ -283,6 +283,7 @@ public class Aplikacja {
 		wykon = in.nextInt();
 		z.setWynik(wykon);
 		miara = z.getWynik() / z.iluWykonawcow();
+		miara = miara - z.getNorma();
 		z.setMiara(miara);
 		z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
 		for (int i = 0; i < z.getWykonawcy().getPomocnicy().size(); i++) {
@@ -311,6 +312,20 @@ public class Aplikacja {
 			String Nazwisko = podzial[1];
 			dodajPracownika(Imie, Nazwisko);
 		}
+		String Zadanie = r.odczytZadania();
+		String[] podzial = Zadanie.split(" ");
+		int ilu = Integer.parseInt(podzial[podzial.length - 1]);
+		String[] imionaPomocnikow = new String[ilu];
+		String[] nazwiskaPomocnikow =  new String[ilu];
+		int krok = 0;
+		int sterowanie = 3;
+		for (int i = 0; i < ilu; i++) {
+			imionaPomocnikow[krok] = podzial[sterowanie];
+			nazwiskaPomocnikow[krok] = podzial[sterowanie + 1];
+			krok++;
+			sterowanie += 2;
+		}
+		dodajDruzyne(podzial[1], podzial[2], ilu, imionaPomocnikow, nazwiskaPomocnikow);
 		r.zamknij();
 	}
 	/**
@@ -442,6 +457,11 @@ public class Aplikacja {
 		Scanner in = new Scanner(System.in);
 		ap.Wczytanie();
 
+		/*ap.r.otworzPlik();
+		String wynik = ap.r.odczytZadania();
+		System.out.println(wynik);
+		System.out.println(wynik.length());*/
+
 		//MENU KONSOLOWE, DO SPRAWDZENIA
 		int wybor;
 		do {
@@ -506,7 +526,7 @@ public class Aplikacja {
 					System.out.println(ap.wyswietlPracownikow());
 					break;
 				case 8:
-					ap.wyswietlDruzyny();
+					System.out.println(ap.wyswietlDruzyny());
 					break;
 				case 9:
 					ap.wyswietlZadania();
