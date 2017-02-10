@@ -6,8 +6,21 @@ import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Aplikacja{
+
+
+	private JPanel panel1;
+	private JButton zapisButton;
+	private JLabel label1;
+	public void setLabel1(String in){
+		label1.setText(in);
+	}
+
+
 	public odczytPracownikow r = new odczytPracownikow();
 
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
@@ -469,20 +482,30 @@ public class Aplikacja{
 
 	public void Aplikacja(){
 	}
+	public Aplikacja(){
+		zapisButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setLabel1("Ala ma kota");
+			}
+		});
+	}
 
 	public static void main(String[] args) throws FileNotFoundException{
+		JFrame frame = new JFrame("Test");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setContentPane(new Aplikacja().panel1);
+		frame.pack();
+		frame.setVisible(true);
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
 		* Przy wczytaniu musze sprawdzac czy są druzyny jak tak to je tez wczytac
 		* Okienka
 		* */
 
-		MainFrame mf = new MainFrame();
-		mf.show();
 
-		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
-		Scanner in = new Scanner(System.in);
+		/*Scanner in = new Scanner(System.in);
 		ap.Wczytanie();
 
 		//MENU KONSOLOWE, DO SPRAWDZENIA
@@ -575,6 +598,6 @@ public class Aplikacja{
 					ap.Zapis();
 			}
 		}while (wybor != 14);
-		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");
+		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");*/
 	}
 }
