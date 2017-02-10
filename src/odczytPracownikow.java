@@ -9,6 +9,7 @@ public class odczytPracownikow {
 	private Scanner y;
 	public int ilosc;
 	public int iloscZadan;
+	public boolean Jest = true;
 	public void otworzPlik(){
 		try {
 			String nazwa;
@@ -18,11 +19,15 @@ public class odczytPracownikow {
 			x = new Scanner(new File("txt/Pracownicy.txt"));
 			y = new Scanner(new File("txt/"+nazwa+".txt"));
 		} catch (Exception e){
-			System.out.println("Nie ma pliczku :c");
+			//System.out.println("Nie ma pliczku :c");
+			Jest = false;
 		}
 	}
 	public void zamknij(){
 		x.close();
+	}
+	public void zamknijY(){
+		y.close();
 	}
 	public String odczyt(){
 		while(x.hasNext()){
@@ -97,6 +102,7 @@ public class odczytPracownikow {
 		otworzPlik();
 		iloscZadan = 0;
 		String i = y.next();
+		i = i.substring(0, i.length()-1);
 		iloscZadan = Integer.parseInt(i);
 		y.close();
 		return iloscZadan;
