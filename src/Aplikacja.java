@@ -477,6 +477,9 @@ public class Aplikacja{
 		* Okienka
 		* */
 
+		MainFrame mf = new MainFrame();
+		mf.show();
+
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
