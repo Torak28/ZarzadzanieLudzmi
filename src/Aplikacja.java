@@ -401,9 +401,7 @@ public class Aplikacja {
 		return out;
 	}
 	public String wyswietlZadania(){
-		Date date = new Date();
-		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-		String out = df.format(date) + ":\n";
+		String out = WszystkieZadania.size() + ":\n";
 		if (WszystkieZadania.isEmpty()){
 			out += "Nie ma żadnych zadan";
 		}else {
@@ -497,7 +495,8 @@ public class Aplikacja {
 		for (int i = 0; i < 2; i++) {
 			String wynik = ap.r.odczytZadania();
 			System.out.println(wynik);
-		}*/
+		}
+		System.out.println(ap.r.iloscZadan);*/
 
 
 		//MENU KONSOLOWE, DO SPRAWDZENIA

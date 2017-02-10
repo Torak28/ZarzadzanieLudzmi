@@ -8,6 +8,7 @@ public class odczytPracownikow {
 	private Scanner x;
 	private Scanner y;
 	public int ilosc;
+	public int iloscZadan;
 	public void otworzPlik(){
 		try {
 			String nazwa;
@@ -91,5 +92,12 @@ public class odczytPracownikow {
 		}
 		zamknij();
 		return ilosc;
+	}
+	public int Ile(){
+		otworzPlik();
+		iloscZadan = 0;
+		String i = y.next();
+		iloscZadan = Integer.parseInt(i);
+		return iloscZadan;
 	}
 }
