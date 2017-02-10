@@ -269,8 +269,13 @@ public class Aplikacja {
 		float miara;
 		z.setWynik(wykon);
 		miara = z.getWynik() / z.iluWykonawcow();
+		miara = miara - z.getNorma();
 		z.setMiara(miara);
-		z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
+		if(miara >= z.getNorma()){
+			z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
+		}else{
+			z.getWykonawcy().getPrzodowy().setOcena(miara);
+		}
 		for (int i = 0; i < z.getWykonawcy().getPomocnicy().size(); i++) {
 			z.getWykonawcy().getPomocnicy().get(i).setOcena(miara);
 		}
@@ -285,7 +290,11 @@ public class Aplikacja {
 		miara = z.getWynik() / z.iluWykonawcow();
 		miara = miara - z.getNorma();
 		z.setMiara(miara);
-		z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
+		if(miara >= z.getNorma()){
+			z.getWykonawcy().getPrzodowy().setOcena(miara + 1);
+		}else{
+			z.getWykonawcy().getPrzodowy().setOcena(miara);
+		}
 		for (int i = 0; i < z.getWykonawcy().getPomocnicy().size(); i++) {
 			z.getWykonawcy().getPomocnicy().get(i).setOcena(miara);
 		}
@@ -312,9 +321,14 @@ public class Aplikacja {
 			String Nazwisko = podzial[1];
 			dodajPracownika(Imie, Nazwisko);
 		}
+
+
+
+
 		String Zadanie = r.odczytZadania();
-		String[] podzial = Zadanie.split(" ");
-		int ilu = Integer.parseInt(podzial[podzial.length - 1]);
+		String[] podzialS = Zadanie.split(" ");
+		String[] podzial = Arrays.copyOfRange(podzialS, 1, podzialS.length);
+		int ilu = Integer.parseInt(podzial[podzial.length - 2]);
 		String[] imionaPomocnikow = new String[ilu];
 		String[] nazwiskaPomocnikow =  new String[ilu];
 		int krok = 0;
@@ -326,6 +340,28 @@ public class Aplikacja {
 			sterowanie += 2;
 		}
 		dodajDruzyne(podzial[1], podzial[2], ilu, imionaPomocnikow, nazwiskaPomocnikow);
+		Zadanie z = new Zadanie();
+		if(podzial[0].equals("Wiercenie")){
+			dodajZadanieWiercenia(z);
+			z.setWykonawcy(WszystkieDruzyny.get(0));
+		}
+		if(podzial[0].equals("Kotwienie")){
+			dodajZadanieKotwienia(z);
+			z.setWykonawcy(WszystkieDruzyny.get(0));
+		}
+		WszystkieZadania.add(z);
+		ocenZadanie(WszystkieZadania.get(0), Integer.parseInt(podzial[podzial.length-3]));
+
+
+
+
+
+
+
+
+
+
+
 		r.zamknij();
 	}
 	/**
@@ -455,12 +491,12 @@ public class Aplikacja {
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
-		ap.Wczytanie();
+		//ap.Wczytanie();
 
-		/*ap.r.otworzPlik();
+		ap.r.otworzPlik();
 		String wynik = ap.r.odczytZadania();
 		System.out.println(wynik);
-		System.out.println(wynik.length());*/
+		System.out.println(wynik.length());
 
 		//MENU KONSOLOWE, DO SPRAWDZENIA
 		int wybor;
@@ -529,7 +565,7 @@ public class Aplikacja {
 					System.out.println(ap.wyswietlDruzyny());
 					break;
 				case 9:
-					ap.wyswietlZadania();
+					System.out.println(ap.wyswietlZadania());
 					break;
 				case 10:
 					int index5;

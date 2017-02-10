@@ -42,7 +42,7 @@ public class odczytPracownikow {
 		while(y.hasNext()){
 			String i = y.next();
 			if(i.equals("Typ:")){
-				out = y.next() + " ";
+				out += " " + y.next() + " ";
 			}
 			if(i.equals("Przodowy:")){
 				out += y.next() + " ";
@@ -56,7 +56,7 @@ public class odczytPracownikow {
 				out += y.next() + " ";
 			}
 		}
-		return out + ilu;
+		return out + ilu + " koniec";
 	}
 	public void zapis(String in, String in2, String in3) throws FileNotFoundException{
 		PrintWriter zapis = new PrintWriter("txt/Pracownicy.txt");
