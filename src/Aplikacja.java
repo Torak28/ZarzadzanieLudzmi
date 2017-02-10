@@ -323,34 +323,35 @@ public class Aplikacja {
 		}
 
 
+		for (int j = 0; j < r.iloscZadan; j++) {
+			String Zadanie = r.odczytZadania();
+			String[] podzialS = Zadanie.split(" ");
+			String[] podzial = Arrays.copyOfRange(podzialS, 1, podzialS.length);
+			int ilu = Integer.parseInt(podzial[podzial.length - 2]);
+			String[] imionaPomocnikow = new String[ilu];
+			String[] nazwiskaPomocnikow =  new String[ilu];
+			int krok = 0;
+			int sterowanie = 3;
+			for (int i = 0; i < ilu; i++) {
+				imionaPomocnikow[krok] = podzial[sterowanie];
+				nazwiskaPomocnikow[krok] = podzial[sterowanie + 1];
+				krok++;
+				sterowanie += 2;
+			}
+			dodajDruzyne(podzial[1], podzial[2], ilu, imionaPomocnikow, nazwiskaPomocnikow);
+			Zadanie z = new Zadanie();
+			if(podzial[0].equals("Wiercenie")){
+				dodajZadanieWiercenia(z);
+				z.setWykonawcy(WszystkieDruzyny.get(j));
+			}
+			if(podzial[0].equals("Kotwienie")){
+				dodajZadanieKotwienia(z);
+				z.setWykonawcy(WszystkieDruzyny.get(j));
+			}
+			WszystkieZadania.add(z);
+			ocenZadanie(WszystkieZadania.get(j), Integer.parseInt(podzial[podzial.length-3]));
+		}
 
-
-		String Zadanie = r.odczytZadania();
-		String[] podzialS = Zadanie.split(" ");
-		String[] podzial = Arrays.copyOfRange(podzialS, 1, podzialS.length);
-		int ilu = Integer.parseInt(podzial[podzial.length - 2]);
-		String[] imionaPomocnikow = new String[ilu];
-		String[] nazwiskaPomocnikow =  new String[ilu];
-		int krok = 0;
-		int sterowanie = 3;
-		for (int i = 0; i < ilu; i++) {
-			imionaPomocnikow[krok] = podzial[sterowanie];
-			nazwiskaPomocnikow[krok] = podzial[sterowanie + 1];
-			krok++;
-			sterowanie += 2;
-		}
-		dodajDruzyne(podzial[1], podzial[2], ilu, imionaPomocnikow, nazwiskaPomocnikow);
-		Zadanie z = new Zadanie();
-		if(podzial[0].equals("Wiercenie")){
-			dodajZadanieWiercenia(z);
-			z.setWykonawcy(WszystkieDruzyny.get(0));
-		}
-		if(podzial[0].equals("Kotwienie")){
-			dodajZadanieKotwienia(z);
-			z.setWykonawcy(WszystkieDruzyny.get(0));
-		}
-		WszystkieZadania.add(z);
-		ocenZadanie(WszystkieZadania.get(0), Integer.parseInt(podzial[podzial.length-3]));
 
 
 

@@ -98,6 +98,7 @@ public class odczytPracownikow {
 		iloscZadan = 0;
 		String i = y.next();
 		iloscZadan = Integer.parseInt(i);
+		y.close();
 		return iloscZadan;
 	}
 }
