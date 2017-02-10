@@ -491,12 +491,14 @@ public class Aplikacja {
 		System.out.println("Program:");
 		Aplikacja ap = new Aplikacja();
 		Scanner in = new Scanner(System.in);
-		//ap.Wczytanie();
+		ap.Wczytanie();
 
-		ap.r.otworzPlik();
-		String wynik = ap.r.odczytZadania();
-		System.out.println(wynik);
-		System.out.println(wynik.length());
+		/*ap.r.otworzPlik();
+		for (int i = 0; i < 2; i++) {
+			String wynik = ap.r.odczytZadania();
+			System.out.println(wynik);
+		}*/
+
 
 		//MENU KONSOLOWE, DO SPRAWDZENIA
 		int wybor;

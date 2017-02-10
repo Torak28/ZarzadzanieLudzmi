@@ -54,9 +54,12 @@ public class odczytPracownikow {
 				ilu++;
 			}if(i.equals("Wynik:")){
 				out += y.next() + " ";
+				int iloscPom = ilu;
+				ilu = 0;
+				return out + iloscPom;
 			}
 		}
-		return out + ilu + " koniec";
+		return "koniec";
 	}
 	public void zapis(String in, String in2, String in3) throws FileNotFoundException{
 		PrintWriter zapis = new PrintWriter("txt/Pracownicy.txt");
