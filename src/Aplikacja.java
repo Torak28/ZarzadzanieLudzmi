@@ -483,14 +483,6 @@ public class Aplikacja {
 		Scanner in = new Scanner(System.in);
 		ap.Wczytanie();
 
-		/*ap.r.otworzPlik();
-		for (int i = 0; i < 2; i++) {
-			String wynik = ap.r.odczytZadania();
-			System.out.println(wynik);
-		}
-		System.out.println(ap.r.iloscZadan);*/
-
-
 		//MENU KONSOLOWE, DO SPRAWDZENIA
 		int wybor;
 		do {
