@@ -5,9 +5,9 @@
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.io.ByteArrayInputStream;
 
-public class Aplikacja {
+
+public class Aplikacja{
 	public odczytPracownikow r = new odczytPracownikow();
 
 	private List<Pracownik> WszyscyPracownicy = new ArrayList<Pracownik>();
@@ -375,7 +375,6 @@ public class Aplikacja {
 		}
 		r.zapis(out, wyswietlZadania(), wyswietlOcenePracownikow());
 	}
-
 
 	/*****wyświetlanie*****/
 	public String wyswietlZadanie(Zadanie z){
