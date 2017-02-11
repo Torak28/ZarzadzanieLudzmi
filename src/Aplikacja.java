@@ -542,8 +542,8 @@ public class Aplikacja{
 
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
-		* Przy wczytaniu musze sprawdzac czy są druzyny jak tak to je tez wczytac
-		* Okienka
+		* Okienka(Dialogii)
+		* Statystyki
 		* */
 
 
