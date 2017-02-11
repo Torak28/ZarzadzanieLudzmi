@@ -13,7 +13,9 @@ import java.awt.event.ActionListener;
 public class Aplikacja{
 
 
-	private JPanel panel1;
+	private JPanel GlownyPanel;
+	private JPanel ZPPanel;
+
 	private JLabel opis;
 	private JButton zarzPracownikami;
 	private JButton zarzBrygadami;
@@ -492,7 +494,11 @@ public class Aplikacja{
 		zarzPracownikami.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				JFrame zarzadzaniePracownikami = new JFrame("Zarządzanie Pracownikami");
+				zarzadzaniePracownikami.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				//zarzadzaniePracownikami.setContentPane(new Aplikacja().ZPPanel);
+				zarzadzaniePracownikami.pack();
+				zarzadzaniePracownikami.setVisible(true);
 			}
 		});
 		zarzBrygadami.addActionListener(new ActionListener() {
@@ -530,9 +536,10 @@ public class Aplikacja{
 	public static void main(String[] args) throws FileNotFoundException{
 		JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setContentPane(new Aplikacja().panel1);
+		frame.setContentPane(new Aplikacja().GlownyPanel);
 		frame.pack();
 		frame.setVisible(true);
+
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
 		* Przy wczytaniu musze sprawdzac czy są druzyny jak tak to je tez wczytac
