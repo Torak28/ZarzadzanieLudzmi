@@ -490,15 +490,15 @@ public class Aplikacja{
 
 	public void Aplikacja(){
 	}
+
 	public Aplikacja(){
 		zarzPracownikami.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame zarzadzaniePracownikami = new JFrame("Zarządzanie Pracownikami");
-				zarzadzaniePracownikami.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				//zarzadzaniePracownikami.setContentPane(new Aplikacja().ZPPanel);
-				zarzadzaniePracownikami.pack();
-				zarzadzaniePracownikami.setVisible(true);
+				/**
+				 * Zrobie całość na dialogach a nie na kolejnym JPane :>
+				 * http://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+				 **/
 			}
 		});
 		zarzBrygadami.addActionListener(new ActionListener() {
