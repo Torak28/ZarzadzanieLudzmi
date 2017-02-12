@@ -501,6 +501,7 @@ public class Aplikacja{
 	}
 
 	public Aplikacja(){
+		Wczytanie();
 		zarzPracownikami.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -513,7 +514,7 @@ public class Aplikacja{
 					for (int i = 0; i < WszyscyPracownicy.size(); i++) {
 						prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
 					}
-					String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo chcesz usunąć?", "cos", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+					String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo chcesz usunąć?", "Usuwanie Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
 					System.out.print(s);
 				}
 			}
@@ -552,13 +553,12 @@ public class Aplikacja{
 
 	public static void main(String[] args) throws FileNotFoundException{
 		Aplikacja ap = new Aplikacja();
-		ap.Wczytanie();
 
-		/*JFrame frame = new JFrame("Główny Panel");
+		JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(new Aplikacja().GlownyPanel);
 		frame.pack();
-		frame.setVisible(true);*/
+		frame.setVisible(true);
 
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
