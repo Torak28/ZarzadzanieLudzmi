@@ -517,6 +517,10 @@ public class Aplikacja{
 					String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo chcesz usunąć?", "Usuwanie Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
 					System.out.print(s);
 				}
+				/**
+				 * Na dzisiaj to tyle:
+				 * http://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+				 **/
 			}
 		});
 		zarzBrygadami.addActionListener(new ActionListener() {
