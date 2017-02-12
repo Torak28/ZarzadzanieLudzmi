@@ -24,6 +24,9 @@ public class Pracownik {
 	public void setNazwisko(String n){
 		Nazwisko = n;
 	}
+	public String getImieNazwisko(){
+		return Imie + " " + Nazwisko;
+	}
 	public Pracownik(){
 
 	}

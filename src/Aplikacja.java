@@ -14,7 +14,6 @@ public class Aplikacja{
 
 
 	private JPanel GlownyPanel;
-	private JPanel ZPPanel;
 
 	private JLabel opis;
 	private JButton zarzPracownikami;
@@ -26,6 +25,9 @@ public class Aplikacja{
 
 	public void setLabel1(String in){
 		opis.setText(in);
+	}
+	public JPanel getGlownyPanel(){
+		return GlownyPanel;
 	}
 
 
@@ -436,6 +438,13 @@ public class Aplikacja{
 		}
 		return out + "\n";
 	}
+	public String[] wyswietlPracownikowString(){
+		String[] ListaPrac = new String[WszyscyPracownicy.size()];
+		for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+			ListaPrac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
+		}
+		return ListaPrac;
+	}
 	public String wyswietlOcenePracownikow(){
 		Date date = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
@@ -495,10 +504,18 @@ public class Aplikacja{
 		zarzPracownikami.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Zrobie całość na dialogach a nie na kolejnym JPane :>
-				 * http://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
-				 **/
+				String[] opcje = {"Dodaj Pracownika", "Usuń Pracownika", "Nic"};
+				int n = JOptionPane.showOptionDialog(getGlownyPanel(), "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcje, opcje[2]);
+				if(n == 0){
+
+				}else if (n == 1) {
+					String[] prac = new String[WszyscyPracownicy.size()];
+					for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+						prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
+					}
+					String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo chcesz usunąć?", "cos", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+					System.out.print(s);
+				}
 			}
 		});
 		zarzBrygadami.addActionListener(new ActionListener() {
@@ -534,11 +551,14 @@ public class Aplikacja{
 	}
 
 	public static void main(String[] args) throws FileNotFoundException{
-		JFrame frame = new JFrame("Główny Panel");
+		Aplikacja ap = new Aplikacja();
+		ap.Wczytanie();
+
+		/*JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(new Aplikacja().GlownyPanel);
 		frame.pack();
-		frame.setVisible(true);
+		frame.setVisible(true);*/
 
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
@@ -546,8 +566,6 @@ public class Aplikacja{
 		* Statystyki
 		* */
 
-
-		Aplikacja ap = new Aplikacja();
 		/*Scanner in = new Scanner(System.in);
 		ap.Wczytanie();
 
