@@ -67,24 +67,39 @@ public class odczytPracownikow {
 		}
 		return "koniec";
 	}
-	public void zapis(String in, String in2, String in3) throws FileNotFoundException{
-		PrintWriter zapis = new PrintWriter("txt/Pracownicy.txt");
-		zapis.print(in);
-		zapis.close();
+	public void zapis(String in, String in2, String in3){
+
+		PrintWriter zapis;
+		try{
+			zapis = new PrintWriter("txt/Pracownicy.txt");
+			zapis.print(in);
+			zapis.close();
+		} catch (FileNotFoundException e){
+			System.out.print("Nie ma Pracownicy.txt");
+		}
 
 		String nazwa;
 		Date date = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 		nazwa = "Zadania_" + df.format(date);
-
-		PrintWriter zapis2 = new PrintWriter("txt/"+nazwa+".txt");
-		zapis2.print(in2);
-		zapis2.close();
+		PrintWriter zapis2;
+		try {
+			zapis2 = new PrintWriter("txt/"+nazwa+".txt");
+			zapis2.print(in2);
+			zapis2.close();
+		} catch (FileNotFoundException e) {
+			System.out.print("Nie ma Zadania.txt");
+		}
 
 		String nazwa2 = "Oceny_" + df.format(date);
-		PrintWriter zapis3 = new PrintWriter("txt/"+nazwa2+".txt");
-		zapis3.print(in3);
-		zapis3.close();
+		PrintWriter zapis3;
+		try{
+			zapis3 = new PrintWriter("txt/"+nazwa2+".txt");
+			zapis3.print(in3);
+			zapis3.close();
+		} catch (FileNotFoundException e){
+			System.out.print("Nie ma Oceny.txt");
+		}
 	}
 	public int Ilu(){
 		otworzPlik();

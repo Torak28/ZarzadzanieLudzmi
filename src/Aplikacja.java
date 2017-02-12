@@ -382,7 +382,7 @@ public class Aplikacja{
 	/**
 	 * Zapis apki, zawsze przy zamknięciu
 	 **/
-	public void Zapis() throws FileNotFoundException{
+	public void Zapis(){
 		String out;
 		if (WszyscyPracownicy.isEmpty()){
 			out = "Lista Pracownikow:\n\tlista pusta";
@@ -515,7 +515,10 @@ public class Aplikacja{
 						prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
 					}
 					String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo chcesz usunąć?", "Usuwanie Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
-					System.out.print(s);
+					if (s != "null"){
+						String[] czesci = s.split(" ");
+						usunPracownika(czesci[0], czesci[1]);
+					}
 				}
 				/**
 				 * Na dzisiaj to tyle:
@@ -549,7 +552,9 @@ public class Aplikacja{
 		});
 		Zapisz.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e){
+				Zapis();
+				JOptionPane.showMessageDialog(GlownyPanel, "Zapisano");
 
 			}
 		});
