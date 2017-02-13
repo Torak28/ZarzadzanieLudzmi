@@ -553,7 +553,13 @@ public class Aplikacja{
 					}
 					dodajDruzyne(ImieNazwiskoPrzodowego[0], ImieNazwiskoPrzodowego[1], iluPomocnikow, ImionaPomocnikow, NazwiskaPomocnikow);
 				}else if(n == 1){
-
+					int index;
+					String[] dru = new String[WszystkieDruzyny.size()];
+					for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+						dru[i] = WszystkieDruzyny.get(i).getDruzyna();
+					}
+					int s = (int)JOptionPane.showInputDialog(GlownyPanel, "Którą chcesz usunąć?", "Usuwanie Brygady", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
+					System.out.print(s);
 				}
 			}
 		});

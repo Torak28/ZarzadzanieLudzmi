@@ -26,7 +26,7 @@ public class Druzyna {
 		if(getPomocnicy().isEmpty()){
 			out += ", bez Pomocników";
 		}else{
-			out += "Pomocnicy: ";
+			out += " Pomocnicy: ";
 			for (int i = 0; i < getPomocnicy().size(); i++) {
 				out += getPomocnicy().get(i).getImie() + " " + getPomocnicy().get(i).getNazwisko() + ", ";
 			}
