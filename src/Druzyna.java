@@ -20,6 +20,19 @@ public class Druzyna {
 	public void setPomocnicy(Pracownik p){
 		Pomocnicy.add(Pomocnicy.size(),p);
 	}
+	public String getDruzyna(){
+		String out;
+		out = "Przodowy: " + getPrzodowy().getImie() + " " + getPrzodowy().getNazwisko();
+		if(getPomocnicy().isEmpty()){
+			out += ", bez Pomocników";
+		}else{
+			out += "Pomocnicy: ";
+			for (int i = 0; i < getPomocnicy().size(); i++) {
+				out += getPomocnicy().get(i).getImie() + " " + getPomocnicy().get(i).getNazwisko() + ", ";
+			}
+		}
+		return out;
+	}
 	public Druzyna(){
 
 	}
