@@ -655,6 +655,7 @@ public class Aplikacja{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+
 			}
 		});
 		raportDnia.addActionListener(new ActionListener() {
