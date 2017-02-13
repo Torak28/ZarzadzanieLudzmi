@@ -519,7 +519,7 @@ public class Aplikacja{
 		zarzPracownikami.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] opcje = {"Dodaj Pracownika", "Usuń Pracownika", "Nic"};
+				String[] opcje = {"Dodaj Pracownika", "Usuń Pracownika", "Cancel"};
 				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if(n == 0){
 					String ImieNazwisko = JOptionPane.showInputDialog(GlownyPanel, "Podaj Imie i Nazwisko", "Dodaj Pracownika", JOptionPane.PLAIN_MESSAGE);
@@ -549,7 +549,7 @@ public class Aplikacja{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] ImieNazwiskoPrzodowego = new String[2];
-				String[] opcje = {"Dodaj Brygadę", "Usuń Brygadę", "Nic"};
+				String[] opcje = {"Dodaj Brygadę", "Usuń Brygadę", "Cancel"};
 				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if (n == 0){
 					if (WszyscyPracownicy.isEmpty()){
@@ -623,6 +623,12 @@ public class Aplikacja{
 	}
 
 	public static void main(String[] args) throws FileNotFoundException{
+		try
+		{
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		}
+		catch(Exception e){
+		}
 		Aplikacja ap = new Aplikacja();
 
 		JFrame frame = new JFrame("Główny Panel");
