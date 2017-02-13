@@ -748,11 +748,13 @@ public class Aplikacja{
 					zad[i] = WszystkieZadania.get(i).getZadanie();
 				}
 				String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Którą Brygadę chcesz ocenić?", "Ocenianie Brygady", JOptionPane.PLAIN_MESSAGE, null, zad, zad[0]);
-				String ocenaS = JOptionPane.showInputDialog(GlownyPanel, "Jaki mieli wykon(liczba całkowita)", "Ocenianie Brygady", JOptionPane.PLAIN_MESSAGE);
-				int ocena = Integer.parseInt(ocenaS);
-				String[] czesci = new String[6];
-				czesci = s.split(" ");
-				ocenZadanie(czesci[3],czesci[4],ocena);
+				if((s != null) && (s.length() > 0)){
+					String ocenaS = JOptionPane.showInputDialog(GlownyPanel, "Jaki mieli wykon(liczba całkowita)", "Ocenianie Brygady", JOptionPane.PLAIN_MESSAGE);
+					int ocena = Integer.parseInt(ocenaS);
+					String[] czesci = new String[6];
+					czesci = s.split(" ");
+					ocenZadanie(czesci[3],czesci[4],ocena);
+				}
 			}
 		});
 		raportDnia.addActionListener(new ActionListener() {
