@@ -778,6 +778,7 @@ public class Aplikacja{
 		}
 		catch(Exception e){
 		}
+
 		Aplikacja ap = new Aplikacja();
 
 		JFrame frame = new JFrame("Główny Panel");
