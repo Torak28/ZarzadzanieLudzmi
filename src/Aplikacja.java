@@ -491,6 +491,25 @@ public class Aplikacja{
 		}
 		return out;
 	}
+	public String raportDnia(){
+		String out = "Ilość zadań: " + WszystkieZadania.size() + "\n";
+		if (WszystkieZadania.isEmpty()){
+			out += "Nie ma żadnych zadan";
+		}else {
+			for (int i = 0; i < WszystkieZadania.size(); i++) {
+				out += wyswietlZadanie(WszystkieZadania.get(i));
+			}
+		}
+		out += "Lista Pracowników: \n";
+		if (WszyscyPracownicy.isEmpty()){
+			out += "\tlista pusta";
+		}else{
+			for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
+				out += getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(i).getOcena() + "\n";
+			}
+		}
+		return out;
+	}
 	public String wyswietlPracownikow(){
 		String out;
 		if (WszyscyPracownicy.isEmpty()){
@@ -739,7 +758,8 @@ public class Aplikacja{
 		raportDnia.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				String out = raportDnia();
+				JOptionPane.showMessageDialog(GlownyPanel, out);
 			}
 		});
 		Zapisz.addActionListener(new ActionListener() {
@@ -747,7 +767,6 @@ public class Aplikacja{
 			public void actionPerformed(ActionEvent e){
 				Zapis();
 				JOptionPane.showMessageDialog(GlownyPanel, "Zapisano");
-
 			}
 		});
 	}
