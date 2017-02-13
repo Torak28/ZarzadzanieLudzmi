@@ -525,10 +525,6 @@ public class Aplikacja{
 						usunPracownika(czesci[0], czesci[1]);
 					}
 				}
-				/**
-				 * Na dzisiaj to tyle:
-				 * http://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
-				 **/
 			}
 		});
 		zarzBrygadami.addActionListener(new ActionListener() {
