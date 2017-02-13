@@ -597,7 +597,58 @@ public class Aplikacja{
 		zarzZadaniami.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				String[] opcje = {"Wiercenia", "Kotwienia", "Cancel"};
+				int n = JOptionPane.showOptionDialog(GlownyPanel, "Jakie zadanie dodać?", "Zarządzanie Zadaniami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
+				Zadanie z = new Zadanie();
+				int sterowanie = 0;
+				if (n == 0){
+					if(WszystkieDruzyny.isEmpty()){
+						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych drużyn do ustawienia", "Błąd", JOptionPane.ERROR_MESSAGE);
+					}else{
+						dodajZadanieWiercenia(z);
+						int index;
+						String[] dru = new String[WszystkieDruzyny.size()];
+						for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+							dru[i] = WszystkieDruzyny.get(i).getDruzyna();
+						}
+						String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Której brygadzie przydzielasz to zadanie?", "Zarządzanie Zadaniami", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
+						String[] czesci = new String[3];
+						czesci = s.split(" ");
+						int index2 = 2147483647;
+						for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+							if (WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(czesci[1]) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(czesci[2])){
+								index2 = i;
+							}
+						}
+						if (index2 != 2147483647){
+							z.setWykonawcy(WszystkieDruzyny.get(index2));
+							sterowanie = 1;
+						}
+					}
+				}else if (n == 1){
+					dodajZadanieKotwienia(z);
+					int index;
+					String[] dru = new String[WszystkieDruzyny.size()];
+					for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+						dru[i] = WszystkieDruzyny.get(i).getDruzyna();
+					}
+					String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Której brygadzie przydzielasz to zadanie?", "Zarządzanie Zadaniami", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
+					String[] czesci = new String[3];
+					czesci = s.split(" ");
+					int index2 = 2147483647;
+					for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+						if (WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(czesci[1]) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(czesci[2])){
+							index2 = i;
+						}
+					}
+					if (index2 != 2147483647){
+						z.setWykonawcy(WszystkieDruzyny.get(index2));
+						sterowanie = 1;
+					}
+				}
+				if(sterowanie == 1){
+					WszystkieZadania.add(z);
+				}
 			}
 		});
 		ocenBrygade.addActionListener(new ActionListener() {
