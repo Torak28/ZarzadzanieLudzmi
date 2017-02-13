@@ -49,6 +49,19 @@ public class Zadanie {
 		int zmienna = Wykonawcy.getPomocnicy().size();
 		return 1 + zmienna;
 	}
+	public String getZadanie(){
+		String out;
+		out = "Zadanie " + getTyp() + ": Przodowy: " + Wykonawcy.getPrzodowy().getImie() + " " + Wykonawcy.getPrzodowy().getNazwisko();
+		if(Wykonawcy.getPomocnicy().isEmpty()){
+			out += ", bez Pomocników";
+		}else{
+			out += " Pomocnicy: ";
+			for (int i = 0; i < Wykonawcy.getPomocnicy().size(); i++) {
+				out += Wykonawcy.getPomocnicy().get(i).getImie() + " " + Wykonawcy.getPomocnicy().get(i).getNazwisko() + ", ";
+			}
+		}
+		return out;
+	}
 	public void Zadanie() {
 	}
 }
