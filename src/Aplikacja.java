@@ -694,7 +694,15 @@ public class Aplikacja{
 		ocenBrygade.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				int index;
+				String[] zad = new String[WszystkieZadania.size()];
+				for (int i = 0; i < WszystkieZadania.size(); i++) {
+					zad[i] = WszystkieZadania.get(i).getZadanie();
+				}
+				String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Którą Brygadę chcesz ocenić?", "Ocenianie Brygady", JOptionPane.PLAIN_MESSAGE, null, zad, zad[0]);
+				String[] czesci = new String[6];
+				czesci = s.split(" ");
+				usunZadanie(czesci[3], czesci[4]);
 
 			}
 		});
@@ -729,6 +737,8 @@ public class Aplikacja{
 		frame.pack();
 		frame.setVisible(true);
 
+
+		System.out.print(ap.wyswietlZadania());
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
 		* Okienka(Dialogii)

@@ -49,9 +49,16 @@ public class Zadanie {
 		int zmienna = Wykonawcy.getPomocnicy().size();
 		return 1 + zmienna;
 	}
+	public String getTypZad(){
+		if (getTyp() == 1){
+			return "Wiercenie";
+		}else{
+			return "Kotwienie";
+		}
+	}
 	public String getZadanie(){
 		String out;
-		out = "Zadanie " + getTyp() + ": Przodowy: " + Wykonawcy.getPrzodowy().getImie() + " " + Wykonawcy.getPrzodowy().getNazwisko();
+		out = "Zadanie " + getTypZad() + ": Przodowy: " + Wykonawcy.getPrzodowy().getImie() + " " + Wykonawcy.getPrzodowy().getNazwisko();
 		if(Wykonawcy.getPomocnicy().isEmpty()){
 			out += ", bez Pomocników";
 		}else{
