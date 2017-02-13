@@ -653,7 +653,19 @@ public class Aplikacja{
 						WszystkieZadania.add(z);
 					}
 				}else if (n1 == 1){
-
+					if(WszystkieDruzyny.isEmpty()){
+						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych drużyn do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
+					}else{
+						int index;
+						String[] zad = new String[WszystkieZadania.size()];
+						for (int i = 0; i < WszystkieZadania.size(); i++) {
+							zad[i] = WszystkieZadania.get(i).getZadanie();
+						}
+						String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Które zadanie chcesz usunąć?", "Usuwanie Zadań", JOptionPane.PLAIN_MESSAGE, null, zad, zad[0]);
+						String[] czesci = new String[3];
+						czesci = s.split(" ");
+						//imie i nazwisko przodowego z zadania xd
+					}
 				}
 			}
 		});
