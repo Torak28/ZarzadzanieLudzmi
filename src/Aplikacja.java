@@ -249,6 +249,23 @@ public class Aplikacja{
 	public void usunDruzyne(Druzyna d){
 		WszystkieDruzyny.remove(d);
 	}
+	public void usunDruzyne(String ImiePrzodowego, String NazwiskoPrzodowego){
+		int sterowanie = 0;
+		int index = 2147483647;
+		if (WszystkieDruzyny.isEmpty()){
+			sterowanie = 0;
+		}else{
+			for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+				if (WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(ImiePrzodowego) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(NazwiskoPrzodowego)){
+					sterowanie = 1;
+					index = i;
+				}
+			}
+		}
+		if((sterowanie == 1) && (index != 2147483647)){
+			WszystkieDruzyny.remove(WszystkieDruzyny.get(index));
+		}
+	}
 	public void dodajZadanieKotwienia(Zadanie z){
 		int typ = 2;
 		int norma = 12;
@@ -558,8 +575,10 @@ public class Aplikacja{
 					for (int i = 0; i < WszystkieDruzyny.size(); i++) {
 						dru[i] = WszystkieDruzyny.get(i).getDruzyna();
 					}
-					int s = (int)JOptionPane.showInputDialog(GlownyPanel, "Którą chcesz usunąć?", "Usuwanie Brygady", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
-					System.out.print(s);
+					String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Którą chcesz usunąć?", "Usuwanie Brygady", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
+					String[] czesci = new String[3];
+					czesci = s.split(" ");
+					usunDruzyne(czesci[1], czesci[2]);
 				}
 			}
 		});
