@@ -65,7 +65,9 @@ public class odczytPracownikow {
 				return out + iloscPom;
 			}
 		}
-		return "koniec";
+		int iloscPom = ilu;
+		ilu = 0;
+		return out + iloscPom;
 	}
 	public void zapis(String in, String in2, String in3){
 

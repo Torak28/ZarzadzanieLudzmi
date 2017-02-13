@@ -299,6 +299,23 @@ public class Aplikacja{
 	public void usunZadanie(Zadanie z){
 		WszystkieZadania.remove(z);
 	}
+	public void usunZadanie(String ImiePrzodowego, String NazwiskoPrzodowego){
+		int sterowanie = 0;
+		int index = 2147483647;
+		if (WszystkieZadania.isEmpty()){
+			sterowanie = 0;
+		}else{
+			for (int i = 0; i < WszystkieZadania.size(); i++) {
+				if (WszystkieZadania.get(i).getWykonawcy().getPrzodowy().getImie().equals(ImiePrzodowego) && WszystkieZadania.get(i).getWykonawcy().getPrzodowy().getNazwisko().equals(NazwiskoPrzodowego)){
+					sterowanie = 1;
+					index = i;
+				}
+			}
+		}
+		if((sterowanie == 1) && (index != 2147483647)){
+			WszystkieZadania.remove(WszystkieZadania.get(index));
+		}
+	}
 	/**
 	 * Przeciazanie oceny Zadanie wykonem jako intem
 	 **/
@@ -387,7 +404,12 @@ public class Aplikacja{
 					z.setWykonawcy(WszystkieDruzyny.get(j));
 				}
 				WszystkieZadania.add(z);
-				ocenZadanie(WszystkieZadania.get(j), Integer.parseInt(podzial[podzial.length-2]));
+				try{
+					ocenZadanie(WszystkieZadania.get(j), Integer.parseInt(podzial[podzial.length-2]));
+				}catch(NumberFormatException e){
+					//Bardzo naiwan obsługa
+				}
+
 			}
 			r.zamknijY();
 		}
@@ -653,8 +675,8 @@ public class Aplikacja{
 						WszystkieZadania.add(z);
 					}
 				}else if (n1 == 1){
-					if(WszystkieDruzyny.isEmpty()){
-						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych drużyn do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
+					if(WszystkieZadania.isEmpty()){
+						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych zadań do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
 					}else{
 						int index;
 						String[] zad = new String[WszystkieZadania.size()];
@@ -662,9 +684,9 @@ public class Aplikacja{
 							zad[i] = WszystkieZadania.get(i).getZadanie();
 						}
 						String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Które zadanie chcesz usunąć?", "Usuwanie Zadań", JOptionPane.PLAIN_MESSAGE, null, zad, zad[0]);
-						String[] czesci = new String[3];
+						String[] czesci = new String[6];
 						czesci = s.split(" ");
-						//imie i nazwisko przodowego z zadania xd
+						usunZadanie(czesci[3], czesci[4]);
 					}
 				}
 			}
