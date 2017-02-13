@@ -353,6 +353,35 @@ public class Aplikacja{
 			z.getWykonawcy().getPomocnicy().get(i).setOcena(miara);
 		}
 	}
+	public void ocenZadanie(String ImiePrzodowego, String NazwiskoPrzodowego, int wykon){
+		int sterowanie = 0;
+		int index = 2147483647;
+		if (WszystkieZadania.isEmpty()){
+			sterowanie = 0;
+		}else{
+			for (int i = 0; i < WszystkieZadania.size(); i++) {
+				if (WszystkieZadania.get(i).getWykonawcy().getPrzodowy().getImie().equals(ImiePrzodowego) && WszystkieZadania.get(i).getWykonawcy().getPrzodowy().getNazwisko().equals(NazwiskoPrzodowego)){
+					sterowanie = 1;
+					index = i;
+				}
+			}
+		}
+		if((sterowanie == 1) && (index != 2147483647)){
+			float miara;
+			WszystkieZadania.get(index).setWynik(wykon);
+			miara = WszystkieZadania.get(index).getWynik() / WszystkieZadania.get(index).iluWykonawcow();
+			miara = miara - WszystkieZadania.get(index).getNorma();
+			WszystkieZadania.get(index).setMiara(miara);
+			if(miara >= WszystkieZadania.get(index).getNorma()){
+				WszystkieZadania.get(index).getWykonawcy().getPrzodowy().setOcena(miara + 1);
+			}else{
+				WszystkieZadania.get(index).getWykonawcy().getPrzodowy().setOcena(miara);
+			}
+			for (int i = 0; i < WszystkieZadania.get(index).getWykonawcy().getPomocnicy().size(); i++) {
+				WszystkieZadania.get(index).getWykonawcy().getPomocnicy().get(i).setOcena(miara);
+			}
+		}
+	}
 
 	public int wybierzPracownika(){
 		System.out.print("Wybierasz: ");
@@ -738,7 +767,7 @@ public class Aplikacja{
 		frame.setVisible(true);
 
 
-		System.out.print(ap.wyswietlZadania());
+
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
 		* Okienka(Dialogii)
