@@ -530,7 +530,13 @@ public class Aplikacja{
 		zarzBrygadami.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String[] opcje = {"Dodaj Brygadę", "Usuń Brygadę", "Nic"};
+				int n = JOptionPane.showOptionDialog(getGlownyPanel(), "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
+				if (n == 0){
 
+				}else if(n == 1){
+
+				}
 			}
 		});
 		zarzZadaniami.addActionListener(new ActionListener() {
