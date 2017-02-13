@@ -509,7 +509,10 @@ public class Aplikacja{
 				int n = JOptionPane.showOptionDialog(getGlownyPanel(), "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if(n == 0){
 					String ImieNazwisko = JOptionPane.showInputDialog(GlownyPanel, "Podaj Imie i Nazwisko", "Dodaj Pracownika", JOptionPane.PLAIN_MESSAGE);
-					System.out.print(ImieNazwisko);
+					if(ImieNazwisko.length() > 0){
+						String[] czesci = ImieNazwisko.split(" ");
+						dodajPracownika(czesci[0], czesci[1]);
+					}
 
 				}else if (n == 1) {
 					String[] prac = new String[WszyscyPracownicy.size()];
@@ -565,11 +568,11 @@ public class Aplikacja{
 	public static void main(String[] args) throws FileNotFoundException{
 		Aplikacja ap = new Aplikacja();
 
-		/*JFrame frame = new JFrame("Główny Panel");
+		JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(new Aplikacja().GlownyPanel);
 		frame.pack();
-		frame.setVisible(true);*/
+		frame.setVisible(true);
 
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
@@ -577,8 +580,7 @@ public class Aplikacja{
 		* Statystyki
 		* */
 
-		Scanner in = new Scanner(System.in);
-		//ap.Wczytanie();
+		/*Scanner in = new Scanner(System.in);
 
 		//MENU KONSOLOWE, DO SPRAWDZENIA
 		int wybor;
@@ -678,6 +680,6 @@ public class Aplikacja{
 					break;
 			}
 		}while (wybor != 14);
-		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");
+		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");*/
 	}
 }
