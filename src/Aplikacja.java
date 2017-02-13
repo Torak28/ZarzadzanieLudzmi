@@ -80,7 +80,7 @@ public class Aplikacja{
 				if (WszyscyPracownicy.get(i).getImie().equals(Imie) && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
 					sterowanie = 1;
 					index = i;
-				}else if(WszyscyPracownicy.get(i).getImie().equals(Imie) && !WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+				}else if(sterowanie != 1 && WszyscyPracownicy.get(i).getImie().equals(Imie) && !WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
 					sterowanie = 0;
 				}
 			}
@@ -506,8 +506,10 @@ public class Aplikacja{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] opcje = {"Dodaj Pracownika", "Usuń Pracownika", "Nic"};
-				int n = JOptionPane.showOptionDialog(getGlownyPanel(), "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcje, opcje[2]);
+				int n = JOptionPane.showOptionDialog(getGlownyPanel(), "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if(n == 0){
+					String ImieNazwisko = JOptionPane.showInputDialog(GlownyPanel, "Podaj Imie i Nazwisko", "Dodaj Pracownika", JOptionPane.PLAIN_MESSAGE);
+					System.out.print(ImieNazwisko);
 
 				}else if (n == 1) {
 					String[] prac = new String[WszyscyPracownicy.size()];
@@ -515,7 +517,7 @@ public class Aplikacja{
 						prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
 					}
 					String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo chcesz usunąć?", "Usuwanie Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
-					if (s != "null"){
+					if ((s != null) && (s.length() > 0)){
 						String[] czesci = s.split(" ");
 						usunPracownika(czesci[0], czesci[1]);
 					}
@@ -563,11 +565,11 @@ public class Aplikacja{
 	public static void main(String[] args) throws FileNotFoundException{
 		Aplikacja ap = new Aplikacja();
 
-		JFrame frame = new JFrame("Główny Panel");
+		/*JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(new Aplikacja().GlownyPanel);
 		frame.pack();
-		frame.setVisible(true);
+		frame.setVisible(true);*/
 
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
@@ -575,8 +577,8 @@ public class Aplikacja{
 		* Statystyki
 		* */
 
-		/*Scanner in = new Scanner(System.in);
-		ap.Wczytanie();
+		Scanner in = new Scanner(System.in);
+		//ap.Wczytanie();
 
 		//MENU KONSOLOWE, DO SPRAWDZENIA
 		int wybor;
@@ -666,8 +668,16 @@ public class Aplikacja{
 					break;
 				case 13:
 					ap.Zapis();
+				case 15:
+					String Imie2, Nazwisko2;
+					System.out.println("Podaj Imie: ");
+					Imie2 = in.next();
+					System.out.println("Podaj Nazwisko: ");
+					Nazwisko2 = in.next();
+					ap.usunPracownika(Imie2, Nazwisko2);
+					break;
 			}
 		}while (wybor != 14);
-		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");*/
+		System.out.println("\nDzięki za prace!\n\tStworzył: Jarosław Ciołek-Żelechowski");
 	}
 }
