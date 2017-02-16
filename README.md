@@ -29,3 +29,6 @@
 szef jest przodyw
 pomocnikow
 NORMA x6
+
+
+Poprawić README.md
