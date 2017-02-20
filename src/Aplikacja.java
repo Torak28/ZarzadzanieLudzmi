@@ -760,17 +760,21 @@ public class Aplikacja{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int index;
-				String[] zad = new String[WszystkieZadania.size()];
-				for (int i = 0; i < WszystkieZadania.size(); i++) {
-					zad[i] = WszystkieZadania.get(i).getZadanie();
-				}
-				String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Którą Brygadę chcesz ocenić?", "Ocenianie Brygady", JOptionPane.PLAIN_MESSAGE, null, zad, zad[0]);
-				if((s != null) && (s.length() > 0)){
-					String ocenaS = JOptionPane.showInputDialog(GlownyPanel, "Jaki mieli wykon(liczba całkowita)", "Ocenianie Brygady", JOptionPane.PLAIN_MESSAGE);
-					int ocena = Integer.parseInt(ocenaS);
-					String[] czesci = new String[6];
-					czesci = s.split(" ");
-					ocenZadanie(czesci[3],czesci[4],ocena);
+				if (WszystkieZadania.size() == 0){
+					JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych zadań do ocenienia", "Błąd", JOptionPane.ERROR_MESSAGE);
+				}else{
+					String[] zad = new String[WszystkieZadania.size()];
+					for (int i = 0; i < WszystkieZadania.size(); i++) {
+						zad[i] = WszystkieZadania.get(i).getZadanie();
+					}
+					String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Którą Brygadę chcesz ocenić?", "Ocenianie Brygady", JOptionPane.PLAIN_MESSAGE, null, zad, zad[0]);
+					if((s != null) && (s.length() > 0)){
+						String ocenaS = JOptionPane.showInputDialog(GlownyPanel, "Jaki mieli wykon(liczba całkowita)", "Ocenianie Brygady", JOptionPane.PLAIN_MESSAGE);
+						int ocena = Integer.parseInt(ocenaS);
+						String[] czesci = new String[6];
+						czesci = s.split(" ");
+						ocenZadanie(czesci[3],czesci[4],ocena);
+					}
 				}
 			}
 		});
