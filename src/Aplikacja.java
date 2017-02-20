@@ -22,6 +22,7 @@ public class Aplikacja{
 	private JButton ocenBrygade;
 	private JButton raportDnia;
 	private JButton Zapisz;
+	private JButton wykresButton;
 
 	public void setLabel1(String in){
 		opis.setText(in);
@@ -792,6 +793,12 @@ public class Aplikacja{
 				JOptionPane.showMessageDialog(GlownyPanel, "Zapisano");
 			}
 		});
+		wykresButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 	}
 
 	public static void main(String[] args) throws FileNotFoundException{
@@ -814,7 +821,6 @@ public class Aplikacja{
 
 		/*TODO:
 		* Przodowy nie może byc pomocnikiem xd
-		* Okienka(Dialogii)
 		* Statystyki
 		* */
 
