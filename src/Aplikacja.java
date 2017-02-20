@@ -592,25 +592,30 @@ public class Aplikacja{
 				String[] opcje = {"Dodaj Pracownika", "Usuń Pracownika", "Cancel"};
 				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if(n == 0){
-					String ImieNazwisko = JOptionPane.showInputDialog(GlownyPanel, "Podaj Imie i Nazwisko", "Dodaj Pracownika", JOptionPane.PLAIN_MESSAGE);
-					if(ImieNazwisko.length() > 0){
-						String[] czesci = ImieNazwisko.split(" ");
-						dodajPracownika(czesci[0], czesci[1]);
+					try{
+						String ImieNazwisko = JOptionPane.showInputDialog(GlownyPanel, "Podaj Imie i Nazwisko", "Dodaj Pracownika", JOptionPane.PLAIN_MESSAGE);
+						if(ImieNazwisko.length() > 0){
+							String[] czesci = ImieNazwisko.split(" ");
+							dodajPracownika(czesci[0], czesci[1]);
+						}
+					}catch (NullPointerException e1){
 					}
-
 				}else if (n == 1) {
-					if(WszyscyPracownicy.isEmpty()){
-						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
-					}else{
-						String[] prac = new String[WszyscyPracownicy.size()];
-						for (int i = 0; i < WszyscyPracownicy.size(); i++) {
-							prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
+					try{
+						if(WszyscyPracownicy.isEmpty()){
+							JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
+						}else{
+							String[] prac = new String[WszyscyPracownicy.size()];
+							for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+								prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
+							}
+							String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo chcesz usunąć?", "Usuwanie Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+							if ((s != null) && (s.length() > 0)){
+								String[] czesci = s.split(" ");
+								usunPracownika(czesci[0], czesci[1]);
+							}
 						}
-						String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo chcesz usunąć?", "Usuwanie Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
-						if ((s != null) && (s.length() > 0)){
-							String[] czesci = s.split(" ");
-							usunPracownika(czesci[0], czesci[1]);
-						}
+					}catch (NullPointerException e1){
 					}
 				}
 			}
@@ -622,44 +627,50 @@ public class Aplikacja{
 				String[] opcje = {"Dodaj Brygadę", "Usuń Brygadę", "Cancel"};
 				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Zarządzanie Pracownikami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if (n == 0){
-					if (WszyscyPracownicy.isEmpty()){
-						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników do utworzenia Drużyny", "Błąd", JOptionPane.ERROR_MESSAGE);
-					}else{
-						String[] prac = new String[WszyscyPracownicy.size()];
-						for (int i = 0; i < WszyscyPracownicy.size(); i++) {
-							prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
-						}
-						String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kto jest przodowym?", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
-						if ((s != null) && (s.length() > 0)){
-							ImieNazwiskoPrzodowego = s.split(" ");
-						}
-						String iluPomocnikowS = JOptionPane.showInputDialog(GlownyPanel, "Ilu pomocników", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE);
-						int iluPomocnikow = Integer.parseInt(iluPomocnikowS);
-						String[] ImionaPomocnikow = new String[iluPomocnikow];
-						String[] NazwiskaPomocnikow = new String[iluPomocnikow];
-						for (int i = 0; i < iluPomocnikow; i++) {
-							String s1 = (String) JOptionPane.showInputDialog(GlownyPanel, "Kto jest pomocnikiem?", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
-							if ((s1 != null) && (s1.length() > 0)){
-								String[] czesci = s1.split(" ");
-								ImionaPomocnikow[i] = czesci[0];
-								NazwiskaPomocnikow[i] = czesci[1];
+					try{
+						if (WszyscyPracownicy.isEmpty()){
+							JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników do utworzenia Drużyny", "Błąd", JOptionPane.ERROR_MESSAGE);
+						}else{
+							String[] prac = new String[WszyscyPracownicy.size()];
+							for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+								prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
+							}
+							String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kto jest przodowym?", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+							if ((s != null) && (s.length() > 0)){
+								ImieNazwiskoPrzodowego = s.split(" ");
+								String iluPomocnikowS = JOptionPane.showInputDialog(GlownyPanel, "Ilu pomocników", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE);
+								int iluPomocnikow = Integer.parseInt(iluPomocnikowS);
+								String[] ImionaPomocnikow = new String[iluPomocnikow];
+								String[] NazwiskaPomocnikow = new String[iluPomocnikow];
+								for (int i = 0; i < iluPomocnikow; i++) {
+									String s1 = (String) JOptionPane.showInputDialog(GlownyPanel, "Kto jest pomocnikiem?", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+									if ((s1 != null) && (s1.length() > 0)){
+										String[] czesci = s1.split(" ");
+										ImionaPomocnikow[i] = czesci[0];
+										NazwiskaPomocnikow[i] = czesci[1];
+									}
+								}
+								dodajDruzyne(ImieNazwiskoPrzodowego[0], ImieNazwiskoPrzodowego[1], iluPomocnikow, ImionaPomocnikow, NazwiskaPomocnikow);
 							}
 						}
-						dodajDruzyne(ImieNazwiskoPrzodowego[0], ImieNazwiskoPrzodowego[1], iluPomocnikow, ImionaPomocnikow, NazwiskaPomocnikow);
+					}catch (NullPointerException e1){
 					}
 				}else if(n == 1){
-					if(WszystkieDruzyny.isEmpty()){
-						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych drużyn do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
-					}else{
-						int index;
-						String[] dru = new String[WszystkieDruzyny.size()];
-						for (int i = 0; i < WszystkieDruzyny.size(); i++) {
-							dru[i] = WszystkieDruzyny.get(i).getDruzyna();
+					try{
+						if(WszystkieDruzyny.isEmpty()){
+							JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych drużyn do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
+						}else{
+							int index;
+							String[] dru = new String[WszystkieDruzyny.size()];
+							for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+								dru[i] = WszystkieDruzyny.get(i).getDruzyna();
+							}
+							String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Którą chcesz usunąć?", "Usuwanie Brygady", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
+							String[] czesci = new String[3];
+							czesci = s.split(" ");
+							usunDruzyne(czesci[1], czesci[2]);
 						}
-						String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Którą chcesz usunąć?", "Usuwanie Brygady", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
-						String[] czesci = new String[3];
-						czesci = s.split(" ");
-						usunDruzyne(czesci[1], czesci[2]);
+					}catch (NullPointerException e1){
 					}
 				}
 			}
@@ -670,15 +681,37 @@ public class Aplikacja{
 				String[] opcje1 = {"Dodaj Zadnie", "Usuń Zadanie", "Cancel"};
 				int n1 = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Zarządzanie Zadaniami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje1, "");
 				if(n1 == 0){
-					String[] opcje = {"Wiercenia", "Kotwienia", "Cancel"};
-					int n = JOptionPane.showOptionDialog(GlownyPanel, "Jakie zadanie dodać?", "Zarządzanie Zadaniami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
-					Zadanie z = new Zadanie();
-					int sterowanie = 0;
-					if (n == 0){
-						if(WszystkieDruzyny.isEmpty()){
-							JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych drużyn do ustawienia", "Błąd", JOptionPane.ERROR_MESSAGE);
-						}else{
-							dodajZadanieWiercenia(z);
+					try{
+						String[] opcje = {"Wiercenia", "Kotwienia", "Cancel"};
+						int n = JOptionPane.showOptionDialog(GlownyPanel, "Jakie zadanie dodać?", "Zarządzanie Zadaniami", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
+						Zadanie z = new Zadanie();
+						int sterowanie = 0;
+						if (n == 0){
+							if(WszystkieDruzyny.isEmpty()){
+								JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych drużyn do ustawienia", "Błąd", JOptionPane.ERROR_MESSAGE);
+							}else{
+								dodajZadanieWiercenia(z);
+								int index;
+								String[] dru = new String[WszystkieDruzyny.size()];
+								for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+									dru[i] = WszystkieDruzyny.get(i).getDruzyna();
+								}
+								String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Której brygadzie przydzielasz to zadanie?", "Zarządzanie Zadaniami", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
+								String[] czesci = new String[3];
+								czesci = s.split(" ");
+								int index2 = 2147483647;
+								for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+									if (WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(czesci[1]) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(czesci[2])){
+										index2 = i;
+									}
+								}
+								if (index2 != 2147483647){
+									z.setWykonawcy(WszystkieDruzyny.get(index2));
+									sterowanie = 1;
+								}
+							}
+						}else if (n == 1){
+							dodajZadanieKotwienia(z);
 							int index;
 							String[] dru = new String[WszystkieDruzyny.size()];
 							for (int i = 0; i < WszystkieDruzyny.size(); i++) {
@@ -698,43 +731,27 @@ public class Aplikacja{
 								sterowanie = 1;
 							}
 						}
-					}else if (n == 1){
-						dodajZadanieKotwienia(z);
-						int index;
-						String[] dru = new String[WszystkieDruzyny.size()];
-						for (int i = 0; i < WszystkieDruzyny.size(); i++) {
-							dru[i] = WszystkieDruzyny.get(i).getDruzyna();
+						if(sterowanie == 1){
+							WszystkieZadania.add(z);
 						}
-						String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Której brygadzie przydzielasz to zadanie?", "Zarządzanie Zadaniami", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
-						String[] czesci = new String[3];
-						czesci = s.split(" ");
-						int index2 = 2147483647;
-						for (int i = 0; i < WszystkieDruzyny.size(); i++) {
-							if (WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(czesci[1]) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(czesci[2])){
-								index2 = i;
-							}
-						}
-						if (index2 != 2147483647){
-							z.setWykonawcy(WszystkieDruzyny.get(index2));
-							sterowanie = 1;
-						}
-					}
-					if(sterowanie == 1){
-						WszystkieZadania.add(z);
+					}catch (NullPointerException e1){
 					}
 				}else if (n1 == 1){
-					if(WszystkieZadania.isEmpty()){
-						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych zadań do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
-					}else{
-						int index;
-						String[] zad = new String[WszystkieZadania.size()];
-						for (int i = 0; i < WszystkieZadania.size(); i++) {
-							zad[i] = WszystkieZadania.get(i).getZadanie();
+					try{
+						if(WszystkieZadania.isEmpty()){
+							JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych zadań do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
+						}else{
+							int index;
+							String[] zad = new String[WszystkieZadania.size()];
+							for (int i = 0; i < WszystkieZadania.size(); i++) {
+								zad[i] = WszystkieZadania.get(i).getZadanie();
+							}
+							String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Które zadanie chcesz usunąć?", "Usuwanie Zadań", JOptionPane.PLAIN_MESSAGE, null, zad, zad[0]);
+							String[] czesci = new String[6];
+							czesci = s.split(" ");
+							usunZadanie(czesci[3], czesci[4]);
 						}
-						String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Które zadanie chcesz usunąć?", "Usuwanie Zadań", JOptionPane.PLAIN_MESSAGE, null, zad, zad[0]);
-						String[] czesci = new String[6];
-						czesci = s.split(" ");
-						usunZadanie(czesci[3], czesci[4]);
+					}catch (NullPointerException e1){
 					}
 				}
 			}
