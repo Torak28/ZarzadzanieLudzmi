@@ -15,6 +15,9 @@ import java.awt.Dimension;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import org.jfree.chart.plot.PlotOrientation;
@@ -600,18 +603,6 @@ public class Aplikacja{
 		return out.toArray(tablica);
 	}
 
-	private DefaultCategoryDataset stworzDataset( )
-	{
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-		dataset.addValue( -50 , "wynik" , "1970" );
-		dataset.addValue( 30 , "wynik" , "1980" );
-		dataset.addValue( 60 , "wynik" ,  "1990" );
-		dataset.addValue( 120 , "wynik" , "2000" );
-		dataset.addValue( 240 , "wynik" , "2010" );
-		dataset.addValue( 300 , "wynik" , "2014" );
-		return dataset;
-	}
-
 	public Aplikacja(){
 		Wczytanie();
 		zarzPracownikami.addActionListener(new ActionListener() {
@@ -827,10 +818,25 @@ public class Aplikacja{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Kogo
+				/*try{
+					if(WszyscyPracownicy.isEmpty()){
+						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
+					}else{
+						String[] prac = new String[WszyscyPracownicy.size()];
+						for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+							prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
+						}
+						String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Czyj wykres chcesz zobaczyć?", "Usuwanie Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+						if ((s != null) && (s.length() > 0)){
+							String[] czesci = s.split(" ");
+							usunPracownika(czesci[0], czesci[1]);
+						}
+					}
+				}catch (NullPointerException e1){
+				}*/
 				//Daty
 				//Tworzenie wykresu
-				DefaultCategoryDataset dataset = stworzDataset();
-				Wykresy wykres = new Wykresy( "Wykres" , "Numer of Schools vs years", dataset);
+				Wykresy wykres = new Wykresy("JFreeChart: PeriodAxisDemo2.java");
 				wykres.pack( );
 				RefineryUtilities.centerFrameOnScreen( wykres );
 				wykres.setVisible( true );
