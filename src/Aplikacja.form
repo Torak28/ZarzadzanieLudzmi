@@ -40,14 +40,6 @@
           <text value="Raport Dnia"/>
         </properties>
       </component>
-      <component id="74f07" class="javax.swing.JButton" binding="Zapisz">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Zapisz"/>
-        </properties>
-      </component>
       <component id="be124" class="javax.swing.JButton" binding="zarzBrygadami">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -66,10 +58,19 @@
       </component>
       <component id="a67a3" class="javax.swing.JButton" binding="wykresButton" default-binding="true">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Wykres"/>
+          <verticalAlignment value="0"/>
+        </properties>
+      </component>
+      <component id="74f07" class="javax.swing.JButton" binding="Zapisz">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zapisz"/>
         </properties>
       </component>
     </children>

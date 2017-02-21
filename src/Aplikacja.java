@@ -5,10 +5,20 @@
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Aplikacja{
 
@@ -582,7 +592,24 @@ public class Aplikacja{
 		return out;
 	}
 
-	public void Aplikacja(){
+	public String[] usunPrac(String[] tablica, String s) {
+		ArrayList<String> out = new ArrayList<String>();
+		for(String item : tablica)
+			if(!s.equals(item))
+				out.add(item);
+		return out.toArray(tablica);
+	}
+
+	private DefaultCategoryDataset createDataset( )
+	{
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+		dataset.addValue( 15 , "schools" , "1970" );
+		dataset.addValue( 30 , "schools" , "1980" );
+		dataset.addValue( 60 , "schools" ,  "1990" );
+		dataset.addValue( 120 , "schools" , "2000" );
+		dataset.addValue( 240 , "schools" , "2010" );
+		dataset.addValue( 300 , "schools" , "2014" );
+		return dataset;
 	}
 
 	public Aplikacja(){
@@ -638,6 +665,7 @@ public class Aplikacja{
 							}
 							String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kto jest przodowym?", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
 							if ((s != null) && (s.length() > 0)){
+								prac = usunPrac(prac,s);
 								ImieNazwiskoPrzodowego = s.split(" ");
 								String iluPomocnikowS = JOptionPane.showInputDialog(GlownyPanel, "Ilu pomocników", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE);
 								int iluPomocnikow = Integer.parseInt(iluPomocnikowS);
@@ -646,6 +674,7 @@ public class Aplikacja{
 								for (int i = 0; i < iluPomocnikow; i++) {
 									String s1 = (String) JOptionPane.showInputDialog(GlownyPanel, "Kto jest pomocnikiem?", "Dodawanie Brygady", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
 									if ((s1 != null) && (s1.length() > 0)){
+										prac = usunPrac(prac,s1);
 										String[] czesci = s1.split(" ");
 										ImionaPomocnikow[i] = czesci[0];
 										NazwiskaPomocnikow[i] = czesci[1];
@@ -780,6 +809,7 @@ public class Aplikacja{
 			}
 		});
 		raportDnia.addActionListener(new ActionListener() {
+			//DO DOPRACOWANIA
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String out = raportDnia();
@@ -796,14 +826,16 @@ public class Aplikacja{
 		wykresButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				Wykresy wykres = new Wykresy( "School Vs Years" , "Numer of Schools vs years");
+				wykres.pack( );
+				RefineryUtilities.centerFrameOnScreen( wykres );
+				wykres.setVisible( true );
 			}
 		});
 	}
 
-	public static void main(String[] args) throws FileNotFoundException{
-		try
-		{
+	public static void main(String[] args){
+		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		}
 		catch(Exception e){
@@ -820,7 +852,6 @@ public class Aplikacja{
 
 
 		/*TODO:
-		* Przodowy nie może byc pomocnikiem xd
 		* Statystyki
 		* */
 
