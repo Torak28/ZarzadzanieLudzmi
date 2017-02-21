@@ -603,12 +603,12 @@ public class Aplikacja{
 	private DefaultCategoryDataset stworzDataset( )
 	{
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-		dataset.addValue( 15 , "schools" , "1970" );
-		dataset.addValue( 30 , "schools" , "1980" );
-		dataset.addValue( 60 , "schools" ,  "1990" );
-		dataset.addValue( 120 , "schools" , "2000" );
-		dataset.addValue( 240 , "schools" , "2010" );
-		dataset.addValue( 300 , "schools" , "2014" );
+		dataset.addValue( -50 , "wynik" , "1970" );
+		dataset.addValue( 30 , "wynik" , "1980" );
+		dataset.addValue( 60 , "wynik" ,  "1990" );
+		dataset.addValue( 120 , "wynik" , "2000" );
+		dataset.addValue( 240 , "wynik" , "2010" );
+		dataset.addValue( 300 , "wynik" , "2014" );
 		return dataset;
 	}
 
@@ -826,7 +826,11 @@ public class Aplikacja{
 		wykresButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Wykresy wykres = new Wykresy( "Wykres" , "Numer of Schools vs years");
+				//Kogo
+				//Daty
+				//Tworzenie wykresu
+				DefaultCategoryDataset dataset = stworzDataset();
+				Wykresy wykres = new Wykresy( "Wykres" , "Numer of Schools vs years", dataset);
 				wykres.pack( );
 				RefineryUtilities.centerFrameOnScreen( wykres );
 				wykres.setVisible( true );
