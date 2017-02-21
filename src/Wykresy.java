@@ -12,11 +12,19 @@ public class Wykresy extends ApplicationFrame
 		super(applicationTitle);
 		JFreeChart lineChart = ChartFactory.createLineChart(
 				chartTitle,
-				"Years","Number of Schools",
+				"Years",
+				"Number of Schools",
 				przykladowyDataset(),
 				PlotOrientation.VERTICAL,
 				true,true,false);
+		ChartPanel chartPanel = new ChartPanel( lineChart );
+		chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
+		setContentPane( chartPanel );
+	}
 
+	public Wykresy(String applicationTitle, String chartTitle, DefaultCategoryDataset dataset ) {
+		super(applicationTitle);
+		JFreeChart lineChart = ChartFactory.createLineChart( chartTitle, "Wynik", "Data", dataset, PlotOrientation.VERTICAL, true,true,false);
 		ChartPanel chartPanel = new ChartPanel( lineChart );
 		chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
 		setContentPane( chartPanel );

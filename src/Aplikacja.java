@@ -600,7 +600,7 @@ public class Aplikacja{
 		return out.toArray(tablica);
 	}
 
-	private DefaultCategoryDataset createDataset( )
+	private DefaultCategoryDataset stworzDataset( )
 	{
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
 		dataset.addValue( 15 , "schools" , "1970" );
@@ -826,7 +826,7 @@ public class Aplikacja{
 		wykresButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Wykresy wykres = new Wykresy( "School Vs Years" , "Numer of Schools vs years");
+				Wykresy wykres = new Wykresy( "Wykres" , "Numer of Schools vs years");
 				wykres.pack( );
 				RefineryUtilities.centerFrameOnScreen( wykres );
 				wykres.setVisible( true );
