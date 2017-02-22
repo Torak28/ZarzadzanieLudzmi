@@ -501,7 +501,40 @@ public class Aplikacja{
 					Oceny[i] = outDzis;
 					String aktualnaData = sdf.format(dataPoczatek);
 					String[] czesci = aktualnaData.split("\\.");
+					s1.add(new Day(Integer.parseInt(czesci[0]),Integer.parseInt(czesci[1]),Integer.parseInt(czesci[2])), outDzis);
+				}else {
+					String aktualnaData = sdf.format(dataPoczatek);
+					String[] czesci = aktualnaData.split("\\.");
+					s1.add(new Day(Integer.parseInt(czesci[0]), Integer.parseInt(czesci[1]), Integer.parseInt(czesci[2])), 0);
+				}
+				dataPoczatek = new Date(dataPoczatek.getTime() + (1000 * 60 * 60 * 24));
+			}
+		}catch (ParseException e){
+		}
+		TimeSeriesCollection dataset = new TimeSeriesCollection();
+		dataset.addSeries(s1);
+		dataset.setXPosition(TimePeriodAnchor.MIDDLE);
+		return dataset;
+	}
 
+	public XYDataset stworzDataset(String Imie, String Nazwisko, String Poczatek, String Koniec, int ilu, String[] Imiona, String[] Nazwiska){
+		TimeSeries s1 = new TimeSeries(Imie + " " + Nazwisko);
+		try{
+			String format = "dd.MM.yyyy";
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			Date dataPoczatek = sdf.parse(Poczatek);
+			Date dataKoniec = sdf.parse(Koniec);
+
+			long diff = dataKoniec.getTime() - dataPoczatek.getTime();
+			int roznica =  (int) (diff / (24* 1000 * 60 * 60));
+			roznica++;
+			int[] Oceny = new int[roznica];
+			for (int i = 0; i < roznica; i++) {
+				int outDzis = r.odczytOceny(Imie, Nazwisko, sdf.format(dataPoczatek));
+				if(outDzis != -1000){
+					Oceny[i] = outDzis;
+					String aktualnaData = sdf.format(dataPoczatek);
+					String[] czesci = aktualnaData.split("\\.");
 					s1.add(new Day(Integer.parseInt(czesci[0]),Integer.parseInt(czesci[1]),Integer.parseInt(czesci[2])), outDzis);
 				}else {
 					String aktualnaData = sdf.format(dataPoczatek);
@@ -878,11 +911,12 @@ public class Aplikacja{
 							String[] czesci = s.split(" ");
 							Imie = czesci[0];
 							Nazwisko = czesci[1];
-
+							prac = usunPrac(prac,s);
 							//Sterowanie
 							String[] opcje = {"Całość", "Zakres Dat", "Cancel"};
 							int n = JOptionPane.showOptionDialog(GlownyPanel, "Z jakiego okresu chcesz zebrać dane?", "Wykresy", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 							if(n == 0){
+								//Calość
 								String[] opcje1 = {"Porówanaj z...", "Nie porównuj", "Cancel"};
 								int n1 = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Wykresy", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje1, "");
 								if(n1 == 0){
@@ -891,12 +925,47 @@ public class Aplikacja{
 									//Całość nie porównuj
 								}
 							}else if(n == 1) {
+								//Zakres
 								String[] opcje1 = {"Porówanaj z...", "Nie porównuj", "Cancel"};
 								int n1 = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Wykresy", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje1, "");
 								if (n1 == 0) {
 									//Zakres dat porównanie z...
+									String Poczatek, Koniec;
+									int iluPorownanie;
+									try{
+										//Inni ludkowie
+										String iluPorownanieS = JOptionPane.showInputDialog(GlownyPanel, "Z iloma osobami chcesz porównać", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+										iluPorownanie = Integer.parseInt(iluPorownanieS);
+										String[] Imiona = new String[iluPorownanie];
+										String[] Nazwiska = new String[iluPorownanie];
+										for (int i = 0; i < iluPorownanie; i++) {
+											String s1 = (String) JOptionPane.showInputDialog(GlownyPanel, "Z kim porównujesz?", "Wykresy", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+											if ((s1 != null) && (s1.length() > 0)){
+												prac = usunPrac(prac,s1);
+												String[] czesci1 = s1.split(" ");
+												Imiona[i] = czesci1[0];
+												Nazwiska[i] = czesci1[1];
+											}
+										}
+										Poczatek = JOptionPane.showInputDialog(GlownyPanel, "Podaj poczatek", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+										if(Poczatek.length() > 0){
+											try{
+												Koniec = JOptionPane.showInputDialog(GlownyPanel, "Podaj koniec", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+												if(Koniec.length() > 0){
+													String title = "Całość: " + Imie + " " + Nazwisko;
+													XYDataset dataset = stworzDataset(Imie, Nazwisko, Poczatek, Koniec, iluPorownanie, Imiona, Nazwiska);
+													Wykresy wykres = new Wykresy(title, title, dataset);
+													wykres.pack();
+													RefineryUtilities.centerFrameOnScreen(wykres);
+													wykres.setVisible(true);
+												}
+											}catch (NullPointerException e1){
+											}
+										}
+									}catch (NullPointerException e1){
+									}
 								} else if (n1 == 1) {
-									//Zakres dat nie porównuj
+									//Zakres dat nie porównuj ZROBIONE
 									String Poczatek, Koniec;
 									try{
 										Poczatek = JOptionPane.showInputDialog(GlownyPanel, "Podaj poczatek", "Wykresy", JOptionPane.PLAIN_MESSAGE);
