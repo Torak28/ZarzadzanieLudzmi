@@ -486,7 +486,6 @@ public class Aplikacja{
 	public XYDataset stworzDataset(String Imie, String Nazwisko, String Poczatek, String Koniec){
 		TimeSeries s1 = new TimeSeries(Imie + " " + Nazwisko);
 		try{
-
 			String format = "dd.MM.yyyy";
 			SimpleDateFormat sdf = new SimpleDateFormat(format);
 			Date dataPoczatek = sdf.parse(Poczatek);
@@ -494,15 +493,20 @@ public class Aplikacja{
 
 			long diff = dataKoniec.getTime() - dataPoczatek.getTime();
 			int roznica =  (int) (diff / (24* 1000 * 60 * 60));
-
+			roznica++;
 			int[] Oceny = new int[roznica];
 			for (int i = 0; i < roznica; i++) {
 				int outDzis = r.odczytOceny(Imie, Nazwisko, sdf.format(dataPoczatek));
 				if(outDzis != -1000){
 					Oceny[i] = outDzis;
 					String aktualnaData = sdf.format(dataPoczatek);
-					String[] czesci = aktualnaData.split(".");
+					String[] czesci = aktualnaData.split("\\.");
+
 					s1.add(new Day(Integer.parseInt(czesci[0]),Integer.parseInt(czesci[1]),Integer.parseInt(czesci[2])), outDzis);
+				}else {
+					String aktualnaData = sdf.format(dataPoczatek);
+					String[] czesci = aktualnaData.split("\\.");
+					s1.add(new Day(Integer.parseInt(czesci[0]), Integer.parseInt(czesci[1]), Integer.parseInt(czesci[2])), 0);
 				}
 				dataPoczatek = new Date(dataPoczatek.getTime() + (1000 * 60 * 60 * 24));
 			}

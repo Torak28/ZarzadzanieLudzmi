@@ -137,10 +137,10 @@ public class odczytPracownikow {
 					if(i.equals(Nazwisko)){
 						i = z.next();
 						out = z.next();
+						out = out.substring(0,out.length()-2);
 						return Integer.parseInt(out);
 					}
 				}
-				return -1000;
 			}
 		}catch (FileNotFoundException e){
 			return -1000;
