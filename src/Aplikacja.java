@@ -15,6 +15,10 @@ import java.awt.Dimension;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimePeriodAnchor;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -478,6 +482,34 @@ public class Aplikacja{
 		r.zapis(out, wyswietlZadania(), wyswietlOcenePracownikow());
 	}
 
+	public XYDataset stworzDataset(){
+		TimeSeries s1 = new TimeSeries("L&G European Index Trust");
+		s1.add(new Day(1, 2, 2001), 181.8);
+		s1.add(new Day(2, 2, 2001), 167.3);
+		s1.add(new Day(3, 2, 2001), 153.8);
+		s1.add(new Day(4, 2, 2001), 167.6);
+		s1.add(new Day(5, 2, 2001), 158.8);
+		s1.add(new Day(6, 2, 2001), 148.3);
+		s1.add(new Day(7, 2, 2001), 153.9);
+		s1.add(new Day(8, 2, 2001), 142.7);
+		s1.add(new Day(9, 2, 2001), 123.2);
+		s1.add(new Day(10, 2, 2001), 131.8);
+		s1.add(new Day(11, 2, 2001), 139.6);
+		s1.add(new Day(12, 2, 2001), 142.9);
+		s1.add(new Day(13, 2, 2001), 138.7);
+		s1.add(new Day(14, 2, 2001), 137.3);
+		s1.add(new Day(15, 2, 2001), 143.9);
+		s1.add(new Day(16, 2, 2001), 139.8);
+		s1.add(new Day(17, 2, 2001), 137.0);
+		s1.add(new Day(18, 2, 2001), 132.8);
+
+		TimeSeriesCollection dataset = new TimeSeriesCollection();
+		dataset.addSeries(s1);
+		dataset.setXPosition(TimePeriodAnchor.MIDDLE);
+
+		return dataset;
+	}
+
 	/*****wyświetlanie*****/
 	public String wyswietlZadanie(Zadanie z){
 		String typZadania;
@@ -851,27 +883,39 @@ public class Aplikacja{
 								}else if (n1 == 1){
 									//Całość nie porównuj
 								}
-							}else if(n == 1){
+							}else if(n == 1) {
 								String[] opcje1 = {"Porówanaj z...", "Nie porównuj", "Cancel"};
 								int n1 = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Wykresy", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje1, "");
-								if(n1 == 0){
+								if (n1 == 0) {
 									//Zakres dat porównanie z...
-								}else if (n1 == 1){
+								} else if (n1 == 1) {
 									//Zakres dat nie porównuj
+									String Poczatek, Koniec;
+									try{
+										Poczatek = JOptionPane.showInputDialog(GlownyPanel, "Podaj poczatek", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+										if(Poczatek.length() > 0){
+											try{
+												Koniec = JOptionPane.showInputDialog(GlownyPanel, "Podaj poczatek", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+												if(Koniec.length() > 0){
+													String title = "Całość: " + Imie + " " + Nazwisko;
+													XYDataset dataset = stworzDataset(Imie, Nazwisko, Poczatek, Koniec);
+													Wykresy wykres = new Wykresy(title, title, dataset);
+													wykres.pack();
+													RefineryUtilities.centerFrameOnScreen(wykres);
+													wykres.setVisible(true);
+												}
+											}catch (NullPointerException e1){
+											}
+										}
+									}catch (NullPointerException e1){
+									}
 								}
 							}
-							//Daty
 
 						}
 					}
 				}catch (NullPointerException e1){
 				}
-
-				//Tworzenie wykresu
-				Wykresy wykres = new Wykresy("JFreeChart: PeriodAxisDemo2.java");
-				wykres.pack( );
-				RefineryUtilities.centerFrameOnScreen( wykres );
-				wykres.setVisible( true );
 			}
 		});
 	}

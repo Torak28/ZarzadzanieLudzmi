@@ -34,6 +34,15 @@ public class Wykresy extends ApplicationFrame {
 		setContentPane(chartPanel);
 	}
 
+	public Wykresy( String title, String title2, XYDataset dataset) {
+		super(title);
+		JFreeChart chart = createChart(dataset, title2);
+		ChartPanel chartPanel = new ChartPanel(chart);
+		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+		chartPanel.setMouseZoomable(true, true);
+		setContentPane(chartPanel);
+	}
+
 	private JFreeChart createChart(XYDataset dataset) {
 
 		JFreeChart chart = ChartFactory.createTimeSeriesChart(
@@ -75,6 +84,12 @@ public class Wykresy extends ApplicationFrame {
 
 		ChartUtilities.applyCurrentTheme(chart);*/
 
+		return chart;
+
+	}
+
+	private JFreeChart createChart(XYDataset dataset, String title) {
+		JFreeChart chart = ChartFactory.createTimeSeriesChart(title, "Data", "Ocena", dataset, true, true, false);
 		return chart;
 
 	}
