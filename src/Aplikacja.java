@@ -1068,7 +1068,8 @@ public class Aplikacja{
 		frame.setVisible(true);
 
 		/*TODO:
-		* Raporty poprawić
+		* Raporty poprawić(Raport dnia, Raport z zakresu dni, raport z danego miesiąca)
+		* Guziki i wygląd
 		* */
 
 		/*Scanner in = new Scanner(System.in);
