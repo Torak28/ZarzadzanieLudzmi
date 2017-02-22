@@ -486,6 +486,7 @@ public class Aplikacja{
 	public XYDataset stworzDataset(String Imie, String Nazwisko, String Poczatek, String Koniec){
 		TimeSeries s1 = new TimeSeries(Imie + " " + Nazwisko);
 		try{
+
 			String format = "dd.MM.yyyy";
 			SimpleDateFormat sdf = new SimpleDateFormat(format);
 			Date dataPoczatek = sdf.parse(Poczatek);
@@ -755,6 +756,9 @@ public class Aplikacja{
 								String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Której brygadzie przydzielasz to zadanie?", "Zarządzanie Zadaniami", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
 								String[] czesci = new String[3];
 								czesci = s.split(" ");
+								if(czesci[3].equals("bez")){
+									czesci[2] = czesci[2].substring(0, czesci[2].length() - 1);
+								}
 								int index2 = 2147483647;
 								for (int i = 0; i < WszystkieDruzyny.size(); i++) {
 									if (WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(czesci[1]) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(czesci[2])){
@@ -829,6 +833,9 @@ public class Aplikacja{
 						int ocena = Integer.parseInt(ocenaS);
 						String[] czesci = new String[6];
 						czesci = s.split(" ");
+						if(czesci[5].equals("bez")){
+							czesci[4] = czesci[4].substring(0, czesci[4].length() - 1);
+						}
 						ocenZadanie(czesci[3],czesci[4],ocena);
 					}
 				}
