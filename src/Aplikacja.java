@@ -944,6 +944,29 @@ public class Aplikacja{
 								int n1 = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Wykresy", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje1, "");
 								if(n1 == 0){
 									//Całość porównanie z...
+									String Poczatek = r.poczatekOceny();
+									String Koniec = r.koniecOceny();
+									int iluPorownanie;
+									String iluPorownanieS = JOptionPane.showInputDialog(GlownyPanel, "Z iloma osobami chcesz porównać", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+									iluPorownanie = Integer.parseInt(iluPorownanieS);
+									String[] Imiona = new String[iluPorownanie];
+									String[] Nazwiska = new String[iluPorownanie];
+									for (int i = 0; i < iluPorownanie; i++) {
+										String s1 = (String) JOptionPane.showInputDialog(GlownyPanel, "Z kim porównujesz?", "Wykresy", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+										if ((s1 != null) && (s1.length() > 0)){
+											prac = usunPrac(prac,s1);
+											String[] czesci1 = s1.split(" ");
+											Imiona[i] = czesci1[0];
+											Nazwiska[i] = czesci1[1];
+										}
+									}
+
+									String title = "Zakres dat(" + Poczatek + " " + Koniec + "): " + Imie + " " + Nazwisko + " reszta";
+									XYDataset dataset = stworzDataset(Imie, Nazwisko, Poczatek, Koniec, iluPorownanie, Imiona, Nazwiska);
+									Wykresy wykres = new Wykresy(title, title, dataset);
+									wykres.pack();
+									RefineryUtilities.centerFrameOnScreen(wykres);
+									wykres.setVisible(true);
 								}else if (n1 == 1){
 									//Całość nie porównuj
 									String Poczatek = r.poczatekOceny();
