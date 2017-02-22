@@ -19,9 +19,12 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RectangleInsets;
 
-public class Wykresy extends ApplicationFrame {
+import javax.swing.*;
+
+public class Wykresy extends JFrame {
 	public Wykresy( String title, String title2, XYDataset dataset) {
 		super(title);
+		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		JFreeChart chart = createChart(dataset, title2);
 		ChartPanel chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
