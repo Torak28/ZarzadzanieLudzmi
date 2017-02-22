@@ -975,7 +975,7 @@ public class Aplikacja{
 											try{
 												Koniec = JOptionPane.showInputDialog(GlownyPanel, "Podaj koniec", "Wykresy", JOptionPane.PLAIN_MESSAGE);
 												if(Koniec.length() > 0){
-													String title = "Całość: " + Imie + " " + Nazwisko;
+													String title = "Zakres dat(" + Poczatek + " " + Koniec + "): " + Imie + " " + Nazwisko + " reszta";
 													XYDataset dataset = stworzDataset(Imie, Nazwisko, Poczatek, Koniec, iluPorownanie, Imiona, Nazwiska);
 													Wykresy wykres = new Wykresy(title, title, dataset);
 													wykres.pack();
@@ -996,7 +996,7 @@ public class Aplikacja{
 											try{
 												Koniec = JOptionPane.showInputDialog(GlownyPanel, "Podaj koniec", "Wykresy", JOptionPane.PLAIN_MESSAGE);
 												if(Koniec.length() > 0){
-													String title = "Całość: " + Imie + " " + Nazwisko;
+													String title = "Zakres dat(" + Poczatek + " " + Koniec + "): " + Imie + " " + Nazwisko;
 													XYDataset dataset = stworzDataset(Imie, Nazwisko, Poczatek, Koniec);
 													Wykresy wykres = new Wykresy(title, title, dataset);
 													wykres.pack();
