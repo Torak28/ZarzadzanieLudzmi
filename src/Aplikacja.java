@@ -1068,7 +1068,7 @@ public class Aplikacja{
 		frame.setVisible(true);
 
 		/*TODO:
-		* Statystyki
+		* Raporty poprawić
 		* */
 
 		/*Scanner in = new Scanner(System.in);
