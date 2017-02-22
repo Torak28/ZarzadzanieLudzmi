@@ -7,6 +7,7 @@ import java.util.*;
 public class odczytPracownikow {
 	private Scanner x;
 	private Scanner y;
+	private Scanner z;
 	public int ilosc;
 	public int iloscZadan;
 	public boolean Jest = true;
@@ -123,5 +124,27 @@ public class odczytPracownikow {
 		iloscZadan = Integer.parseInt(i);
 		y.close();
 		return iloscZadan;
+	}
+	public int odczytOceny(String Imie, String Nazwisko, String Data){
+		try{
+			String nazwa = "Oceny_" + Data;
+			String out;
+			z = new Scanner(new File("txt/" + nazwa + ".txt"));
+			while(z.hasNext()){
+				String i = z.next();
+				if(i.equals(Imie)){
+					i = z.next();
+					if(i.equals(Nazwisko)){
+						i = z.next();
+						out = z.next();
+						return Integer.parseInt(out);
+					}
+				}
+				return -1000;
+			}
+		}catch (FileNotFoundException e){
+			return -1000;
+		}
+		return -1000;
 	}
 }

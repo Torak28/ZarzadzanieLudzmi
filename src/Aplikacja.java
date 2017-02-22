@@ -3,6 +3,7 @@
  */
 
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
@@ -482,31 +483,33 @@ public class Aplikacja{
 		r.zapis(out, wyswietlZadania(), wyswietlOcenePracownikow());
 	}
 
-	public XYDataset stworzDataset(){
-		TimeSeries s1 = new TimeSeries("L&G European Index Trust");
-		s1.add(new Day(1, 2, 2001), 181.8);
-		s1.add(new Day(2, 2, 2001), 167.3);
-		s1.add(new Day(3, 2, 2001), 153.8);
-		s1.add(new Day(4, 2, 2001), 167.6);
-		s1.add(new Day(5, 2, 2001), 158.8);
-		s1.add(new Day(6, 2, 2001), 148.3);
-		s1.add(new Day(7, 2, 2001), 153.9);
-		s1.add(new Day(8, 2, 2001), 142.7);
-		s1.add(new Day(9, 2, 2001), 123.2);
-		s1.add(new Day(10, 2, 2001), 131.8);
-		s1.add(new Day(11, 2, 2001), 139.6);
-		s1.add(new Day(12, 2, 2001), 142.9);
-		s1.add(new Day(13, 2, 2001), 138.7);
-		s1.add(new Day(14, 2, 2001), 137.3);
-		s1.add(new Day(15, 2, 2001), 143.9);
-		s1.add(new Day(16, 2, 2001), 139.8);
-		s1.add(new Day(17, 2, 2001), 137.0);
-		s1.add(new Day(18, 2, 2001), 132.8);
+	public XYDataset stworzDataset(String Imie, String Nazwisko, String Poczatek, String Koniec){
+		TimeSeries s1 = new TimeSeries(Imie + " " + Nazwisko);
+		try{
+			String format = "dd.MM.yyyy";
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			Date dataPoczatek = sdf.parse(Poczatek);
+			Date dataKoniec = sdf.parse(Koniec);
 
+			long diff = dataKoniec.getTime() - dataPoczatek.getTime();
+			int roznica =  (int) (diff / (24* 1000 * 60 * 60));
+
+			int[] Oceny = new int[roznica];
+			for (int i = 0; i < roznica; i++) {
+				int outDzis = r.odczytOceny(Imie, Nazwisko, sdf.format(dataPoczatek));
+				if(outDzis != -1000){
+					Oceny[i] = outDzis;
+					String aktualnaData = sdf.format(dataPoczatek);
+					String[] czesci = aktualnaData.split(".");
+					s1.add(new Day(Integer.parseInt(czesci[0]),Integer.parseInt(czesci[1]),Integer.parseInt(czesci[2])), outDzis);
+				}
+				dataPoczatek = new Date(dataPoczatek.getTime() + (1000 * 60 * 60 * 24));
+			}
+		}catch (ParseException e){
+		}
 		TimeSeriesCollection dataset = new TimeSeriesCollection();
 		dataset.addSeries(s1);
 		dataset.setXPosition(TimePeriodAnchor.MIDDLE);
-
 		return dataset;
 	}
 
@@ -849,13 +852,6 @@ public class Aplikacja{
 		wykresButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-
-
-
-
-
-
 				//Kogo
 				String Imie, Nazwisko;
 				try{
@@ -895,7 +891,7 @@ public class Aplikacja{
 										Poczatek = JOptionPane.showInputDialog(GlownyPanel, "Podaj poczatek", "Wykresy", JOptionPane.PLAIN_MESSAGE);
 										if(Poczatek.length() > 0){
 											try{
-												Koniec = JOptionPane.showInputDialog(GlownyPanel, "Podaj poczatek", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+												Koniec = JOptionPane.showInputDialog(GlownyPanel, "Podaj koniec", "Wykresy", JOptionPane.PLAIN_MESSAGE);
 												if(Koniec.length() > 0){
 													String title = "Całość: " + Imie + " " + Nazwisko;
 													XYDataset dataset = stworzDataset(Imie, Nazwisko, Poczatek, Koniec);
@@ -934,8 +930,6 @@ public class Aplikacja{
 		frame.setContentPane(new Aplikacja().GlownyPanel);
 		frame.pack();
 		frame.setVisible(true);
-
-
 
 		/*TODO:
 		* Statystyki
