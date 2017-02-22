@@ -1,6 +1,9 @@
 import java.io.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.zip.DataFormatException;
+
 /**
  * Created by Torak28 on 04.01.2017.
  */
@@ -8,6 +11,7 @@ public class odczytPracownikow {
 	private Scanner x;
 	private Scanner y;
 	private Scanner z;
+	private Scanner q;
 	public int ilosc;
 	public int iloscZadan;
 	public boolean Jest = true;
@@ -146,5 +150,31 @@ public class odczytPracownikow {
 			return -1000;
 		}
 		return -1000;
+	}
+	public String poczatekOceny(){
+		String out = "nic";
+		boolean koniec = true;
+		int ilosc = 0;
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		Date dzisiaj = new Date();
+		while (ilosc < 100){
+			try{
+				String dzisiajS = df.format(dzisiaj);
+				q = new Scanner(new File("txt/Oceny_" + dzisiajS + ".txt"));
+				out = dzisiajS;
+				dzisiaj = new Date(dzisiaj.getTime() - (1000 * 60 * 60 * 24));
+			}catch (FileNotFoundException e){
+				ilosc++;
+				dzisiaj = new Date(dzisiaj.getTime() - (1000 * 60 * 60 * 24));
+			}
+		}
+		return out;
+	}
+	public String koniecOceny(){
+		String out;
+		Date date = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		out = df.format(date);
+		return out;
 	}
 }

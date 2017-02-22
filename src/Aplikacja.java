@@ -946,6 +946,17 @@ public class Aplikacja{
 									//Całość porównanie z...
 								}else if (n1 == 1){
 									//Całość nie porównuj
+									String Poczatek = r.poczatekOceny();
+									String Koniec = r.koniecOceny();
+									try{
+										String title = "Zakres dat(" + Poczatek + " " + Koniec + "): " + Imie + " " + Nazwisko;
+										XYDataset dataset = stworzDataset(Imie, Nazwisko, Poczatek, Koniec);
+										Wykresy wykres = new Wykresy(title, title, dataset);
+										wykres.pack();
+										RefineryUtilities.centerFrameOnScreen(wykres);
+										wykres.setVisible(true);
+									}catch (NullPointerException e1){
+									}
 								}
 							}else if(n == 1) {
 								//Zakres
@@ -956,7 +967,6 @@ public class Aplikacja{
 									String Poczatek, Koniec;
 									int iluPorownanie;
 									try{
-										//Inni ludkowie
 										String iluPorownanieS = JOptionPane.showInputDialog(GlownyPanel, "Z iloma osobami chcesz porównać", "Wykresy", JOptionPane.PLAIN_MESSAGE);
 										iluPorownanie = Integer.parseInt(iluPorownanieS);
 										String[] Imiona = new String[iluPorownanie];
