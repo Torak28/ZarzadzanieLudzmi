@@ -817,24 +817,56 @@ public class Aplikacja{
 		wykresButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+
+
+
+
+
+
 				//Kogo
-				/*try{
+				String Imie, Nazwisko;
+				try{
 					if(WszyscyPracownicy.isEmpty()){
-						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników do usunięcia", "Błąd", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników do sprawdzenia", "Błąd", JOptionPane.ERROR_MESSAGE);
 					}else{
 						String[] prac = new String[WszyscyPracownicy.size()];
 						for (int i = 0; i < WszyscyPracownicy.size(); i++) {
 							prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
 						}
-						String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Czyj wykres chcesz zobaczyć?", "Usuwanie Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+						String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Czyj wykres chcesz zobaczyć?", "Generowanie Wykresu Pracownika", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
 						if ((s != null) && (s.length() > 0)){
 							String[] czesci = s.split(" ");
-							usunPracownika(czesci[0], czesci[1]);
+							Imie = czesci[0];
+							Nazwisko = czesci[1];
+
+							//Sterowanie
+							String[] opcje = {"Całość", "Zakres Dat", "Cancel"};
+							int n = JOptionPane.showOptionDialog(GlownyPanel, "Z jakiego okresu chcesz zebrać dane?", "Wykresy", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
+							if(n == 0){
+								String[] opcje1 = {"Porówanaj z...", "Nie porównuj", "Cancel"};
+								int n1 = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Wykresy", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje1, "");
+								if(n1 == 0){
+									//Całość porównanie z...
+								}else if (n1 == 1){
+									//Całość nie porównuj
+								}
+							}else if(n == 1){
+								String[] opcje1 = {"Porówanaj z...", "Nie porównuj", "Cancel"};
+								int n1 = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Wykresy", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje1, "");
+								if(n1 == 0){
+									//Zakres dat porównanie z...
+								}else if (n1 == 1){
+									//Zakres dat nie porównuj
+								}
+							}
+							//Daty
+
 						}
 					}
 				}catch (NullPointerException e1){
-				}*/
-				//Daty
+				}
+
 				//Tworzenie wykresu
 				Wykresy wykres = new Wykresy("JFreeChart: PeriodAxisDemo2.java");
 				wykres.pack( );
