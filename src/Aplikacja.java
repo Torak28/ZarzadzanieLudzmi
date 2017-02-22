@@ -519,6 +519,10 @@ public class Aplikacja{
 
 	public XYDataset stworzDataset(String Imie, String Nazwisko, String Poczatek, String Koniec, int ilu, String[] Imiona, String[] Nazwiska){
 		TimeSeries s1 = new TimeSeries(Imie + " " + Nazwisko);
+		ArrayList<TimeSeries> listaPorwnania = new ArrayList<TimeSeries>();
+		for (int i = 0; i < ilu; i++) {
+			listaPorwnania.add(new TimeSeries(Imiona[0] + " " + Nazwiska[0]));
+		}
 		try{
 			String format = "dd.MM.yyyy";
 			SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -529,7 +533,9 @@ public class Aplikacja{
 			int roznica =  (int) (diff / (24* 1000 * 60 * 60));
 			roznica++;
 			int[] Oceny = new int[roznica];
+			ArrayList<Integer> ocenyPorownanie = new ArrayList<Integer>();
 			for (int i = 0; i < roznica; i++) {
+				//dla pierwszego
 				int outDzis = r.odczytOceny(Imie, Nazwisko, sdf.format(dataPoczatek));
 				if(outDzis != -1000){
 					Oceny[i] = outDzis;
@@ -541,12 +547,29 @@ public class Aplikacja{
 					String[] czesci = aktualnaData.split("\\.");
 					s1.add(new Day(Integer.parseInt(czesci[0]), Integer.parseInt(czesci[1]), Integer.parseInt(czesci[2])), 0);
 				}
+				//dla innych
+				for (int j = 0; j < ilu; j++) {
+					int outDzisPorownanie = r.odczytOceny(Imiona[j], Nazwiska[j], sdf.format(dataPoczatek));
+					if(outDzisPorownanie != -1000){
+						ocenyPorownanie.add(outDzisPorownanie);
+						String aktualnaData = sdf.format(dataPoczatek);
+						String[] czesci = aktualnaData.split("\\.");
+						listaPorwnania.get(j).add(new Day(Integer.parseInt(czesci[0]),Integer.parseInt(czesci[1]),Integer.parseInt(czesci[2])), outDzisPorownanie);
+					}else {
+						String aktualnaData = sdf.format(dataPoczatek);
+						String[] czesci = aktualnaData.split("\\.");
+						listaPorwnania.get(j).add(new Day(Integer.parseInt(czesci[0]),Integer.parseInt(czesci[1]),Integer.parseInt(czesci[2])), 0);
+					}
+				}
 				dataPoczatek = new Date(dataPoczatek.getTime() + (1000 * 60 * 60 * 24));
 			}
 		}catch (ParseException e){
 		}
 		TimeSeriesCollection dataset = new TimeSeriesCollection();
 		dataset.addSeries(s1);
+		for (int i = 0; i < ilu; i++) {
+			dataset.addSeries(listaPorwnania.get(i));
+		}
 		dataset.setXPosition(TimePeriodAnchor.MIDDLE);
 		return dataset;
 	}
