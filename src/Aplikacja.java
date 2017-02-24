@@ -739,7 +739,9 @@ public class Aplikacja{
 						String ImieNazwisko = JOptionPane.showInputDialog(GlownyPanel, "Podaj Imie i Nazwisko", "Dodaj Pracownika", JOptionPane.PLAIN_MESSAGE);
 						if(ImieNazwisko.length() > 0){
 							String[] czesci = ImieNazwisko.split(" ");
-							dodajPracownika(czesci[0], czesci[1]);
+							if(czesci.length > 1) {
+								dodajPracownika(czesci[0], czesci[1]);
+							}
 						}
 					}catch (NullPointerException e1){
 					}
@@ -1015,6 +1017,7 @@ public class Aplikacja{
 		wykresButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Zapis();
 				String Imie, Nazwisko;
 				try{
 					if(WszyscyPracownicy.isEmpty()){
@@ -1159,7 +1162,8 @@ public class Aplikacja{
 		JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(new Aplikacja().GlownyPanel);
-		frame.pack();
+		//frame.pack();
+		frame.setSize(300,250);
 		frame.setVisible(true);
 
 		/*TODO:
