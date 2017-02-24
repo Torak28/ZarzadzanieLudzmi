@@ -24,7 +24,7 @@ public class odczytPracownikow {
 			x = new Scanner(new File("src/txt/Pracownicy.txt"));
 			y = new Scanner(new File("src/txt/"+nazwa+".txt"));
 		} catch (Exception e){
-			//System.out.println("Nie ma pliczku :c");
+			System.out.println("Nie ma pliczku :c");
 			Jest = false;
 		}
 	}

@@ -2,7 +2,9 @@
 *.war
 *.ear
 
+
 # IDEA config files
 .idea/
 out/
 src/txt
+Start.bat

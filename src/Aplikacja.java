@@ -1158,7 +1158,7 @@ public class Aplikacja{
 		}
 		catch(Exception e){
 		}
-
+		System.setProperty("file.encoding", "UTF8");
 		Aplikacja ap = new Aplikacja();
 
 		JFrame frame = new JFrame("Główny Panel");
