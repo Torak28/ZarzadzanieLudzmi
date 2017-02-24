@@ -409,6 +409,15 @@ public class Aplikacja{
 		int index = in.nextInt();
 		return (index - 1);
 	}
+	public int indexPracownicka(String Imie, String Nazwisko){
+		int out = 100000;
+		for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+			if (WszyscyPracownicy.get(i).getImie().equals(Imie) && WszyscyPracownicy.get(i).getNazwisko().equals(Nazwisko)){
+				out = i;
+			}
+		}
+		return out;
+	}
 
 	/**
 	 * Wczytanie z pliku, zawsze na starcie apki
@@ -653,21 +662,22 @@ public class Aplikacja{
 		}
 		return out;
 	}
-	public void wyswietlPracownika(int index){
-		System.out.println("\t" + getWszyscyPracownicy().get(index).getImie() + " " + getWszyscyPracownicy().get(index).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(index).getOcena());
+	public String wyswietlPracownika(int index){
+		String out;
+		out = "\t" + getWszyscyPracownicy().get(index).getImie() + " " + getWszyscyPracownicy().get(index).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(index).getOcena() + "\n";
 		for (int i = 0; i < WszystkieDruzyny.size(); i++) {
 			if(WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(getWszyscyPracownicy().get(index).getImie()) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(getWszyscyPracownicy().get(index).getNazwisko()) ){
-				System.out.println("\tJest przodowym w Druzynie " + (i+1));
+				out +="\tJest przodowym w Druzynie " + (i+1) + "\n";
 			}else{
-				//To nie działa
 				for (int j = 0; j < WszystkieDruzyny.get(i).getPomocnicy().size(); j++) {
 					if (WszystkieDruzyny.get(i).getPomocnicy().get(j).getImie().equals(getWszyscyPracownicy().get(index).getImie())
 							&& WszystkieDruzyny.get(i).getPomocnicy().get(j).getNazwisko().equals(getWszyscyPracownicy().get(index).getNazwisko())){
-						System.out.println("\tJest pomocnikiem w Druzynie " + (i+1));
+						out += "\tJest pomocnikiem w Druzynie " + (i+1) + "\n";
 					}
 				}
 			}
 		}
+		return out;
 	}
 	public String wyswietlDruzyny(){
 		Date date = new Date();
@@ -905,7 +915,7 @@ public class Aplikacja{
 		raportDnia.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] opcje = {"Raport Dnia", "Raport z...", "Raport miesięczny", "Cancel"};
+				String[] opcje = {"Raport Dnia", "Raport z...", "Raport miesięczny", "Raport o prarcowniku", "Cancel"};
 				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Raporty", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if(n == 0){
 					try{
@@ -915,12 +925,35 @@ public class Aplikacja{
 					}
 				}else if (n == 1){
 					try{
+						//zakres
 
 					}catch (NullPointerException e1){
 					}
 				}else if (n == 2){
 					try{
-
+						//miesięczny
+					}catch (NullPointerException e1){
+					}
+				}else if (n == 3){
+					try{
+						//o pracowniku
+						if(WszyscyPracownicy.isEmpty()){
+							JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników", "Błąd", JOptionPane.ERROR_MESSAGE);
+						}else {
+							String[] prac = new String[WszyscyPracownicy.size()];
+							for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+								prac[i] = WszyscyPracownicy.get(i).getImieNazwisko();
+							}
+							String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Kogo wybierasz?", "Raport o Pracowniku", JOptionPane.PLAIN_MESSAGE, null, prac, prac[0]);
+							if ((s != null) && (s.length() > 0)) {
+								String[] czesci = s.split(" ");
+								int index = indexPracownicka(czesci[0],czesci[1]);
+								if(index != 100000){
+									String out = wyswietlPracownika(index);
+									JOptionPane.showMessageDialog(GlownyPanel, out);
+								}
+							}
+						}
 					}catch (NullPointerException e1){
 					}
 				}
@@ -936,7 +969,6 @@ public class Aplikacja{
 		wykresButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Kogo
 				String Imie, Nazwisko;
 				try{
 					if(WszyscyPracownicy.isEmpty()){
@@ -1038,7 +1070,7 @@ public class Aplikacja{
 									}catch (NullPointerException e1){
 									}
 								} else if (n1 == 1) {
-									//Zakres dat nie porównuj ZROBIONE
+									//Zakres dat nie porównuj
 									String Poczatek, Koniec;
 									try{
 										Poczatek = JOptionPane.showInputDialog(GlownyPanel, "Podaj poczatek", "Wykresy", JOptionPane.PLAIN_MESSAGE);
