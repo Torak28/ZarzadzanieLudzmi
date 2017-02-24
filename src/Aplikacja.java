@@ -977,7 +977,21 @@ public class Aplikacja{
 					}
 				}else if (n == 2){
 					try{
-						//miesięczny
+						//miesieczny
+						if(WszyscyPracownicy.isEmpty()){
+							JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników", "Błąd", JOptionPane.ERROR_MESSAGE);
+						}else {
+							SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+							Calendar czas = Calendar.getInstance();
+							czas.set(Calendar.DATE, czas.getActualMinimum(Calendar.DATE));
+							Date PoczatekD = czas.getTime();
+							String Poczatek = df.format(PoczatekD);
+							czas.set(Calendar.DAY_OF_MONTH, czas.getActualMaximum(Calendar.DATE));
+							Date KoniecD = czas.getTime();
+							String Koniec = df.format(KoniecD);
+							String out = raportZakres(Poczatek, Koniec);
+							JOptionPane.showMessageDialog(GlownyPanel, out);
+						}
 					}catch (NullPointerException e1){
 					}
 				}else if (n == 3){
@@ -1155,7 +1169,6 @@ public class Aplikacja{
 		}
 
 		Aplikacja ap = new Aplikacja();
-		//ap.raportZakres("09.02.2017","13.02.2017");
 
 		JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -1164,8 +1177,6 @@ public class Aplikacja{
 		frame.setVisible(true);
 
 		/*TODO:
-		* Raporty poprawić(Raport dnia, Raport z zakresu dni, raport z danego miesiąca)
-		* Guziki i wygląd
 		* */
 
 		/*Scanner in = new Scanner(System.in);
