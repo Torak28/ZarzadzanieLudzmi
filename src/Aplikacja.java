@@ -516,7 +516,6 @@ public class Aplikacja{
 		dataset.setXPosition(TimePeriodAnchor.MIDDLE);
 		return dataset;
 	}
-
 	public XYDataset stworzDataset(String Imie, String Nazwisko, String Poczatek, String Koniec, int ilu, String[] Imiona, String[] Nazwiska){
 		TimeSeries s1 = new TimeSeries(Imie + " " + Nazwisko);
 		ArrayList<TimeSeries> listaPorwnania = new ArrayList<TimeSeries>();
@@ -602,21 +601,23 @@ public class Aplikacja{
 		return out;
 	}
 	public String raportDnia(){
-		String out = "Ilość zadań: " + WszystkieZadania.size() + "\n";
+		String out = "ZADANIA:\nIlość zadań: " + WszystkieZadania.size() + "\n";
 		if (WszystkieZadania.isEmpty()){
-			out += "Nie ma żadnych zadan";
+			out += "Nie ma żadnych zadan\n\n";
 		}else {
 			for (int i = 0; i < WszystkieZadania.size(); i++) {
 				out += wyswietlZadanie(WszystkieZadania.get(i));
 			}
+			out += "\n\n";
 		}
-		out += "Lista Pracowników: \n";
+		out += "PRACOWNICY:\n";
 		if (WszyscyPracownicy.isEmpty()){
-			out += "\tlista pusta";
+			out += "\tlista pusta\n\n";
 		}else{
 			for (int i = 0; i < getWszyscyPracownicy().size(); i++) {
 				out += getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + " Ocena: " + getWszyscyPracownicy().get(i).getOcena() + "\n";
 			}
+			out += "\n\n";
 		}
 		return out;
 	}
@@ -902,11 +903,27 @@ public class Aplikacja{
 			}
 		});
 		raportDnia.addActionListener(new ActionListener() {
-			//DO DOPRACOWANIA
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String out = raportDnia();
-				JOptionPane.showMessageDialog(GlownyPanel, out);
+				String[] opcje = {"Raport Dnia", "Raport z...", "Raport miesięczny", "Cancel"};
+				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Raporty", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
+				if(n == 0){
+					try{
+						String out = raportDnia();
+						JOptionPane.showMessageDialog(GlownyPanel, out);
+					}catch (NullPointerException e1){
+					}
+				}else if (n == 1){
+					try{
+
+					}catch (NullPointerException e1){
+					}
+				}else if (n == 2){
+					try{
+
+					}catch (NullPointerException e1){
+					}
+				}
 			}
 		});
 		Zapisz.addActionListener(new ActionListener() {
