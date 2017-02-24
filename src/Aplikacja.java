@@ -582,6 +582,37 @@ public class Aplikacja{
 		return dataset;
 	}
 
+	public String raportZakres(String Poczatek, String Koniec){
+		String out = "Raport od " + Poczatek + " do " + Koniec + ":\n";
+		try{
+			String format = "dd.MM.yyyy";
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			Date dataPoczatek = sdf.parse(Poczatek);
+			Date dataKoniec = sdf.parse(Koniec);
+
+			long diff = dataKoniec.getTime() - dataPoczatek.getTime();
+			int roznica =  (int) (diff / (24* 1000 * 60 * 60));
+			roznica++;
+			int[][] Oceny = new int[WszyscyPracownicy.size()][1];
+			for (int j = 0; j < WszyscyPracownicy.size(); j++) {
+				for (int i = 0; i < roznica; i++) {
+					int outDzis = r.odczytOceny(WszyscyPracownicy.get(j).getImie(), WszyscyPracownicy.get(j).getNazwisko(), sdf.format(dataPoczatek));
+					if(outDzis != -1000){
+						Oceny[j][0] += outDzis;
+						String aktualnaData = sdf.format(dataPoczatek);
+					}
+					dataPoczatek = new Date(dataPoczatek.getTime() + (1000 * 60 * 60 * 24));
+				}
+				dataPoczatek = sdf.parse(Poczatek);
+			}
+			for (int i = 0; i < WszyscyPracownicy.size(); i++) {
+				out += WszyscyPracownicy.get(i).getImieNazwisko() + " Ocena(całość): " + Oceny[i][0] + "\n";
+			}
+		}catch (ParseException e){
+		}
+		return out;
+	}
+
 	/*****wyświetlanie*****/
 	public String wyswietlZadanie(Zadanie z){
 		String typZadania;
@@ -926,7 +957,22 @@ public class Aplikacja{
 				}else if (n == 1){
 					try{
 						//zakres
-
+						if(WszyscyPracownicy.isEmpty()){
+							JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych pracowników", "Błąd", JOptionPane.ERROR_MESSAGE);
+						}else {
+							String Poczatek, Koniec;
+							Poczatek = JOptionPane.showInputDialog(GlownyPanel, "Podaj poczatek", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+							if(Poczatek.length() > 0){
+								try{
+									Koniec = JOptionPane.showInputDialog(GlownyPanel, "Podaj koniec", "Wykresy", JOptionPane.PLAIN_MESSAGE);
+									if(Koniec.length() > 0){
+										String out = raportZakres(Poczatek, Koniec);
+										JOptionPane.showMessageDialog(GlownyPanel, out);
+									}
+								}catch (NullPointerException e1){
+								}
+							}
+						}
 					}catch (NullPointerException e1){
 					}
 				}else if (n == 2){
@@ -1109,6 +1155,7 @@ public class Aplikacja{
 		}
 
 		Aplikacja ap = new Aplikacja();
+		//ap.raportZakres("09.02.2017","13.02.2017");
 
 		JFrame frame = new JFrame("Główny Panel");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
