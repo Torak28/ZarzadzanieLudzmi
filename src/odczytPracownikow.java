@@ -134,6 +134,9 @@ public class odczytPracownikow {
 			String nazwa = "Oceny_" + Data;
 			String out;
 			z = new Scanner(new File("src/txt/" + nazwa + ".txt"));
+			if(Imie.substring(0, 1).matches("\\uFeFF")){
+				Imie = Imie.substring(1,Imie.length());
+			}
 			while(z.hasNext()){
 				String i = z.next();
 				if(i.equals(Imie)){
