@@ -21,8 +21,8 @@ public class odczytPracownikow {
 			Date date = new Date();
 			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 			nazwa = "Zadania_" + df.format(date);
-			x = new Scanner(new File("txt/Pracownicy.txt"));
-			y = new Scanner(new File("txt/"+nazwa+".txt"));
+			x = new Scanner(new File("src/txt/Pracownicy.txt"));
+			y = new Scanner(new File("src/txt/"+nazwa+".txt"));
 		} catch (Exception e){
 			//System.out.println("Nie ma pliczku :c");
 			Jest = false;
@@ -78,7 +78,7 @@ public class odczytPracownikow {
 
 		PrintWriter zapis;
 		try{
-			zapis = new PrintWriter("txt/Pracownicy.txt");
+			zapis = new PrintWriter("src/txt/Pracownicy.txt");
 			zapis.print(in);
 			zapis.close();
 		} catch (FileNotFoundException e){
@@ -91,7 +91,7 @@ public class odczytPracownikow {
 		nazwa = "Zadania_" + df.format(date);
 		PrintWriter zapis2;
 		try {
-			zapis2 = new PrintWriter("txt/"+nazwa+".txt");
+			zapis2 = new PrintWriter("src/txt/"+nazwa+".txt");
 			zapis2.print(in2);
 			zapis2.close();
 		} catch (FileNotFoundException e) {
@@ -101,7 +101,7 @@ public class odczytPracownikow {
 		String nazwa2 = "Oceny_" + df.format(date);
 		PrintWriter zapis3;
 		try{
-			zapis3 = new PrintWriter("txt/"+nazwa2+".txt");
+			zapis3 = new PrintWriter("src/txt/"+nazwa2+".txt");
 			zapis3.print(in3);
 			zapis3.close();
 		} catch (FileNotFoundException e){
@@ -133,7 +133,7 @@ public class odczytPracownikow {
 		try{
 			String nazwa = "Oceny_" + Data;
 			String out;
-			z = new Scanner(new File("txt/" + nazwa + ".txt"));
+			z = new Scanner(new File("src/txt/" + nazwa + ".txt"));
 			while(z.hasNext()){
 				String i = z.next();
 				if(i.equals(Imie)){
@@ -160,7 +160,7 @@ public class odczytPracownikow {
 		while (ilosc < 100){
 			try{
 				String dzisiajS = df.format(dzisiaj);
-				q = new Scanner(new File("txt/Oceny_" + dzisiajS + ".txt"));
+				q = new Scanner(new File("src/txt/Oceny_" + dzisiajS + ".txt"));
 				out = dzisiajS;
 				dzisiaj = new Date(dzisiaj.getTime() - (1000 * 60 * 60 * 24));
 			}catch (FileNotFoundException e){
