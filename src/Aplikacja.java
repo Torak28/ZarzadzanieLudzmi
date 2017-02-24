@@ -27,6 +27,8 @@ public class Aplikacja{
 	private JButton raportDnia;
 	private JButton Zapisz;
 	private JButton wykresButton;
+	private JLabel l1;
+	private JLabel l2;
 
 	public void setLabel1(String in){
 		opis.setText(in);
@@ -1163,7 +1165,7 @@ public class Aplikacja{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(new Aplikacja().GlownyPanel);
 		//frame.pack();
-		frame.setSize(300,250);
+		frame.setSize(300,270);
 		frame.setVisible(true);
 
 		/*TODO:

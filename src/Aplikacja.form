@@ -81,6 +81,30 @@
           <text value="  Zarządzanie Brygadami  "/>
         </properties>
       </component>
+      <component id="9be01" class="javax.swing.JLabel" binding="l2">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <text value="     zelechowski28@gmail.com"/>
+        </properties>
+      </component>
+      <component id="521b2" class="javax.swing.JLabel" binding="l1">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <text value="     Wykonał: Jarosław Ciołek-Żelechowski  "/>
+        </properties>
+      </component>
+      <vspacer id="86ad0">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="2.0" weighty="2.0"/>
+        </constraints>
+      </vspacer>
     </children>
   </grid>
 </form>
