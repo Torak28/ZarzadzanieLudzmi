@@ -1,34 +1,17 @@
-# Tata program
+# Program do zarządania zasobami Ludzkimi
 
-### Pytania:
-	Ilu ludzi? 		100
-	Jaka forma?		1 komputer tylko Tata
-	Jaka platforma?
-	Jaki język?
+Przygotował **Jarosław Ciołek-Żelechowski**
 
+### Diagram Klas
 
-### Ramy:
-	Drużyna: 1 szef + 1,2 pomocników
-	Ocena ludzi? szefa? Ludzie 4 szef 4+1
-	NORMA jak ponizej to wszyscy to samo
-	Jakiś dodatkowy opis zadania? Nie
-	Jedna ocena? metry / brygade , jak przykracza 6m to za kazdy 1m wiecej hajsu
+![alt text](http://i.imgur.com/Ym3tPC7.png "Logo Title Text 1")
 
-### Wyniki zbiorcze:
-	WAŻNY DZIEŃ
-	Wykresy codziennie? WYKRESY Z DANEGO OKRESU, WYKRESU DANEGO CHŁOPA
-	Fomra porównania? NAKŁADNIE WYKRESÓW
+### Idea
 
-### Wprowadzanie:
-	ręcznie
+Program ma w prosty sposób operując na bazie danych zapisanych w postaci tekstowej umożliwiać na zarządzanie grupą pracownikow. Dodawanie, usuwanie, zbieranie w brygady i przydzielanie zadań. Ponadto cąłość posiada generator Raportów i system oceniania Pracowników w celu budowaniu statystyk. Same statystyki są następnie wykorzystywane do generowania wykresów.
 
-### Statystyki
-	metry
+Całość ma na zadaniu monitorowanie wykonanej pracy i wyciąganie na podstawie statystyk wniosków, które maja prowadzić do maksymalizacji produkcji.
 
+### Technologia
 
-szef jest przodyw
-pomocnikow
-NORMA x6
-
-
-Poprawić README.md
+Java z modułem do generowania wykresów opartym na [JFreeChart](http://www.jfree.org/jfreechart/)
