@@ -111,11 +111,14 @@ public class odczytPracownikow {
 	public int Ilu(){
 		otworzPlik();
 		ilosc = 0;
-		while(x.hasNext()){
-			String i = x.next();
-			String n = x.next();
+		try {
+			while (x.hasNext()) {
+				String i = x.next();
+				String n = x.next();
 
-			ilosc += 1;
+				ilosc += 1;
+			}
+		}catch (NoSuchElementException e){
 		}
 		zamknij();
 		return ilosc;
