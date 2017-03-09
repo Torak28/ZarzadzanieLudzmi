@@ -1169,6 +1169,7 @@ public class Aplikacja{
 		frame.setVisible(true);
 
 		/*TODO:
-		* */
+		* Dodawanie wynikow z dat wstecz
+		*/
 	}
 }
