@@ -30,6 +30,7 @@ public class Aplikacja{
 	private JLabel l1;
 	private JLabel l2;
 	private JLabel Data;
+	private JButton zmDaty;
 
 	public void setLabel1(String in){
 		opis.setText(in);
@@ -1153,6 +1154,20 @@ public class Aplikacja{
 						}
 					}
 				}catch (NullPointerException e1){
+				}
+			}
+		});
+		zmDaty.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] opcje = {"Zmień Date", "Cancel"};
+				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Zmiana Daty", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
+				if(n == 0){
+					try{
+						String out = raportDnia();
+						JOptionPane.showMessageDialog(GlownyPanel, out);
+					}catch (NullPointerException e1){
+					}
 				}
 			}
 		});
