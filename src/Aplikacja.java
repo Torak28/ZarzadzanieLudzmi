@@ -1,6 +1,7 @@
 /**
  * Created by Torak28 on 31.12.2016.
  */
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -467,6 +468,61 @@ public class Aplikacja{
 		}
 		r.zamknij();
 	}
+
+	public void Wczytanie(Date data){
+		String labelText;
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		labelText = df.format(data);
+		Data.setText(labelText);
+		r.Ilu(data);
+		r.otworzPlik(data);
+		for (int i = 0; i < r.ilosc; i++) {
+			String wynik = r.odczyt();
+			String[] podzial = wynik.split(" ");
+			String Imie = podzial[0];
+			String Nazwisko = podzial[1];
+			dodajPracownika(Imie, Nazwisko);
+		}
+		if(r.Jest){
+			r.Ile(data);
+			r.otworzPlik(data);
+			for (int j = 0; j < r.iloscZadan; j++) {
+				String Zadanie = r.odczytZadania();
+				String[] podzialS = Zadanie.split(" ");
+				String[] podzial = Arrays.copyOfRange(podzialS, 1, podzialS.length);
+				int ilu = Integer.parseInt(podzial[podzial.length - 1]);
+				String[] imionaPomocnikow = new String[ilu];
+				String[] nazwiskaPomocnikow =  new String[ilu];
+				int krok = 0;
+				int sterowanie = 3;
+				for (int i = 0; i < ilu; i++) {
+					imionaPomocnikow[krok] = podzial[sterowanie];
+					nazwiskaPomocnikow[krok] = podzial[sterowanie + 1];
+					krok++;
+					sterowanie += 2;
+				}
+				dodajDruzyne(podzial[1], podzial[2], ilu, imionaPomocnikow, nazwiskaPomocnikow);
+				Zadanie z = new Zadanie();
+				if(podzial[0].equals("Wiercenie")){
+					dodajZadanieWiercenia(z);
+					z.setWykonawcy(WszystkieDruzyny.get(j));
+				}
+				if(podzial[0].equals("Kotwienie")){
+					dodajZadanieKotwienia(z);
+					z.setWykonawcy(WszystkieDruzyny.get(j));
+				}
+				WszystkieZadania.add(z);
+				try{
+					ocenZadanie(WszystkieZadania.get(j), Integer.parseInt(podzial[podzial.length-2]));
+				}catch(NumberFormatException e){
+					//Bardzo naiwan obsługa
+				}
+
+			}
+			r.zamknijY();
+		}
+		r.zamknij();
+	}
 	/**
 	 * Zapis apki, zawsze przy zamknięciu
 	 **/
@@ -485,6 +541,23 @@ public class Aplikacja{
 			out += getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getImie() + " " + getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getNazwisko();
 		}
 		r.zapis(out, wyswietlZadania(), wyswietlOcenePracownikow());
+	}
+
+	public void Zapis(Date data){
+		String out;
+		if (WszyscyPracownicy.isEmpty()){
+			out = "Lista Pracownikow:\n\tlista pusta";
+		}else if(WszyscyPracownicy.size() == 1) {
+			out = getWszyscyPracownicy().get(0).getImie() + " " + getWszyscyPracownicy().get(0).getNazwisko() + "\n";
+		}
+		else{
+			out = getWszyscyPracownicy().get(0).getImie() + " " + getWszyscyPracownicy().get(0).getNazwisko() + "\n";
+			for (int i = 1; i < (getWszyscyPracownicy().size() - 1); i++) {
+				out += getWszyscyPracownicy().get(i).getImie() + " " + getWszyscyPracownicy().get(i).getNazwisko() + "\n";
+			}
+			out += getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getImie() + " " + getWszyscyPracownicy().get(getWszyscyPracownicy().size() - 1).getNazwisko();
+		}
+		r.zapis(data, out, wyswietlZadania(), wyswietlOcenePracownikow());
 	}
 
 	public XYDataset stworzDataset(String Imie, String Nazwisko, String Poczatek, String Koniec){
@@ -1026,8 +1099,15 @@ public class Aplikacja{
 		Zapisz.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e){
-				Zapis();
-				JOptionPane.showMessageDialog(GlownyPanel, "Zapisano");
+				try{
+					Date dataDnia;
+					String dataDniaS = Data.getText();
+					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+					dataDnia = df.parse(dataDniaS);
+					Zapis(dataDnia);
+					JOptionPane.showMessageDialog(GlownyPanel, "Zapisano");
+				}catch (ParseException p1){
+				}
 			}
 		});
 		wykresButton.addActionListener(new ActionListener() {
@@ -1171,7 +1251,26 @@ public class Aplikacja{
 				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Zmiana Daty", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if(n == 0){
 					try{
-
+						String dataDoWycofania = JOptionPane.showInputDialog(GlownyPanel, "Podaj Date w formacie dd.mm.rrrr", "Zmiana Daty", JOptionPane.PLAIN_MESSAGE);
+						if(dataDoWycofania.length() > 0){
+							String[] czesci = dataDoWycofania.split("\\.");
+							if(czesci.length > 2) {
+								try{
+									SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+									Date date = df.parse(dataDoWycofania);
+									//Mam date
+									Zapis();
+									WszyscyPracownicy.clear();
+									WszystkieZadania.clear();
+									WszystkieDruzyny.clear();
+									Wczytanie(date);
+								}catch (ParseException p1) {
+									JOptionPane.showMessageDialog(GlownyPanel, "Złe parsowanie", "Błąd", JOptionPane.ERROR_MESSAGE);
+								}
+							}else{
+								JOptionPane.showMessageDialog(GlownyPanel, "Zły format daty!", "Błąd", JOptionPane.ERROR_MESSAGE);
+							}
+						}
 					}catch (NullPointerException e1){
 					}
 				}

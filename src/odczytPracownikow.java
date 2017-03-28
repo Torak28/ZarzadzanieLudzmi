@@ -183,4 +183,77 @@ public class odczytPracownikow {
 		out = df.format(date);
 		return out;
 	}
+
+
+	public void otworzPlik(Date data){
+		try {
+			String nazwa;
+			Date date = data;
+			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+			nazwa = "Zadania_" + df.format(date);
+			x = new Scanner(new File("src/txt/Pracownicy.txt"));
+			y = new Scanner(new File("src/txt/"+nazwa+".txt"));
+		} catch (Exception e){
+			System.out.println("Nie ma pliczku :c");
+			Jest = false;
+		}
+	}
+	public int Ilu(Date data){
+		otworzPlik(data);
+		ilosc = 0;
+		try {
+			while (x.hasNext()) {
+				String i = x.next();
+				String n = x.next();
+
+				ilosc += 1;
+			}
+		}catch (NoSuchElementException e){
+		}
+		zamknij();
+		return ilosc;
+	}
+	public int Ile(Date data){
+		otworzPlik(data);
+		iloscZadan = 0;
+		String i = y.next();
+		i = i.substring(0, i.length()-1);
+		iloscZadan = Integer.parseInt(i);
+		y.close();
+		return iloscZadan;
+	}
+	public void zapis(Date data, String in, String in2, String in3){
+
+		PrintWriter zapis;
+		try{
+			zapis = new PrintWriter("src/txt/Pracownicy.txt");
+			zapis.print(in);
+			zapis.close();
+		} catch (FileNotFoundException e){
+			System.out.print("Nie ma Pracownicy.txt");
+		}
+
+		String nazwa;
+		Date date = data;
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		nazwa = "Zadania_" + df.format(date);
+		PrintWriter zapis2;
+		try {
+			zapis2 = new PrintWriter("src/txt/"+nazwa+".txt");
+			zapis2.print(in2);
+			zapis2.close();
+		} catch (FileNotFoundException e) {
+			System.out.print("Nie ma Zadania.txt");
+		}
+
+		String nazwa2 = "Oceny_" + df.format(date);
+		PrintWriter zapis3;
+		try{
+			zapis3 = new PrintWriter("src/txt/"+nazwa2+".txt");
+			zapis3.print(in3);
+			zapis3.close();
+		} catch (FileNotFoundException e){
+			System.out.print("Nie ma Oceny.txt");
+		}
+	}
 }
