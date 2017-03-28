@@ -870,24 +870,31 @@ public class Aplikacja{
 								}
 							}
 						}else if (n == 1){
-							dodajZadanieKotwienia(z);
-							int index;
-							String[] dru = new String[WszystkieDruzyny.size()];
-							for (int i = 0; i < WszystkieDruzyny.size(); i++) {
-								dru[i] = WszystkieDruzyny.get(i).getDruzyna();
-							}
-							String s = (String)JOptionPane.showInputDialog(GlownyPanel, "Której brygadzie przydzielasz to zadanie?", "Zarządzanie Zadaniami", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
-							String[] czesci = new String[3];
-							czesci = s.split(" ");
-							int index2 = 2147483647;
-							for (int i = 0; i < WszystkieDruzyny.size(); i++) {
-								if (WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(czesci[1]) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(czesci[2])){
-									index2 = i;
+							if(WszystkieDruzyny.isEmpty()){
+								JOptionPane.showMessageDialog(GlownyPanel, "Nie ma żadnych drużyn do ustawienia", "Błąd", JOptionPane.ERROR_MESSAGE);
+							}else {
+								dodajZadanieKotwienia(z);
+								int index;
+								String[] dru = new String[WszystkieDruzyny.size()];
+								for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+									dru[i] = WszystkieDruzyny.get(i).getDruzyna();
 								}
-							}
-							if (index2 != 2147483647){
-								z.setWykonawcy(WszystkieDruzyny.get(index2));
-								sterowanie = 1;
+								String s = (String) JOptionPane.showInputDialog(GlownyPanel, "Której brygadzie przydzielasz to zadanie?", "Zarządzanie Zadaniami", JOptionPane.PLAIN_MESSAGE, null, dru, dru[0]);
+								String[] czesci = new String[3];
+								czesci = s.split(" ");
+								if(czesci[3].equals("bez")){
+									czesci[2] = czesci[2].substring(0, czesci[2].length() - 1);
+								}
+								int index2 = 2147483647;
+								for (int i = 0; i < WszystkieDruzyny.size(); i++) {
+									if (WszystkieDruzyny.get(i).getPrzodowy().getImie().equals(czesci[1]) && WszystkieDruzyny.get(i).getPrzodowy().getNazwisko().equals(czesci[2])) {
+										index2 = i;
+									}
+								}
+								if (index2 != 2147483647) {
+									z.setWykonawcy(WszystkieDruzyny.get(index2));
+									sterowanie = 1;
+								}
 							}
 						}
 						if(sterowanie == 1){
@@ -1164,8 +1171,7 @@ public class Aplikacja{
 				int n = JOptionPane.showOptionDialog(GlownyPanel, "Co chcesz zrobić?", "Zmiana Daty", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcje, "");
 				if(n == 0){
 					try{
-						String out = raportDnia();
-						JOptionPane.showMessageDialog(GlownyPanel, out);
+
 					}catch (NullPointerException e1){
 					}
 				}
