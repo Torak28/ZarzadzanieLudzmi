@@ -29,6 +29,7 @@ public class Aplikacja{
 	private JButton wykresButton;
 	private JLabel l1;
 	private JLabel l2;
+	private JLabel Data;
 
 	public void setLabel1(String in){
 		opis.setText(in);
@@ -411,6 +412,11 @@ public class Aplikacja{
 	 * Wczytanie z pliku, zawsze na starcie apki
 	 **/
 	public void Wczytanie(){
+		String labelText;
+		Date date = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		labelText = df.format(date);
+		Data.setText(labelText);
 		r.Ilu();
 		r.otworzPlik();
 		for (int i = 0; i < r.ilosc; i++) {
